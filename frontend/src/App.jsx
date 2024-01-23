@@ -1,10 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
-    return (
-        <Routes>
-            <Route />
-        </Routes>
-    );
+	console.log('App');
+	return (
+		<Routes>
+			<Route />
+		</Routes>
+	);
 };
 export default App;
