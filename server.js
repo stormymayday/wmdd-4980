@@ -4,6 +4,12 @@ const app = require('./app');
 
 dotenv.config({ path: './config.env' });
 
+// Test route - start
+app.get('/api/v1/test', (req, res) => {
+  res.json({ msg: 'test route' });
+});
+// Test route - end
+
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
