@@ -1,11 +1,13 @@
 {
-  "name": "nators",
+  "name": "pilot",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "server": "nodemon server.js",
+    "frontend": "npm run start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"\"npm run frontend\""
   },
   "author": "",
   "license": "ISC",
