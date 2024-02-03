@@ -6,9 +6,7 @@ const App = () => {
   console.log('App');
   const routes = useRoutes(false);
   return (
-    <Router>
-      <div>{routes}</div>
-    </Router>
+    <NewFlight />
   );
 };
 export default App;
