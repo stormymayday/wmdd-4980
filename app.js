@@ -3,6 +3,7 @@ const morgan = require('morgan');
 
 const userRouter = require('./routes/userRoutes');
 const mainPageRouter = require('./routes/mainPageRoutes');
+const createFlight = require('./routes/createFlightRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(morgan('dev'));
 // });
 
 app.use('/', mainPageRouter);
+app.use('/flights', createFlight);
 app.use('/users', userRouter);
 
 module.exports = app;
