@@ -30,7 +30,7 @@ export default function NewFlight() {
         </div>
         <div>
           <label>To</label>
-          <select value={toValue} onChange={handleToValue}>
+          <select name='to' value={flightInfo.to} onChange={handleInput}>
             <option value="location1">Location 1</option>
             <option value="location2">Location 2</option>
           </select>
