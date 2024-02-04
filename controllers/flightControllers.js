@@ -22,7 +22,12 @@ exports.createFLight = async (req, res) => {
 // In your controller file (e.g., flightsController.js)
 exports.getFlights = async (req, res) => {
   try {
-    const flights = await Flight.find();
+    //////////////////////////////////////////////////////////// exlude function
+    // const queryObj = { ...req.query };
+    // const exlueFilds = ["Key","Another key"];
+    // exludeFilds.forEach(el=>delete queryObj[el]);
+    // /////////////////////////////////////////////////////////////////////////////
+    const flights = await Flight.find(req.query);
 
     res.status(200).json({
       status: 'success',
@@ -39,16 +44,16 @@ exports.getFlights = async (req, res) => {
 };
 
 exports.getOneFlight = async (req, res) => {
+  console.log(req.params.id);
+
   try {
     const flight = await Flight.findById(req.params.id);
-
     if (!flight) {
       return res.status(404).json({
         status: 'fail',
         message: 'Flight not found',
       });
     }
-
     res.status(200).json({
       status: 'success',
       data: {

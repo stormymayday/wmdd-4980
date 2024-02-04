@@ -1,6 +1,5 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
-
 import {
   HomeLayout,
   Landing,
