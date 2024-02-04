@@ -1,4 +1,7 @@
+
+import { NewFlight } from './components/NewFlight';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 
 import {
   HomeLayout,

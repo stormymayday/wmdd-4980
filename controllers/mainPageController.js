@@ -2,8 +2,8 @@ const express = require('express');
 
 exports.getMainPage = (req, res) => {
   res.status(200).json({
-    status: 'nice',
-    message: 'nice',
+    status: '200',
+    message: 'Great stuff',
   });
 };
 exports.postMainPage = (req, res) => {
