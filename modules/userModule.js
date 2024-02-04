@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validators: [validator.isEmail, 'Please provide a valid email address'],
   },
+  manager: {
+    type: Boolean,
+    default: false,
+  },
   photo: String,
 });
 
