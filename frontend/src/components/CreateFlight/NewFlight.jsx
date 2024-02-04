@@ -17,8 +17,27 @@ export default function NewFlight() {
     }));
   }
 
+  function handleSubmit(event) {
+      event.preventDefault();
+      fetch('/api/flights', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(flightInfo),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+
   return (
     <>
+      <form onSubmit={handleSubmit}>
       <div>
         <label>Select Route:</label>
         <div>
@@ -42,6 +61,7 @@ export default function NewFlight() {
           <label>Date</label>
         </div>
       </div>
+      </form>
     </>
   );
 }

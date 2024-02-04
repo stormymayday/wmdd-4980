@@ -5,6 +5,7 @@ export default function FlightCreate() {
             <div>
                 <p>Recent Flight Schedule</p>
                 <button>View All</button>
+                
             </div>
         </>
     )
