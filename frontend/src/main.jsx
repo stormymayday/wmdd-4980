@@ -4,7 +4,7 @@ import App from './App.jsx';
 import './index.css';
 
 // Testing server connection
-fetch('/api/v1/test')
+fetch('/api/v1/flights')
   .then((res) => res.json())
   .then((data) => console.log(data));
 

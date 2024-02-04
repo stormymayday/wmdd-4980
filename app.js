@@ -22,8 +22,8 @@ app.use(morgan('dev'));
 //   next();
 // });
 
-app.use('/', mainPageRouter);
-app.use('/flights', createFlight);
-app.use('/users', userRouter);
+app.use('/api/v1/test', mainPageRouter);
+app.use('/api/v1/flights', createFlight);
+app.use('/api/v1/users', userRouter);
 
 module.exports = app;
