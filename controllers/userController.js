@@ -1,24 +1,12 @@
 const express = require('express');
 const User = require('../modules/userModule');
 
-exports.getAllUsers = async (req, res) => {
-  try {
-    const flights = await User.find(req.query);
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        flights,
-      },
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: 'error',
-      message: error.message,
-    });
-  }
+exports.getAllUsers = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This is not implemented y111et',
+  });
 };
-
 exports.createUser = async (req, res) => {
   try {
     const newUser = await User.create(req.body);
@@ -36,83 +24,21 @@ exports.createUser = async (req, res) => {
     });
   }
 };
-
-exports.getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.params.userId);
-
-    if (!user) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'User not found',
-      });
-    }
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        user,
-      },
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: 'error',
-      message: error.message,
-    });
-  }
+exports.getUser = (req, res) => {
+  res.status(400).json({
+    status: 'error',
+    message: 'Not Implemented',
+  });
 };
-
-exports.updateUser = async (req, res) => {
-  try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.userId,
-      req.body,
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'User not found',
-      });
-    }
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        user: updatedUser,
-      },
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: 'error',
-      message: error.message,
-    });
-  }
+exports.updateUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Not Implemented',
+  });
 };
-
-exports.deleteUser = async (req, res) => {
-  try {
-    const deletedUser = await User.findByIdAndDelete(req.params.userId);
-
-    if (!deletedUser) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'User not found',
-      });
-    }
-
-    res.status(204).json({
-      status: 'success',
-      data: null,
-    });
-  } catch (error) {
-    res.status(500).json({
-      status: 'error',
-      message: error.message,
-    });
-  }
+exports.deleteUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'Not Implemented',
+  });
 };

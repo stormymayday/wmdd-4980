@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function NewFlight() {
-  /*************************************************/
-  // Data of flight time that will be on the data base.
-  const flightDuration = {
-    location1Tolocation2: 1.6,
-    location2Tolocation1: 2,
-  };
-
-  /*************************************************/
-
   const [flightInfo, setflightInfo] = useState({
     from: '',
     to: '',
-    arriving: '',
-    departure: '',
+    date: '',
+    hour: '',
     aircraftType: '',
     flightNumber: '',
     weather: '',
@@ -23,56 +14,6 @@ export default function NewFlight() {
       pbn: false,
     },
   });
-  const [flightTimes, setflightTimes] = useState({
-    dateOut: '',
-    hourOut: '',
-    dateIn: '',
-    hourIn: '',
-  });
-
-  useEffect(() => {
-    if (
-      flightInfo.from &&
-      flightInfo.to &&
-      flightTimes.dateOut &&
-      flightTimes.hourOut
-    ) {
-      const dateHour = combineDateAndHour(
-        flightTimes.dateOut,
-        flightTimes.hourOut
-      );
-      setflightInfo((prevFlightInfo) => ({
-        ...prevFlightInfo,
-        departure: dateHour,
-      }));
-
-      const destination = addHoursToDateString(
-        dateHour,
-        flightDuration[`${flightInfo.from}To${flightInfo.to}`]
-      );
-
-      setflightInfo((prevFlightInfo) => ({
-        ...prevFlightInfo,
-        arriving: destination,
-      }));
-
-      // Extract date and time from arriving
-      const arrivingDate = destination.slice(0, 10); // Extract date (yyyy-mm-dd)
-      const arrivingTime = destination.slice(11, 16); // Extract time (hh:mm)
-
-      // Set dateIn and hourIn
-      setflightTimes((prevFlightTimes) => ({
-        ...prevFlightTimes,
-        dateIn: arrivingDate,
-        hourIn: arrivingTime,
-      }));
-    }
-  }, [
-    flightInfo.from,
-    flightInfo.to,
-    flightTimes.dateOut,
-    flightTimes.hourOut,
-  ]);
 
   function handleInput(event) {
     const { name, value } = event.target;
@@ -93,32 +34,69 @@ export default function NewFlight() {
     }));
   }
 
-  function handleHoursInput(event) {
-    const { name, value } = event.target;
-    setflightTimes((prevFlightTimes) => ({
-      ...prevFlightTimes,
-      [name]: value,
-    }));
-  }
-
-  function combineDateAndHour(date, hour) {
-    const combinedDateTime = `${date}T${hour}`;
-    return combinedDateTime;
-  }
-
-  function addHoursToDateString(dateString, hoursToAdd) {
-    var date = new Date(dateString);
-    var totalMillisecondsToAdd = hoursToAdd * 60 * 60 * 1000;
-    date.setTime(date.getTime() + totalMillisecondsToAdd);
-    var newDateString = date.toISOString().slice(0, 16);
-
-    return newDateString;
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    localStorage.newFlight = JSON.stringify(flightInfo);
+    let flightInfoJSON = JSON.stringify({
+      flightNumber: "ABC123",
+      aircraftType: "Boeing 747",
+      from: "JFK",
+      to: "LAX",
+      weather: "Clear",
+      specialRequirements: [
+        {
+          PBN: true,
+          LVP: false
+        }
+      ],
+      arriving: "2024-02-06T13:20:00",
+      departure: "2024-02-06T15:30:00",
+      crewMembers: [
+        {
+          member1: "John Doe",
+          member2: "Jane Smith",
+          member3: "Bob Johnson"
+        }
+      ]
+    });
+  
+    console.log(flightInfoJSON);
+  
+    fetch('/api/v1/flights', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: flightInfoJSON,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }
+  
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   let flightInfoJSON = JSON.stringify(flightInfo);
+  //   console.log(flightInfoJSON);
+  //   fetch('http://localhost:3000/flights', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(flightInfo),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Success:', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // }
 
   return (
     <>
@@ -133,7 +111,6 @@ export default function NewFlight() {
                 name="flightNumber"
                 value={flightInfo.flightNumber}
                 onChange={handleInput}
-                required
               />
             </label>
           </div>
@@ -145,7 +122,6 @@ export default function NewFlight() {
                   name="from"
                   value={flightInfo.from}
                   onChange={handleInput}
-                  required
                 >
                   <option value="" disabled aria-placeholder="Select Origin">
                     Select Origin
@@ -158,12 +134,7 @@ export default function NewFlight() {
             <div>
               <label>
                 To
-                <select
-                  name="to"
-                  value={flightInfo.to}
-                  onChange={handleInput}
-                  required
-                >
+                <select name="to" value={flightInfo.to} onChange={handleInput}>
                   <option
                     value=""
                     disabled
@@ -185,47 +156,18 @@ export default function NewFlight() {
                   Date
                   <input
                     type="date"
-                    name="dateOut"
-                    value={flightTimes.dateOut}
-                    onChange={handleHoursInput}
-                    required
+                    name="date"
+                    value={flightInfo.date}
+                    onChange={handleInput}
                   />
                 </label>
                 <label>
                   Time
                   <input
                     type="time"
-                    name="hourOut"
-                    value={flightTimes.hourOut}
-                    onChange={handleHoursInput}
-                    required
-                  />
-                </label>
-              </div>
-            </label>
-          </div>
-          <div>
-            <label>
-              Arrival information
-              <div>
-                <label>
-                  Date
-                  <input
-                    type="date"
-                    name="dateIn"
-                    value={flightTimes.dateIn}
-                    onChange={handleHoursInput}
-                    disabled
-                  />
-                </label>
-                <label>
-                  Time
-                  <input
-                    type="time"
-                    name="hourIn"
-                    value={flightTimes.hourIn}
-                    onChange={handleHoursInput}
-                    disabled
+                    name="hour"
+                    value={flightInfo.hour}
+                    onChange={handleInput}
                   />
                 </label>
               </div>
@@ -241,7 +183,6 @@ export default function NewFlight() {
                     name="aircraftType"
                     value={flightInfo.aircraftType}
                     onChange={handleInput}
-                    required
                   >
                     <option
                       value=""
