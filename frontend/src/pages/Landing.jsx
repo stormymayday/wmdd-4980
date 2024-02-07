@@ -1,4 +1,7 @@
+import NewFlight from "../components/CreateFlight/NewFlight";
+
 const Landing = () => {
-  return <div>Landing Page</div>;
+  return <NewFlight/>;
 };
+
 export default Landing;
