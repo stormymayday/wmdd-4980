@@ -1,15 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function NewFlight() {
+  /*************************************************/
+  // Data of flight time that will be on the data base.
+  const flightDuration = {
+    location1Tolocation2: 1.6,
+    location2Tolocation1: 2,
+  };
 
-/*************************************************/
-// Data of flight time that will be on the data base.
-const flightDuration = {
-  location1Tolocation2: 1.6,
-  location2Tolocation1: 2,
-}
-
-/*************************************************/
+  /*************************************************/
 
   const [flightInfo, setflightInfo] = useState({
     from: '',
@@ -30,6 +29,50 @@ const flightDuration = {
     dateIn: '',
     hourIn: '',
   });
+
+  useEffect(() => {
+    if (
+      flightInfo.from &&
+      flightInfo.to &&
+      flightTimes.dateOut &&
+      flightTimes.hourOut
+    ) {
+      const dateHour = combineDateAndHour(
+        flightTimes.dateOut,
+        flightTimes.hourOut
+      );
+      setflightInfo((prevFlightInfo) => ({
+        ...prevFlightInfo,
+        departure: dateHour,
+      }));
+
+      const destination = addHoursToDateString(
+        dateHour,
+        flightDuration[`${flightInfo.from}To${flightInfo.to}`]
+      );
+
+      setflightInfo((prevFlightInfo) => ({
+        ...prevFlightInfo,
+        arriving: destination,
+      }));
+
+      // Extract date and time from arriving
+      const arrivingDate = destination.slice(0, 10); // Extract date (yyyy-mm-dd)
+      const arrivingTime = destination.slice(11, 16); // Extract time (hh:mm)
+
+      // Set dateIn and hourIn
+      setflightTimes((prevFlightTimes) => ({
+        ...prevFlightTimes,
+        dateIn: arrivingDate,
+        hourIn: arrivingTime,
+      }));
+    }
+  }, [
+    flightInfo.from,
+    flightInfo.to,
+    flightTimes.dateOut,
+    flightTimes.hourOut,
+  ]);
 
   function handleInput(event) {
     const { name, value } = event.target;
@@ -52,89 +95,35 @@ const flightDuration = {
 
   function handleHoursInput(event) {
     const { name, value } = event.target;
-    setflightTimes({ ...flightTimes, [name]: value });
-    const { dateOut, hourOut } = flightTimes;
-    let dateHour = combineDateAndHour(dateOut, hourOut);
-    setflightInfo((prevFlightInfo) => ({
-      ...prevFlightInfo,
-      departure: dateHour,
+    setflightTimes((prevFlightTimes) => ({
+      ...prevFlightTimes,
+      [name]: value,
     }));
   }
-  
-  function combineDateAndHour(date, hour){
+
+  function combineDateAndHour(date, hour) {
     const combinedDateTime = `${date}T${hour}`;
     return combinedDateTime;
   }
 
-  function addHours(initialHour, additionalHours) {
-    const [initialHours, initialMinutes] = initialHour.split(':').map(Number);
-    const initialTotalMinutes = initialHours * 60 + initialMinutes;
-    const additionalMinutes = additionalHours * 60;
-    const totalMinutes = initialTotalMinutes + additionalMinutes;
-    const finalHours = Math.floor(totalMinutes / 60) % 24; 
-    const finalMinutes = totalMinutes % 60;
-    const formattedResult = `${finalHours.toString().padStart(2, '0')}:${finalMinutes.toString().padStart(2, '0')}`;
-    return formattedResult;
+  function addHoursToDateString(dateString, hoursToAdd) {
+    var date = new Date(dateString);
+    var totalMillisecondsToAdd = hoursToAdd * 60 * 60 * 1000;
+    date.setTime(date.getTime() + totalMillisecondsToAdd);
+    var newDateString = date.toISOString().slice(0, 16);
+
+    return newDateString;
   }
 
   function handleSubmit(event) {
-    const destination = addHours(flightTimes.hourOut, flightDuration[`${flightInfo.from}To${flightInfo.to}`])
-    console.log(destination)
-
     event.preventDefault();
-    console.log(flightInfo);
-    console.log(flightTimes);
-    // localStorage.newFlight = JSON.stringify(flightInfo);
+    localStorage.newFlight = JSON.stringify(flightInfo);
   }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   let flightInfoJSON = JSON.stringify({
-  //     flightNumber: "VictorTest",
-  //     aircraftType: "Boeing 747",
-  //     from: "JFK",
-  //     to: "LAX",
-  //     weather: "Clear",
-  //     specialRequirements: [
-  //       {
-  //         PBN: true,
-  //         LVP: false
-  //       }
-  //     ],
-  //     arriving: "2024-02-06T13:20:00",
-  //     departure: "2024-02-06T15:30:00",
-  //     crewMembers: [
-  //       {
-  //         member1: "John Doe",
-  //         member2: "Jane Smith",
-  //         member3: "Bob Johnson"
-  //       }
-  //     ]
-  //   });
-  
-  //   console.log(flightInfoJSON);
-  
-  //   fetch('/api/v1/flights', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: flightInfoJSON,
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log('Success:', data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error:', error);
-  //     });
-  // }
-  
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-      <label>
+        <label>
           Select Route:
           <div>
             <label>
@@ -144,6 +133,7 @@ const flightDuration = {
                 name="flightNumber"
                 value={flightInfo.flightNumber}
                 onChange={handleInput}
+                required
               />
             </label>
           </div>
@@ -155,6 +145,7 @@ const flightDuration = {
                   name="from"
                   value={flightInfo.from}
                   onChange={handleInput}
+                  required
                 >
                   <option value="" disabled aria-placeholder="Select Origin">
                     Select Origin
@@ -167,7 +158,12 @@ const flightDuration = {
             <div>
               <label>
                 To
-                <select name="to" value={flightInfo.to} onChange={handleInput}>
+                <select
+                  name="to"
+                  value={flightInfo.to}
+                  onChange={handleInput}
+                  required
+                >
                   <option
                     value=""
                     disabled
@@ -190,7 +186,7 @@ const flightDuration = {
                   <input
                     type="date"
                     name="dateOut"
-                    value={flightInfo.dateOut}
+                    value={flightTimes.dateOut}
                     onChange={handleHoursInput}
                     required
                   />
@@ -216,9 +212,9 @@ const flightDuration = {
                   Date
                   <input
                     type="date"
-                    name="date"
-                    value={flightInfo.date}
-                    onChange={handleInput}
+                    name="dateIn"
+                    value={flightTimes.dateIn}
+                    onChange={handleHoursInput}
                     disabled
                   />
                 </label>
@@ -226,9 +222,9 @@ const flightDuration = {
                   Time
                   <input
                     type="time"
-                    name="hour"
-                    value={flightInfo.hour}
-                    onChange={handleInput}
+                    name="hourIn"
+                    value={flightTimes.hourIn}
+                    onChange={handleHoursInput}
                     disabled
                   />
                 </label>
@@ -245,6 +241,7 @@ const flightDuration = {
                     name="aircraftType"
                     value={flightInfo.aircraftType}
                     onChange={handleInput}
+                    required
                   >
                     <option
                       value=""
