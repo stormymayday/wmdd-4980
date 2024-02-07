@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 function Tab({ value, children, activeTab, onClick }) {
   return (
     <button
-      //this is placeholder for tab styling
+      //this is a placeholder for tab styling
       className={activeTab === value ? '' : ''}
       onClick={() => onClick(value)}
     >

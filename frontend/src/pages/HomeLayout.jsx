@@ -5,7 +5,7 @@ import Tabbed from '../components/flightTable/Tabbed';
 const HomeLayout = () => {
   return (
     <div>
-      <FlightTable expand={false} />
+      <FlightTable expand={true} />
 
       {/* <Outlet /> */}
     </div>

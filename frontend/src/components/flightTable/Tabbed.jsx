@@ -1,31 +1,34 @@
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Tab from './Tab';
 
-function Tabbed() {
-  const [activeTab, setActiveTab] = useState('');
+function Tabbed({ activeTab, setActiveTab }) {
   console.log(activeTab);
 
   return (
     <>
       <Tab
-        value="In Progress"
+        value="in progress"
         num={0}
         activeTab={activeTab}
         onClick={setActiveTab}
       >
         In Progress
       </Tab>
-      <Tab value="Done" num={1} activeTab={activeTab} onClick={setActiveTab}>
+      <Tab value="done" num={1} activeTab={activeTab} onClick={setActiveTab}>
         Done
       </Tab>
-      <Tab value="Delay" num={2} activeTab={activeTab} onClick={setActiveTab}>
+      <Tab value="delay" num={2} activeTab={activeTab} onClick={setActiveTab}>
         Delay
       </Tab>
-      <Tab value="Cancel" num={3} activeTab={activeTab} onClick={setActiveTab}>
+      <Tab value="cancel" num={3} activeTab={activeTab} onClick={setActiveTab}>
         Cancel
       </Tab>
     </>
   );
 }
+Tabbed.propTypes = {
+  activeTab: PropTypes.string,
+  setActiveTab: PropTypes.func,
+};
 
 export default Tabbed;
