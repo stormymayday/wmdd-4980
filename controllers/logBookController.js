@@ -1,14 +1,14 @@
+const Logbook = require('../modules/logBookModule');
 const express = require('express');
-const User = require('../modules/userModule');
 
-exports.getAllUsers = async (req, res) => {
+exports.getAllLogbooks = async (req, res) => {
   try {
-    const users = await User.find(req.query);
+    const logbooks = await Logbook.find(req.query);
 
     res.status(200).json({
       status: 'success',
       data: {
-        users,
+        logbooks,
       },
     });
   } catch (error) {
@@ -19,14 +19,14 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.createUser = async (req, res) => {
+exports.createLogbook = async (req, res) => {
   try {
-    const newUser = await User.create(req.body);
+    const newLogbook = await Logbook.create(req.body);
 
     res.status(201).json({
       status: 'success',
       data: {
-        user: newUser,
+        logbook: newLogbook,
       },
     });
   } catch (error) {
@@ -37,21 +37,21 @@ exports.createUser = async (req, res) => {
   }
 };
 
-exports.getUser = async (req, res) => {
+exports.getLogbook = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    const logbook = await Logbook.findById(req.params.logbookId);
 
-    if (!user) {
+    if (!logbook) {
       return res.status(404).json({
         status: 'fail',
-        message: 'User not found',
+        message: 'Logbook not found',
       });
     }
 
     res.status(200).json({
       status: 'success',
       data: {
-        user,
+        logbook,
       },
     });
   } catch (error) {
@@ -62,10 +62,10 @@ exports.getUser = async (req, res) => {
   }
 };
 
-exports.updateUser = async (req, res) => {
+exports.updateLogbook = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.userId,
+    const updatedLogbook = await Logbook.findByIdAndUpdate(
+      req.params.logbookId,
       req.body,
       {
         new: true,
@@ -73,17 +73,17 @@ exports.updateUser = async (req, res) => {
       }
     );
 
-    if (!updatedUser) {
+    if (!updatedLogbook) {
       return res.status(404).json({
         status: 'fail',
-        message: 'User not found',
+        message: 'Logbook not found',
       });
     }
 
     res.status(200).json({
       status: 'success',
       data: {
-        user: updatedUser,
+        logbook: updatedLogbook,
       },
     });
   } catch (error) {
@@ -94,14 +94,16 @@ exports.updateUser = async (req, res) => {
   }
 };
 
-exports.deleteUser = async (req, res) => {
+exports.deleteLogbook = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.userId);
+    const deletedLogbook = await Logbook.findByIdAndDelete(
+      req.params.logbookId
+    );
 
-    if (!deletedUser) {
+    if (!deletedLogbook) {
       return res.status(404).json({
         status: 'fail',
-        message: 'User not found',
+        message: 'Logbook not found',
       });
     }
 
