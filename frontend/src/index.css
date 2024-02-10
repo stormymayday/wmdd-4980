@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Header - start */
+.header {
+  position: fixed;
+  width: 100%;
+  /* height: 15%; */
+  background-color: black;
+  color: white;
+  display: grid;
+  place-items: center;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.logo-container {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  /* background-color: red; */
+  height: 5rem;
+}
+.logo-text {
+  /* background-color: red; */
+  height: 5rem;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  width: 90%;
+}
+.search-icon {
+  color: gray;
+  font-size: 2rem;
+  position: relative;
+  left: 4.5rem;
+}
+.header-search input {
+  border-radius: 0.5rem;
+  width: 30rem;
+  padding: 1rem;
+  padding-left: 3rem;
+}
+.header-bell {
+  background-color: darkgrey;
+  font-size: 3rem;
+  border-radius: 0.3rem;
+  padding: 0.6rem;
+}
+/* Header - end */
+
+/* Dashboard Layout - start */
+.dashboard-page {
+  padding-top: 18rem;
+  display: grid;
+  place-items: center;
+}
+/* Dashboard Layout - end */
+
+/* Navbar - start */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* background-color: gray; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.nav-link {
+  text-transform: capitalize;
+}
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: grid;
+  place-items: center;
+}
+/* Navbar - end */
