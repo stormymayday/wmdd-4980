@@ -1,2 +1,3 @@
 // News Components go here
-export { NewFlight as newFlight } from './CreateFlight/NewFlight';
+export { default } from './CreateFlight/NewFlight';
+export { default as Input} from './Input'
