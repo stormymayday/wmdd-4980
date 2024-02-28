@@ -1,4 +1,3 @@
-// import { NewFlight } from './components/NewFlight';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import {
@@ -8,7 +7,10 @@ import {
   Login,
   Error,
   DashboardLayout,
-  Admin,
+  SelectCrew,
+  Tracking,
+  CreateFlight,
+  AssignCrew,
   Profile,
 } from './pages';
 
@@ -35,12 +37,24 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           {
-            path: 'profile',
-            element: <Profile />,
+            path: 'select-crew',
+            element: <SelectCrew />,
           },
           {
-            path: 'admin',
-            element: <Admin />,
+            path: 'tracking',
+            element: <Tracking />,
+          },
+          {
+            path: 'create-flight',
+            element: <CreateFlight />,
+          },
+          {
+            path: 'assign-crew',
+            element: <AssignCrew />,
+          },
+          {
+            path: 'profile',
+            element: <Profile />,
           },
         ],
       },

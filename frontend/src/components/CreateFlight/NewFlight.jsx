@@ -2,20 +2,11 @@ import { useState, useEffect } from 'react';
 import { Input } from '../index';
 
 export default function NewFlight() {
-  /*************************************************/
-  // Data of flight time that will be on the data base.
-  const flightDuration = {
-    location1Tolocation2: 1.6,
-    location2Tolocation1: 2,
-  };
-
-  /*************************************************/
-
   const [flightInfo, setflightInfo] = useState({
     from: '',
     to: '',
-    arriving: '',
-    departure: '',
+    date: '',
+    hour: '',
     aircraftType: '',
     flightNumber: '',
     weather: '',
@@ -24,6 +15,7 @@ export default function NewFlight() {
       pbn: false,
     },
   });
+
   const [flightTimes, setflightTimes] = useState({
     dateOut: '',
     hourOut: '',
@@ -106,33 +98,34 @@ export default function NewFlight() {
     }));
   }
 
-  function handleHoursInput(event) {
-    const { name, value } = event.target;
-    setflightTimes((prevFlightTimes) => ({
-      ...prevFlightTimes,
-      [name]: value,
-    }));
-  }
-
-  function combineDateAndHour(date, hour) {
-    const combinedDateTime = `${date}T${hour}`;
-    return combinedDateTime;
-  }
-
-  function addHoursToDateString(dateString, hoursToAdd) {
-    var date = new Date(dateString);
-    var totalMillisecondsToAdd = hoursToAdd * 60 * 60 * 1000;
-    date.setTime(date.getTime() + totalMillisecondsToAdd);
-    var newDateString = date.toISOString().slice(0, 16);
-
-    return newDateString;
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
+
     console.log(flightInfo);
     // localStorage.newFlight = JSON.stringify(flightInfo);
+
   }
+  
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   let flightInfoJSON = JSON.stringify(flightInfo);
+  //   console.log(flightInfoJSON);
+  //   fetch('http://localhost:3000/flights', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(flightInfo),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Success:', data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // }
 
   return (
     <>
@@ -254,6 +247,7 @@ export default function NewFlight() {
                   <option value="aircraft1">Aircraft 1</option>
                   <option value="aircraft2">Aircraft 2</option>
                 </select>
+
               </div>
             </label>
             <div className="section-subsection">
