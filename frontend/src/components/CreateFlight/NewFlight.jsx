@@ -2,6 +2,14 @@ import { useState, useEffect } from 'react';
 import { Input } from '../index';
 
 export default function NewFlight() {
+  /*************************************************/
+  // Data of flight time that will be on the data base.
+  const flightDuration = {
+    location1Tolocation2: 1.6,
+    location2Tolocation1: 2,
+  };
+  /*************************************************/
+
   const [flightInfo, setflightInfo] = useState({
     from: '',
     to: '',
@@ -98,15 +106,32 @@ export default function NewFlight() {
     }));
   }
 
+  function handleHoursInput(event) {
+    const { name, value } = event.target;
+    setflightTimes((prevFlightTimes) => ({
+      ...prevFlightTimes,
+      [name]: value,
+    }));
+  }
+  function combineDateAndHour(date, hour) {
+    const combinedDateTime = `${date}T${hour}`;
+    return combinedDateTime;
+  }
+  function addHoursToDateString(dateString, hoursToAdd) {
+    var date = new Date(dateString);
+    var totalMillisecondsToAdd = hoursToAdd * 60 * 60 * 1000;
+    date.setTime(date.getTime() + totalMillisecondsToAdd);
+    var newDateString = date.toISOString().slice(0, 16);
+    return newDateString;
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
 
     console.log(flightInfo);
     // localStorage.newFlight = JSON.stringify(flightInfo);
-
   }
-  
+
   // function handleSubmit(event) {
   //   event.preventDefault();
   //   let flightInfoJSON = JSON.stringify(flightInfo);
@@ -241,13 +266,12 @@ export default function NewFlight() {
               Aircraft Type
               <div>
                 <select className="aircraft-type" name="aircraftType">
-                  <option value="" disabled selected aria-placeholder="true">
+                  <option value="" disabled aria-placeholder="true">
                     Select Aircraft Type
                   </option>
                   <option value="aircraft1">Aircraft 1</option>
                   <option value="aircraft2">Aircraft 2</option>
                 </select>
-
               </div>
             </label>
             <div className="section-subsection">
