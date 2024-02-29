@@ -19,6 +19,11 @@ const crewMemberSchema = new mongoose.Schema({
       type: Number,
       default: 0,
     },
+    available: {
+      type: String,
+      enum: ['available', 'Unavailable', 'PTO'],
+      default: 'Unavailable',
+    },
   },
   certifications: {
     type: [String],
