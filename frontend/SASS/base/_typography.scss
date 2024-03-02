@@ -1,12 +1,12 @@
-@import "../abstracts/variables";
+@import '../abstracts/variables';
 
 body {
-  font-family: $ff-primary;
+  // font-family: $ff-primary;
   // font-size: $body1-mobile-font-size;
   // font-weight: $body1-mobile-font-weight;
   // line-height: $body1-mobile-line-height;
-  background: $clr-primary-3;
-  color: $clr-primary-2;
+  // background: $clr-primary-3;
+  // color: $clr-primary-2;
 }
 
 h1 {
@@ -42,20 +42,20 @@ a {
 }
 
 // Prevents Zooming on iOS:
-input[type="color"],
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
+input[type='color'],
+input[type='date'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='time'],
+input[type='url'],
+input[type='week'],
 select:focus,
 textarea {
   font-size: 16px;
