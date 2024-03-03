@@ -10,6 +10,6 @@ import { CrewAvailability } from './components/CrewPieChart/CrewAvailability.jsx
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CrewAvailability />
+    <App />
   </React.StrictMode>
 );
