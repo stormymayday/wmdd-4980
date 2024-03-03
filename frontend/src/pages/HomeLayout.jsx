@@ -6,9 +6,9 @@ const HomeLayout = () => {
   return (
     <div>
       {/* <BarChart /> */}
-      <FlightTable />
+      {/* <FlightTable /> */}
       {/* <FlightTableWithCrew /> */}
-      {/* <Outlet /> */}
+      <Outlet />
     </div>
   );
 };

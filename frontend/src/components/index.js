@@ -5,3 +5,4 @@ export { default as Logo } from './Logo';
 export { default as NewFlight } from './NewFlight';
 export { default as Input} from './Input'
 export { default as FlightCard } from './FlightCard';
+export { default as UpcomingFlights } from './UpcomingFlights';

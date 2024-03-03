@@ -1,7 +1,11 @@
+// To render the Upcoming flights on the dashboard, call the UpcomningFlights component with a prop named crew={true}
+// To render the Upcoming flights with no crew on the Reservation, call the UpcomningFlights component with a prop named crew={false}
+
+import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import FlightCard from '../components/FlightCard';
 
-export default function UpcomingFlights() {
+export default function UpcomingFlights({ crew }) {
   useEffect(() => {
     fetch('/api/v1/flights')
       .then((res) => res.json())
@@ -38,20 +42,34 @@ export default function UpcomingFlights() {
   const [flights, setFlights] = useState([]);
 
   return (
-    <>
+    <div>
       <div className='upcoming__flights__title'>
-        <h2>Upcoming Flights</h2>
+        <h2>{crew ? 'Upcoming Flights' : 'Upcoming Flights with no crew'}</h2>
         <p>(next 4hrs)</p>
       </div>
       <div className="upcoming__flights">
         {flights.length > 0 ? (
-          flights.map((flight, index) => (
-            <FlightCard key={index} flight={flight} crew={true}/>
-          ))
-        ) : (
+          flights.map((flight, index) => {
+            if (crew){
+              return (
+                <FlightCard key={index} flight={flight} crew={crew}/>
+              );
+            } else {
+              if (flight.crewMembers[0].member1 === '' || flight.crewMembers[0].member2 === ''){
+                return (
+                  <FlightCard key={index} flight={flight} crew={crew}/>
+                );
+              }
+            } 
+          }
+        )) : (
           <p>No upcoming flights</p>
         )}
       </div>
-    </>
+    </div>
   );
 }
+
+UpcomingFlights.propTypes = {
+  crew: PropTypes.bool
+};
