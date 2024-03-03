@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Input } from '../index';
+import { Input } from './index';
 
 export default function NewFlight() {
   /*************************************************/
