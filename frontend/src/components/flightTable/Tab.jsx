@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 function Tab({ value, children, activeTab, onClick }) {
   return (
     <button
-      //this is a placeholder for tab styling
-      className={activeTab === value ? '' : ''}
+      className={`flightTable__tab ${
+        activeTab === value ? 'flightTable__tab--active' : ''
+      }`}
+      // onClick(value) === setActiveTab(value)
       onClick={() => onClick(value)}
     >
       {children}
