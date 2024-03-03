@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { CrewAvailability } from './components/CrewPieChart/CrewAvailability.jsx';
-// import { FlightCard } from './components/FlightCard.jsx';
 
 // fetch('/api/v1/users/65c00e3cfd44bd16f80d5131')
 //   .then((res) => res.json())

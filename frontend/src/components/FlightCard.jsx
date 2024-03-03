@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
+  date.setHours(date.getHours() + 8);
   const month = date.toLocaleString('default', { month: 'short' });
   const day = date.getDate();
   const year = date.getFullYear();
   const time = date.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
-    hour12: true,
+    hour12: false,
   });
   return `${month} ${day}, ${year} @ ${time}`;
 };
@@ -24,7 +25,7 @@ const FlightCard = ({ flight, crew }) => {
 };
 
   return (
-    <div className={numberOfCrew(flight.crewMembers[0]) >= 2 ? "flight__card" : "flight__card not_assigned"}>
+    <div className={numberOfCrew(flight.crewMembers[0]) >= 2 ? "flight__card" : (!crew ? "flight__card no__crew" :"flight__card not_assigned") }>
       <div className='flight__info'>
         <h1>Flight {flight.flightNumber}</h1>
         <p>
@@ -51,11 +52,11 @@ const FlightCard = ({ flight, crew }) => {
         </ul>
       </div>}
       <div className='cta_upcoming_flights'>
-        <button>
+        {crew && <button>
           See current crew{' '}
           {numberOfCrew(flight.crewMembers[0]) !== 0 &&
             `(${numberOfCrew(flight.crewMembers[0])})`}
-        </button>
+        </button>}
         <button>Tap to see Crew Available</button>
       </div>
     </div>
