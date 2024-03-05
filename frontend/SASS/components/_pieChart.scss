@@ -10,12 +10,18 @@
     transform: translate(-50%, -50%);
     background-color: #f4f4f4;
     border-radius: 1rem;
+    max-width: 19rem;
+    min-width: 19rem;
+    max-height: 19rem;
+    min-height: 19rem;
     &-total {
       text-align: center;
       color: grey;
+      max-width: inherit;
       &-number {
         font-weight: bold;
         color: black;
+        max-width: inherit;
       }
     }
     &__colors {
@@ -23,9 +29,11 @@
       margin-top: -4rem;
       width: 100%;
       justify-content: space-between;
+      max-width: inherit;
       &-box {
         display: flex;
         align-items: center;
+        max-width: inherit;
       }
       &-green {
         width: 1rem;

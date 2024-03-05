@@ -6,9 +6,9 @@ Chart.register(ArcElement);
 
 export const CrewAvailability = () => {
   const [crew, setCrew] = useState([]);
-  const [crewAvailable, setCrewAvailable] = useState([]);
-  const [crewUnavailable, setCrewUnavailable] = useState([]);
-  const [crewPto, setCrewPto] = useState([]);
+  // const [crewAvailable, setCrewAvailable] = useState([]);
+  // const [crewUnavailable, setCrewUnavailable] = useState([]);
+  // const [crewPto, setCrewPto] = useState([]);
   // const [isLOaded, setIsLOaded] = useState(false);
 
   const [pieChartData, setPieChartData] = useState({
@@ -39,29 +39,29 @@ export const CrewAvailability = () => {
       // setCrewAvailable([...crewAvailable, { item }]);
     });
 
-    setCrewUnavailable(uCrew);
-    setCrewPto(pCrew);
-    setCrewAvailable(aCrew);
-    // setPieChartData({
-    //   datasets: [
-    //     {
-    //       data: [crewAvailable.length, crewUnavailable.length, crewPto.length],
-    //       backgroundColor: ['#e7a238', '#359471', '#d93728'],
-    //       display: true,
-    //       borderColor: 'transparent',
-    //     },
-    //   ],
-    // });
+    // setCrewUnavailable(uCrew);
+    // setCrewPto(pCrew);
+    // setCrewAvailable(aCrew);
+
+    setPieChartData({
+      datasets: [
+        {
+          data: [aCrew.length, uCrew.length, pCrew.length],
+          backgroundColor: ['#e7a238', '#359471', '#d93728'],
+          display: true,
+          borderColor: 'transparent',
+        },
+      ],
+    });
   };
 
-  useEffect(function () {
+  useEffect(() => {
     const crewMembersFetch = async () => {
       try {
         const response = await fetch('api/v1/crew');
         const data = await response.json();
 
         setCrew(data.data.CrewMembers);
-        splitCrew(data.data.CrewMembers);
       } catch (error) {
         console.log(error);
       }
@@ -69,28 +69,15 @@ export const CrewAvailability = () => {
     crewMembersFetch();
   }, []);
 
+  useEffect(() => {
+    splitCrew(crew);
+  }, [crew]);
+
   return (
     <div>
-      <h1>Crew Unavailable {crewUnavailable.length}</h1>
-      <h1>Crew Available {crewAvailable.length}</h1>
-      <h1>Crew PTO {crewPto.length}</h1>
-      <h1>Crew TOTAL {crew.length}</h1>
       <div className="pie-chart__box">
         <Doughnut
-          data={{
-            datasets: [
-              {
-                data: [
-                  crewAvailable.length,
-                  crewUnavailable.length,
-                  crewPto.length,
-                ],
-                backgroundColor: ['#e7a238', '#359471', '#d93728'],
-                display: true,
-                borderColor: 'transparent',
-              },
-            ],
-          }}
+          data={pieChartData}
           options={{
             plugins: {
               legend: {
