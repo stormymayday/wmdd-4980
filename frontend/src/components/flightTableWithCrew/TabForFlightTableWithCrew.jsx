@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import "../../../SASS/components/_flightTableWithCrew.scss"
 function Tab({ value, children, activeTab, onClick }) {
     return (
       <button

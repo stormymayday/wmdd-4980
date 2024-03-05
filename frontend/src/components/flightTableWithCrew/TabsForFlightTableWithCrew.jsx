@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import Tab from './TabForFlightTableWithCrew';
+import "../../../SASS/components/_flightTableWithCrew.scss"
 function TabsForFlightTableWithCrew({activeTab, setActiveTab}) {
     console.log(activeTab)
     return (

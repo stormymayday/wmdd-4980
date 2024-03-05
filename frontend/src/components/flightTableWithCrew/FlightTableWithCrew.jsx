@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import TabsForFlightTableWithCrew from './TabsForFlightTableWithCrew';
+import "../../../SASS/components/_flightTableWithCrew.scss"
 
 //1fake data structure
 import { useEffect, useState } from 'react';
@@ -500,21 +501,33 @@ function FlightTableWithCrew({expand}){
   let flightlist = expand ? flights : flights.slice(0, 2);
   return (
     <div className="flightTable">
-      <div className="flightTable__frame">
-        <div className="flightTable__frame__title">
-          <h3 className="flightTable__title">Flight tables</h3>{' '}
-          <span className="flightTable__count">{flights.length}</span>
+      <div className="flightTable__container">
+        <div className="flightTable__frame">
+          <div className="flightTable__frame__title">
+            <h3 className="flightTable__title">Flight tables</h3>{' '}
+            <span className="flightTable__count">{"("}{flights.length}{")"}</span>
+          </div>
+          
+          <TabsForFlightTableWithCrew activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
+        <div className="flightTable__table">
+          <div className="flightTable__labels">
+            <div className="flightTable__label1"><p>Flight</p></div>
+            <div className="flightTable__label2"><p>Status</p></div>
+            <div className="flightTable__label3"><p>Actions</p></div>
+          </div>
+          <ul className="flightTable__list">
+            {/* map method return an array of FlightItem */}
+            {flightlist.map((flight) => (
+              <FlightItemWithCrew flight={flight} key={flight.flightNumber} />
+            ))}
+          </ul>
 
-        <TabsForFlightTableWithCrew activeTab={activeTab} setActiveTab={setActiveTab} />
+        </div>
+        
       </div>
-
-      <ul className="flightTable__list">
-        {/* map method return an array of FlightItem */}
-        {flightlist.map((flight) => (
-          <FlightItemWithCrew flight={flight} key={flight.flightNumber} />
-        ))}
-      </ul>
+    
+      
     </div>
   )
 

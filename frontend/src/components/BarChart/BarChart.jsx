@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import{ Chart as ChartJS} from "chart.js/auto"
 import { Bar } from 'react-chartjs-2';
 import TabsForBar from './TabsForBar';
+import "../../../SASS/components/_barChart.scss"
 
 let labels = [];
 for(let i = 0; i <= 24; i++) {
@@ -579,26 +580,50 @@ function BarChart(){
     
     
     return(
-        <>
-        <h1>{"flight Information"}</h1>
-        <TabsForBar activeTab={activeTab} setActiveTab={setActiveTab}/>
-
-        <Bar
+        <div className="bar-chart__box">
+        <div className="bar-chart__box__inner"> 
+        <div className="bar-chart__box__tabsBox">
+        <h1 className="bar-chart__title">{"Flight Information"}</h1>
+        <TabsForBar  activeTab={activeTab} setActiveTab={setActiveTab}/>
+        </div>
+        <div className="bar-chart__boxContainer" style={{height:'65vw', width:'80vw', overflow:'auto'}}>
+        <div style={{height:'65vw',width: '900px'}}>
+        <Bar 
+            
+            
             data = {{
                 labels: labels,
                 datasets: [
-                    {label: "Flights",
-                    data: counts}
+                    {
+                        label: "",
+                        data: counts,
+                        barPercentage: 0.3,
+                        categoryPercentage: 0.3,
+                        backgroundColor: "#336999",
+                        inflateAmount:'auto'
+                        
+                    }
                 ]
             }}
             //chart customizations
             options={{
+            responsive:true,
+            plugins:{
+                legend:{
+                display: false
+            }
+            },
+            
+            maintainAspectRatio:false,
                 //axis
             scales: {
                 //y-axis
                 y: {
                     beginAtZero: true,
+                    
+                    
                     ticks: {
+                        max:200,
                         //(value of tick, index of tick, and values)
                         callback: function(value, index, values) {
                             //display integers only
@@ -607,11 +632,31 @@ function BarChart(){
                             }
                         }
                     }
-                }
+                },
+                x:{
+                    grid:{
+                        display:false
+                    },
+                    ticks: {
+                maxRotation: 0, 
+                minRotation: 0,
+                autoSkip:false
             }
+                }
+                
+            }
+            
         }}
         />
-        </>
+
+        </div>
+        
+            
+        </div>
+        
+        </div>
+        </div>
+        
     )
 
 }
