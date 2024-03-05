@@ -3,7 +3,7 @@ import ButtonAddCrew from './ButtonAddCrew';
 function FlightItem({ flight }) {
   const { flightNumber, from, to } = flight;
   return (
-    <li>
+    <li className="flightTable__item">
       {flightNumber}{' '}
       <div>
         {from} - {to}
@@ -14,3 +14,4 @@ function FlightItem({ flight }) {
 }
 
 export default FlightItem;
+

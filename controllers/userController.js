@@ -1,6 +1,5 @@
 const express = require('express');
 const User = require('../modules/userModule');
-
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find(req.query);

@@ -1,10 +1,11 @@
-import NewFlight from "../components/CreateFlight/NewFlight";
+import UpcomingFlights from "../components/UpcomingFlights";
 
 const Landing = () => {
-  return <NewFlight/>;
+  return (
+    <>
+      <UpcomingFlights crew={false}/>
+      <div>Landing Page</div>
+    </>
+  )
 };
 export default Landing;
-// const Landing = () => {
-//   return <div>Landing Page</div>;
-// };
-// export default Landing;

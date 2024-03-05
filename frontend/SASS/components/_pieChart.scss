@@ -1,0 +1,64 @@
+@import url('../abstracts/_variables.scss');
+
+.pie-chart {
+  &__box {
+    width: 80vw;
+    height: 50vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f4f4f4;
+    border-radius: 1rem;
+    max-width: 19rem;
+    min-width: 19rem;
+    max-height: 19rem;
+    min-height: 19rem;
+    &-total {
+      text-align: center;
+      color: grey;
+      max-width: inherit;
+      &-number {
+        font-weight: bold;
+        color: black;
+        max-width: inherit;
+      }
+    }
+    &__colors {
+      display: flex;
+      margin-top: -4rem;
+      width: 100%;
+      justify-content: space-between;
+      max-width: inherit;
+      &-box {
+        display: flex;
+        align-items: center;
+        max-width: inherit;
+      }
+      &-green {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.1rem;
+        background-color: #56b18c;
+        display: flex;
+        margin-right: 0.3rem;
+      }
+      &-orange {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.1rem;
+        background-color: #e7a238;
+        display: flex;
+        margin-right: 0.3rem;
+      }
+      &-red {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.1rem;
+        background-color: #d93728;
+        display: flex;
+        margin-right: 0.3rem;
+      }
+    }
+  }
+}

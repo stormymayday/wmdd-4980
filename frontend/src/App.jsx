@@ -14,6 +14,8 @@ import {
   Profile,
 } from './pages';
 
+import '../SASS/main.scss';
+
 const router = createBrowserRouter([
   {
     path: '/',
