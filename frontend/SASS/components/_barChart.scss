@@ -1,0 +1,95 @@
+@import '../abstracts/_variables.scss';
+.bar-chart{
+    
+    &__box {
+        // padding : 20px;
+        background-color: $clr-complimentary-black-05;
+
+        display: flex;
+        width: 89.82vw; 
+        height: 90vw; 
+        padding: 5.09vw; 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3.05vw; 
+        flex-shrink: 0;
+        border-radius: 3.05vw;
+        &__tabsBox{
+            display: flex;
+            align-items: center;
+            gap: 5.09vw;
+            align-self: stretch;
+            
+            
+        }
+        
+    }
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        align-self: stretch;
+        
+        
+    }
+    
+    &__title{
+        font-family: 'Barlow Condensed', sans-serif;
+        color:$clr-primary-3;
+        font-size: 5.09vw;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 7.63vw; 
+        width:40%;
+        height: auto;
+    }
+    &__tabs{
+        width: 44.27vw;
+        height: 6.61vw;
+        display: flex;
+        align-items: flex-start;
+        border-radius: 8px;
+        border: 1px solid var(--Blacks-Black-30, #B0B0B0);
+
+    }
+    &__tab{
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        height: 6.61vw; 
+        padding: 1.02vw 2.04vw; 
+        justify-content: center;
+        align-items: center;
+        gap: 2.54vw; 
+        border-radius: 2.04vw; 
+        font-size: 3.56vw; 
+        font-style: normal;
+        font-weight: 400;
+        line-height: 125%;
+        color: $clr-complimentary-black-50;
+    }
+    &__tab--active{
+        display: flex;
+        height: 6.61vw; 
+        padding: 1.02vw 2.04vw; 
+        justify-content: center;
+        align-items: center;
+        gap: 2.54vw; 
+        border-radius: 2.04vw; 
+        background: $clr-primary-1;
+        font-size: 3.56vw; 
+        font-style: normal;
+        font-weight: 500;
+        line-height: 125%;
+        color:$clr-primary-4;
+    }
+    //hide scroll bar
+    &__boxContainer::-webkit-scrollbar{
+        display:none;
+    }
+    
+    
+    
+}
+

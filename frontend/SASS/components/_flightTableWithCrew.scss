@@ -1,0 +1,218 @@
+@import '../abstracts/_variables.scss';
+.flightTable {
+    font-family: 'Roboto','Arial';
+    display: flex;
+    width: 50vw; 
+    padding: 2vw; 
+    align-items: flex-start;
+    gap: 2vw; 
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2vw; 
+        flex: 1 0 0;
+    }
+    &__frame{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8vw;
+        align-self: stretch;
+        &__title{
+            
+            display: flex;
+            height: calc(30 / 852 * 100vh);
+            align-items: center;
+            gap: 0.4vw;
+            align-self: stretch;
+            h3{
+                font-family: "Barlow Condensed";
+                color:$clr-primary-3;
+                font-size: calc(12px + 2.04vw);
+                font-style: normal;
+                font-weight: 600;
+                line-height: 3vw;
+            }
+        }
+        
+    }
+    &__count{
+        display: flex;
+        padding-top: calc(2 / 852 * 100vh); 
+        align-items: center;
+        gap: calc(10 / 393 * 100vw);
+        align-self: stretch;
+
+        ///////
+            
+        color:$clr-complimentary-black-45 ;
+        font-family: "Roboto";
+        font-size: calc(12 / 392 * 100vw);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.5vw;
+    
+        
+    }
+    &__tabs{
+        width: 100%;
+        
+        height: calc(36 / 852 * 100vh);
+        display: flex;
+        align-items: center;
+        flex: 1 0 0;
+        border-radius: 12px;
+        border: 1px solid $clr-complimentary-black-30;
+
+    }
+    &__tab{
+        
+        display: flex;
+        height: 4vh;
+        padding: 1vh 1.5vh;
+        justify-content: center;
+        align-items: center;
+        gap: 1vh;
+        flex: 1 0 0;
+        color:$clr-complimentary-black-50;
+        
+        
+    }
+    &__tab--active{
+        display: flex;
+        height: calc(36 / 852 * 100vh); 
+        padding: calc(8 / 852 * 100vh) calc(12 / 393 * 100vw); 
+        justify-content: center;
+        align-items: center;
+        gap: calc(10 / 393 * 100vw); 
+        border-radius: 12px;
+        flex: 1 0 0;
+        background:$clr-primary-1;
+        
+        color:$clr-primary-4;
+        
+
+    }
+    &__labels{
+        display: flex;
+        padding: calc(4 / 852 * 100vh) calc(8 / 393 * 100vw);
+        align-items: flex-start;
+        gap: calc(12 / 393 * 100vw); 
+        align-self: stretch;
+        border-radius: 2px 2px 0px 0px;
+        background:$clr-complimentary-black-05;
+    }
+    &__label1{
+        display: flex;
+        width: calc(160 / 393 * 100vw); 
+        align-items: center;
+        p{
+            display: flex;
+            width: calc(160 / 393 * 100vw); 
+            align-items: center;
+            flex-shrink: 0;
+        }
+    }
+    &__label2{
+        display: flex;
+        align-items: center;
+        gap: calc(8 / 393 * 100vw); 
+        flex: 1 0 0;
+    }
+    &__label3{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex: 1 0 0;
+        p{
+            // display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            text-align: right; // Add this line
+            margin-left: calc(65 / 393 * 100vw);
+        }
+    }
+    &__item{
+        display: flex;
+        padding: calc(12 / 852 * 100vh) calc(8 / 393 * 100vw);
+        align-items: center;
+        gap: calc(12 / 393 * 100vw);
+        align-self: stretch;
+        border-bottom: calc(1 / 852 * 100vh) solid $clr-complimentary-black-50;
+    }
+    &__flightAndAbbrev{
+        display: flex;
+        width: calc(160 / 393 * 100vw);
+        flex-direction: column;
+        align-items: flex-start;
+        
+        color: $clr-primary-3;
+        font-family: Roboto;
+        font-size: calc(12 / 852 * 100vh); 
+        font-style: normal;
+        font-weight: 500;
+        line-height: calc(15 / 852 * 100vh);
+        
+    }
+    &__fromTo{
+        font-size: calc(10 / 852 * 100vh);
+        color:$clr-complimentary-black-50;
+
+    }
+    &__containerForStatus{
+        width: 30.87vw;
+        height:2.46vh;
+        display: flex;
+        align-items: flex-start; 
+    }
+    
+    &__flightTable__status{
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        // flex: 1 0 0;
+    }
+    #statusM{
+        display: flex;
+        padding: calc(4 / 852 * 100vh) calc(8 / 393 * 100vw);
+        justify-content: center;
+        align-items: center;
+        gap: calc(10 / 393 * 100vw);
+        border-radius: 8px;
+        border: 1px solid $clr-complimentary-black-20;
+        background: $clr-complimentary-black-05;
+        font-size: calc(10 / 852 * 100vh); 
+        font-style: normal;
+        font-weight: 400;
+        line-height: calc(12.5 / 852 * 100vh)
+    }
+    &__btn-container{
+        
+        display: flex;
+        justify-content: flex-end;
+        
+        
+        
+    }
+
+    &__addBtnBlue{
+        justify-content: flex-end;
+        display: flex;
+        padding: calc(4 / 852 * 100vh);
+        // justify-content: center;
+        align-items: center;
+        gap: calc(4 / 393 * 100vw);
+        border-radius: 8px;
+        background:$clr-primary-1;
+        margin-left: auto;
+
+    }
+
+
+
+}

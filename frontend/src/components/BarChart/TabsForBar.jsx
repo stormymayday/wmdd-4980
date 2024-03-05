@@ -4,7 +4,7 @@ import Tab from './TabForBar';
 function TabsForBar({activeTab, setActiveTab}) {
     
     return (
-        <div className="flightTable__tabs">
+        <div className="bar-chart__tabs">
           <Tab
             value="delay"
             num={0}
