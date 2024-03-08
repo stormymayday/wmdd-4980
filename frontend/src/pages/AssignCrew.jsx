@@ -1,4 +1,8 @@
+import { SelectCrew } from "../components";
+
 const AssignCrew = () => {
-  return <div>Assign Crew Page</div>;
+  return (
+    <SelectCrew/>
+  );
 };
 export default AssignCrew;

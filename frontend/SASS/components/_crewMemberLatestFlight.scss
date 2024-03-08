@@ -1,0 +1,97 @@
+@import '../abstracts/_variables.scss';
+.flightTableForCrew {
+  display: flex;
+  padding: 3.94vw; // Approximate equivalent of 20px on a 508px wide screen
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
+  border-radius: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
+  background: var(--Background, #f4f4f4);
+  align-self: stretch;
+  &__container {
+    display: flex;
+    padding: 3.94vw; // Approximate equivalent of 20px on a 508px wide screen
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
+    align-self: stretch;
+  }
+  &__frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.78vh; // Approximate equivalent of 8px on a 1024px high screen
+    align-self: stretch;
+    &__title {
+      display: flex;
+      width: 69.49vw; // Approximate equivalent of 353px on a 508px wide screen
+      align-items: center;
+      gap: 0.39vh; // Approximate equivalent of 4px on a 1024px high screen
+    }
+  }
+  &__title {
+    color: $clr-primary-3;
+    font-family: 'Barlow Condensed';
+    font-size: 3.94vw; // Approximate equivalent of 20px on a 508px wide screen
+    font-style: normal;
+    font-weight: 600;
+    line-height: 2.93vh; // Approximate equivalent of 30px on a 1024px high screen
+  }
+  &__count {
+    display: flex;
+    padding-top: 0.2vh; // Approximate equivalent of 2px on a 1024px high screen
+    align-items: center;
+    gap: 0.98vh; // Approximate equivalent of 10px on a 1024px high screen
+    align-self: stretch;
+    color: $clr-complimentary-black-45;
+
+    font-family: Roboto;
+    font-size: 2.36vw; // Approximate equivalent of 12px on a 508px wide screen
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.46vh; // Approximate equivalent of 15px on a 1024px high screen
+  }
+  &__table {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+  &__item {
+    display: flex;
+    padding: 1.17vh 0; // Approximate equivalent of 12px on a 1024px high screen
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+    width: 88vw;
+    border-bottom: 1px solid $clr-complimentary-black-50;
+    &_column1 {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      color: $clr-primary-3;
+      font-family: Roboto;
+      font-size: 2.36vw; // Approximate equivalent of 12px on a 508px wide screen
+      font-style: normal;
+      font-weight: 500;
+      line-height: 1.46vh;
+      &_from {
+        font-size: 1.97vw; // Approximate equivalent of 10px on a 508px wide screen
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.22vh;
+        color: $clr-complimentary-black-50;
+      }
+      button {
+        display: flex;
+        padding: 4px;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        margin-left: auto;
+        color: #f4f4f4;
+      }
+    }
+  }
+}
