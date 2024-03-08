@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Input } from './index';
+import { useNavigate } from "react-router-dom";
 
 export default function NewFlight() {
+  const navigateTo = useNavigate();
   /*************************************************/
   // Data of flight time that will be on the data base.
   const flightDuration = {
@@ -13,14 +15,19 @@ export default function NewFlight() {
   const [flightInfo, setflightInfo] = useState({
     from: '',
     to: '',
-    date: '',
-    hour: '',
     aircraftType: '',
     flightNumber: '',
-    weather: '',
+    weather: 'CAVOK',
+    departure: '',
+    arriving: '',
     specialRequirements: {
       lvp: false,
       pbn: false,
+    },
+    crewMembers: {
+      member1: '',
+      member2: '',
+      member3: '',
     },
   });
 
@@ -128,29 +135,10 @@ export default function NewFlight() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    console.log(flightInfo);
-    // localStorage.newFlight = JSON.stringify(flightInfo);
+    localStorage.setItem('newFlight', JSON.stringify(flightInfo));
+    console.log(localStorage.getItem('newFlight'));
+    navigateTo('/dashboard/assign-crew');
   }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   let flightInfoJSON = JSON.stringify(flightInfo);
-  //   console.log(flightInfoJSON);
-  //   fetch('http://localhost:3000/flights', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(flightInfo),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log('Success:', data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error:', error);
-  //     });
-  // }
 
   return (
     <>
@@ -205,6 +193,7 @@ export default function NewFlight() {
                 onBlur={handleBlur}
                 value={flightTimes.dateOut}
                 onChange={handleHoursInput}
+                id="dateOut"
                 required
               ></Input>
             </div>
@@ -218,6 +207,7 @@ export default function NewFlight() {
                 onBlur={handleBlur}
                 value={flightTimes.hourOut}
                 onChange={handleHoursInput}
+                id="hourOut"
                 required
               ></Input>
             </div>
@@ -233,6 +223,7 @@ export default function NewFlight() {
                 name="dateIn"
                 value={flightTimes.dateIn}
                 onChange={handleHoursInput}
+                id="dateIn"
                 disabled
               />
             </div>
@@ -243,6 +234,7 @@ export default function NewFlight() {
                 name="hourIn"
                 value={flightTimes.hourIn}
                 onChange={handleHoursInput}
+                id="hourIn"
                 disabled
               />
             </div>
@@ -265,7 +257,13 @@ export default function NewFlight() {
             <label>
               Aircraft Type
               <div>
-                <select className="aircraft-type" name="aircraftType">
+                <select
+                  className="aircraft-type"
+                  name="aircraftType"
+                  value={flightInfo.aircraftType}
+                  onChange={handleInput}
+                  required
+                >
                   <option value="" disabled aria-placeholder="true">
                     Select Aircraft Type
                   </option>

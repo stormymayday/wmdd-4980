@@ -1,4 +1,10 @@
+import { NewFlight } from "../components";
+
 const CreateFlight = () => {
-  return <div>Create Flight Page</div>;
+  return (
+    <>
+    <NewFlight />
+    </>
+  )
 };
 export default CreateFlight;
