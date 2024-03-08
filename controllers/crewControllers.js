@@ -1,5 +1,8 @@
 const express = require('express');
 const Crew = require('../modules/crewModule');
+const nodemailer = require('nodemailer');
+const Flight = require('../modules/flightModule');
+const fs = require('node:fs');
 
 exports.createCrewMember = async (req, res) => {
   try {
@@ -62,6 +65,86 @@ exports.getOneCrewMember = async (req, res) => {
   }
 };
 
+const transporter = nodemailer.createTransport({
+  host: 'sandbox.smtp.mailtrap.io',
+  port: 2525,
+  secure: false, // Use `true` for port 465, `false` for all other ports
+  auth: {
+    user: '27e19af92b11da',
+    pass: '149453e69671f4',
+  },
+});
+
+// async..await is not allowed in global scope, must use a wrapper
+async function main(
+  email,
+  name,
+  role,
+  flightHours,
+  flightNumber,
+  aircraftType,
+  from,
+  to,
+  weather,
+  departure,
+  arriving
+) {
+  if (!email) email = 'repiklleonid@gmail.com';
+  const content = `
+  <html>
+    <head>
+      <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f4f4f4;
+          color: #333;
+          margin: 20px;
+        }
+        p {
+          margin-bottom: 10px;
+        }
+        strong {
+          color: #007bff;
+        }
+      </style>
+    </head>
+    <body>
+      <p><strong>Hello ${name},</strong></p>
+      <p>You are a ${role} and you have ${flightHours} hours.</p>
+      <p>Flight Number: ${flightNumber}</p>
+      <p>Aircraft: ${aircraftType}</p>
+      <p>FROM: ${from}, TO: ${to}</p>
+      <p>Weather is: ${weather}</p>
+      <p>Departing at ${departure} & Arriving at ${arriving}</p>
+    </body>
+  </html>
+`;
+
+  fs.writeFile('test.pdf', content, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      // file written successfully
+    }
+  });
+  // send mail with defined transport object
+  const info = await transporter.sendMail({
+    from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+    to: email, // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world?', // plain text body
+    html: content, // html body
+    attachments: {
+      fileName: 'test.pdf',
+      filePath: 'test.pdf',
+    },
+  });
+
+  console.log('Message sent: %s', info.messageId);
+  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+  fs.unlink('test.pdf', (err) => console.log(err));
+}
+
 exports.updateCrewMember = async (req, res) => {
   try {
     const CrewMemberUpdated = await Crew.findByIdAndUpdate(
@@ -78,6 +161,25 @@ exports.updateCrewMember = async (req, res) => {
         status: 'fail',
         message: "Couldn't update crew member not found",
       });
+    }
+
+    if (req.body.likesEmails) {
+      console.log(req.body);
+      const flight = await Flight.findById(req.body.FlightNumber);
+      console.log(flight);
+      main(
+        req.body.email,
+        req.body.name,
+        req.body.role,
+        req.body.flightHours.total,
+        flight.flightNumber,
+        flight.aircraftType,
+        flight.from,
+        flight.to,
+        flight.weather,
+        flight.departure,
+        flight.arriving
+      ).catch(console.error);
     }
 
     res.status(200).json({
