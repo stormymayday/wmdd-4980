@@ -1,9 +1,22 @@
 @import url('../abstracts/_variables.scss');
 
+.origin-box {
+  position: relative;
+  height: 18rem;
+  width: 20rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .pie-chart {
   &__box {
+    padding: 1rem;
+    padding-left: 2rem;
     width: 80vw;
+    width: 100%;
+    max-width: 20rem;
     height: 50vh;
+    max-height: 18rem;
     position: absolute;
     top: 50%;
     left: 50%;

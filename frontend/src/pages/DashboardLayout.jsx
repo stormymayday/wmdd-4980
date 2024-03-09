@@ -1,6 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import { Navbar, Header } from '../components';
+import { Navbar, Header, Sidebar } from '../components';
 import { createContext, useContext, useState } from 'react';
+
+import '../../SASS/main.scss';
 
 const DashboardContext = createContext();
 
@@ -15,14 +17,12 @@ const DashboardLayout = () => {
         user,
       }}
     >
-      <main>
+      <main className="dashboard">
         <>
           <Header />
-          <div className="dashboard-page">
-            Dashboard Layout
-            <Outlet />
-          </div>
+          <Sidebar />
           <Navbar />
+          <Outlet />
         </>
       </main>
     </DashboardContext.Provider>

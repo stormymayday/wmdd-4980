@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 Chart.register(ArcElement);
 
@@ -55,26 +57,24 @@ export const CrewAvailability = () => {
     });
   };
 
-  useEffect(() => {
-    const crewMembersFetch = async () => {
-      try {
-        const response = await fetch('api/v1/crew');
-        const data = await response.json();
+  const {
+    data: crewData,
+    isLoading: crewLoading,
+    isError: crewError,
+  } = useQuery({
+    queryKey: ['crew'],
+    queryFn: () => axios.get('/api/v1/crew/'),
+    onSuccess: (data) => setCrew(data.data.data.CrewMembers),
+  });
 
-        setCrew(data.data.CrewMembers);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    crewMembersFetch();
-  }, []);
+  console.log(`Pie Chart ${crew}`);
 
   useEffect(() => {
     splitCrew(crew);
   }, [crew]);
 
   return (
-    <div>
+    <div className="origin-box">
       <div className="pie-chart__box">
         <Doughnut
           data={pieChartData}

@@ -9,11 +9,11 @@ import { FaCircleUser } from 'react-icons/fa6';
 const links = [
   {
     text: 'dashboard',
-    path: 'select-crew',
+    path: 'dashboard-page',
     icon: <BiSolidDashboard />,
   },
   {
-    text: 'tracking',
+    text: 'availablity',
     path: 'tracking',
     icon: <MdAccessTimeFilled />,
   },

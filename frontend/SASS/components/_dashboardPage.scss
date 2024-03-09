@@ -1,0 +1,20 @@
+@import '../abstracts/_variables.scss';
+
+.dashboard-page {
+  width: 95vw;
+  margin: 0 auto;
+  padding: 20rem 0rem;
+  //   padding: 40rem 0rem;
+  padding-bottom: 6rem;
+  padding-top: 19rem;
+  //   background-color: red;
+}
+
+@media (min-width: 990px) {
+  .dashboard-page {
+    // background-color: $clr-primary-4;
+    width: 82vw;
+    padding-top: 6rem;
+    margin-left: 16vw;
+  }
+}
