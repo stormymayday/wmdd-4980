@@ -7,7 +7,7 @@ export { default as Error } from './Error';
 export { default as Admin } from './Admin';
 export { default as Profile } from './Profile';
 export { default as SelectCrew } from './SelectCrew';
-export { default as Tracking } from './Tracking';
+export { default as AvailabilityPage } from './AvailabilityPage';
 export { default as CreateFlight } from './CreateFlight';
 export { default as AssignCrew } from './AssignCrew';
 export { default as DashboardPage } from './DashboardPage';
