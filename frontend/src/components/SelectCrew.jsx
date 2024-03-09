@@ -89,7 +89,7 @@ export default function SelectCrew({ flightComing }) {
 
   return (
     <>
-      <ReturnHeader destinationPage="/dashboard/create-flight">Select Crew</ReturnHeader>
+      <ReturnHeader destinationPage="/new-flight">Select Crew</ReturnHeader>
       <div className="addCrewContainer">
         {console.log(newFlight)}
         <SelectedCrew capt={capt} cop={cop} />
