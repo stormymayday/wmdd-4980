@@ -13,4 +13,5 @@ export { default as AssignCrew } from './AssignCrew';
 export { default as DashboardPage } from './DashboardPage';
 export { default as NewFlightPage } from './NewFlightPage';
 export { default as AddCrewPage } from './AddCrewPage';
+export { default as CrewPage } from './CrewPage';
 // News Pages go here

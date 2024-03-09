@@ -198,7 +198,7 @@ const CrewAvailabilityTable = () => {
                 <span className="gray-text">/90hrs</span>
               </td>
               <td>
-                <NavLink className="crew-link" to={`/crew:${member._id}`}>
+                <NavLink className="crew-link" to={`/crew/${member._id}`}>
                   <TbEyeFilled className="view-crew-icon" />
                 </NavLink>
               </td>
