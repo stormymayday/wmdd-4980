@@ -13,6 +13,8 @@ import {
   CreateFlight,
   AssignCrew,
   Profile,
+  NewFlightPage,
+  AddCrewPage,
 } from './pages';
 
 import '../SASS/main.scss';
@@ -34,6 +36,14 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'new-flight',
+        element: <NewFlightPage />,
+      },
+      {
+        path: 'add-crew',
+        element: <AddCrewPage />,
       },
       {
         path: 'dashboard',

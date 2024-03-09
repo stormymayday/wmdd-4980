@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Input } from './index';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export default function NewFlight() {
   const navigateTo = useNavigate();
@@ -137,7 +137,7 @@ export default function NewFlight() {
 
     localStorage.setItem('newFlight', JSON.stringify(flightInfo));
     console.log(localStorage.getItem('newFlight'));
-    navigateTo('/dashboard/assign-crew');
+    navigateTo('/add-crew');
   }
 
   return (

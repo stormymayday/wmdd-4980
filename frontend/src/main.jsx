@@ -9,6 +9,6 @@ import '../SASS/main.scss';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <FlightSummary />
+    <App />
   </QueryClientProvider>
 );
