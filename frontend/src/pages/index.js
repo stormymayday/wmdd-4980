@@ -10,4 +10,5 @@ export { default as SelectCrew } from './SelectCrew';
 export { default as Tracking } from './Tracking';
 export { default as CreateFlight } from './CreateFlight';
 export { default as AssignCrew } from './AssignCrew';
+export { default as DashboardPage } from './DashboardPage';
 // News Pages go here

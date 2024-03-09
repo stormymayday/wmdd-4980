@@ -1,0 +1,16 @@
+@import '../abstracts/_variables.scss';
+
+@import '../abstracts/_variables.scss';
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr;
+  //   background-color: blue;
+}
+
+@media (min-width: 990px) {
+  .dashboard {
+    display: grid;
+    // grid-template-columns: auto 1fr;
+  }
+}

@@ -7,6 +7,7 @@ import {
   Login,
   Error,
   DashboardLayout,
+  DashboardPage,
   SelectCrew,
   Tracking,
   CreateFlight,
@@ -39,8 +40,9 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           {
-            path: 'select-crew',
-            element: <SelectCrew />,
+            index: true,
+            path: 'dashboard-page',
+            element: <DashboardPage />,
           },
           {
             path: 'tracking',
