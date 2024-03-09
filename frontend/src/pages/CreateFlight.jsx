@@ -1,4 +1,9 @@
+import { NewFlight } from '../components';
 const CreateFlight = () => {
-  return <div>Create Flight Page</div>;
+  return (
+    <div className="dashboard-page">
+      <NewFlight />
+    </div>
+  );
 };
 export default CreateFlight;
