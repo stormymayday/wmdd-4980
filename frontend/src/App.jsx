@@ -9,7 +9,7 @@ import {
   DashboardLayout,
   DashboardPage,
   SelectCrew,
-  Tracking,
+  AvailabilityPage,
   CreateFlight,
   AssignCrew,
   Profile,
@@ -51,12 +51,12 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            path: 'dashboard-page',
+            path: 'main',
             element: <DashboardPage />,
           },
           {
-            path: 'tracking',
-            element: <Tracking />,
+            path: 'availability',
+            element: <AvailabilityPage />,
           },
           {
             path: 'create-flight',
