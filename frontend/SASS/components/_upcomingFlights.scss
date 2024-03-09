@@ -28,6 +28,7 @@
   align-items: flex-start;
   gap: var(--buttons-spacing-v, 1rem);
   align-self: stretch;
+  overflow-x: scroll;
 }
 
 .flight__card {

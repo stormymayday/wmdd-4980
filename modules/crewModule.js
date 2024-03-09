@@ -4,11 +4,22 @@ const crewMemberSchema = new mongoose.Schema({
   name: {
     type: String,
     default: '',
+    required: true,
   },
   role: {
     type: String,
     enum: ['pilot', 'second_pilot', 'flight_attendant'],
     required: true,
+  },
+  FlightNumber: {
+    type: String,
+    default: '',
+    required: [true, 'Please provide FlightNumber field.'],
+  },
+  email: {
+    type: String,
+    required: [true, 'Must have a name!'],
+    default: 'repiklleonid@gmail.com',
   },
   flightHours: {
     total: {
@@ -24,6 +35,10 @@ const crewMemberSchema = new mongoose.Schema({
       enum: ['available', 'Unavailable', 'PTO'],
       default: 'Unavailable',
     },
+  },
+  likesEmails: {
+    type: Boolean,
+    default: true,
   },
   certifications: {
     type: [String],
