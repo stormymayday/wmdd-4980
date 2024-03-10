@@ -14,11 +14,9 @@ const crewMemberSchema = new mongoose.Schema({
   FlightNumber: {
     type: String,
     default: '',
-    required: [true, 'Please provide FlightNumber field.'],
   },
   email: {
     type: String,
-    required: [true, 'Must have a name!'],
     default: 'repiklleonid@gmail.com',
   },
   flightHours: {

@@ -66,7 +66,7 @@ exports.getOneCrewMember = async (req, res) => {
 };
 
 const transporter = nodemailer.createTransport({
-  host: 'live.smtp.mailtrap.io',
+  host: 'bulk.smtp.mailtrap.io',
   port: 587,
   auth: {
     user: 'api',
