@@ -7,12 +7,13 @@ import CrewMemberAssignBtn from './CrewMemberAssignBtn';
 import avatarPlaceHolders from '../../assets/images/avatarPlaceHolder.jpg';
 import '../../../SASS/components/_crewMemberInfo.scss';
 
-function CrewMemberInfo() {
+function CrewMemberInfo({crewId}) {
   const [profile, setProfile] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [id, setId] = useState(crewId);
   /////////////////////////////////////////////////////
   //extract id from url
-  const { id } = useParams();
+  // const { id } = useParams();
   ///////////////////////////////////////////////
   //   let profile;
   useEffect(function () {
@@ -20,7 +21,7 @@ function CrewMemberInfo() {
       try {
         setIsLoading(true);
         //use `/api/v1/crew/${id}` route when placing the component on page
-        const res = await fetch(`/api/v1/crew/65e26a26470944f10779523c`);
+        const res = await fetch(`/api/v1/crew/${id}`);
         let data = await res.json();
         const profile = await data.data.CrewMember;
         profile.flightHours.available =
@@ -40,6 +41,7 @@ function CrewMemberInfo() {
 
   //joinDate is missing in datasets
   let joinDate = 'March 2023';
+
 
   return (
     <div className="crewInfo">

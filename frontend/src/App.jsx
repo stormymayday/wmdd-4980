@@ -8,13 +8,14 @@ import {
   Error,
   DashboardLayout,
   DashboardPage,
-  // SelectCrew,
-  Tracking,
+  SelectCrew,
+  AvailabilityPage,
   CreateFlight,
   AssignCrew,
   Profile,
   NewFlightPage,
   AddCrewPage,
+  CrewPage,
 } from './pages';
 
 import '../SASS/main.scss';
@@ -46,17 +47,21 @@ const router = createBrowserRouter([
         element: <AddCrewPage />,
       },
       {
+        path: 'crew/:id',
+        element: <CrewPage />,
+      },
+      {
         path: 'dashboard',
         element: <DashboardLayout />,
         children: [
           {
             index: true,
-            path: 'dashboard-page',
+            path: 'main',
             element: <DashboardPage />,
           },
           {
-            path: 'tracking',
-            element: <Tracking />,
+            path: 'availability',
+            element: <AvailabilityPage />,
           },
           {
             path: 'create-flight',

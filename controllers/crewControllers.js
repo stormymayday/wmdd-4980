@@ -66,12 +66,11 @@ exports.getOneCrewMember = async (req, res) => {
 };
 
 const transporter = nodemailer.createTransport({
-  host: 'sandbox.smtp.mailtrap.io',
-  port: 2525,
-  secure: false, // Use `true` for port 465, `false` for all other ports
+  host: 'live.smtp.mailtrap.io',
+  port: 587,
   auth: {
-    user: '27e19af92b11da',
-    pass: '149453e69671f4',
+    user: 'api',
+    pass: 'c6e380638c460fbf7e1e83ae03aeaa25',
   },
 });
 

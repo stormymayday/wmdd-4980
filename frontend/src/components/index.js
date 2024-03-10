@@ -14,3 +14,4 @@ export { default as SelectCrew } from './SelectCrew';
 export { default as ListOfCrew } from './ListOfCrew';
 export { default as ReturnHeader } from './ReturnHeader';
 
+export { default as CrewAvailabilityTable } from './CrewAvailabilityTable/CrewAvailabilityTable';
