@@ -1,0 +1,280 @@
+@import '../abstracts/variables';
+
+.form__element {
+  .form_container {
+    display: inline-flex;
+    height: 38.5625rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    margin: 1.25rem;
+    margin-bottom: 150px;
+
+    .select__input {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+
+      p {
+        color: $clr-primary-3;
+        font-family: 'Barlow Condensed';
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+      }
+      .route_selection {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $buttons-spacing-h;
+        .label_container {
+          display: flex;
+          width: 22.0625rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+          label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.625rem;
+            align-self: stretch;
+            p {
+              color: $clr-complimentary-black-45;
+              font-family: Roboto;
+              font-size: 1rem;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 125%;
+            }
+            select {
+              display: flex;
+              padding: 0.625rem 0.5rem;
+              align-items: center;
+              gap: 0.625rem;
+              align-self: stretch;
+              border-bottom: 2px solid $clr-complimentary-black-45;
+              option {
+                flex: 1 0 0;
+                color: $clr-primary-3;
+                font-family: Roboto;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 125%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .departure_info {
+      .input__section {
+        display: flex;
+        width: 22.0625rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+        label {
+          align-self: stretch;
+          color: $clr-primary-3;
+          font-family: 'Barlow Condensed';
+          font-size: 1.25rem;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 150%;
+        }
+        .input__group {
+          display: flex;
+          align-items: flex-start;
+          gap: $buttons-spacing-h;
+          align-self: stretch;
+          .input__field {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+            flex: 1 0 0;
+            label {
+              display: flex;
+              align-items: flex-start;
+              gap: 0.625rem;
+              align-self: stretch;
+              p {
+                flex: 1 0 0;
+                color: $clr-complimentary-black-45;
+                font-family: Roboto;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 125%;
+              }
+              input {
+                color: $clr-complimentary-black-50;
+                font-family: Roboto;
+                font-size: 1rem;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 125%;
+                border-bottom: 2px solid $clr-complimentary-black-50;
+                width: 100%;
+                display: flex;
+                padding: 0.625rem 0.5rem;
+                align-items: center;
+                gap: 0.625rem;
+                align-self: stretch;
+              }
+            }
+          }
+        }
+      }
+    }
+    .section {
+      display: flex;
+      width: 22.0625rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+      .section-title {
+        color: $clr-primary-3;
+        font-family: 'Barlow Condensed';
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%;
+      }
+      .section-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $buttons-spacing-h;
+        align-self: stretch;
+        label {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.25rem;
+          align-self: stretch;
+          color: $clr-complimentary-black-45;
+          font-family: Roboto;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 125%;
+          input {
+            color: $clr-complimentary-black-50;
+            font-family: Roboto;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 125%;
+            border-bottom: 2px solid $clr-complimentary-black-50;
+            width: 100%;
+            display: flex;
+            padding: 0.625rem 0.5rem;
+            align-items: center;
+            gap: 0.625rem;
+            align-self: stretch;
+          }
+          .aircraft__select {
+            width: 100%;
+          }
+          select {
+            color: $clr-complimentary-black-50;
+            font-family: Roboto;
+            font-size: 1rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 125%;
+            display: flex;
+            padding: 0.625rem 0.5rem;
+            align-items: center;
+            gap: 0.625rem;
+            align-self: stretch;
+            border-bottom: 2px solid $clr-complimentary-black-50;
+            width: 100%;
+          }
+        }
+      }
+      .section-subsection {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+        align-self: stretch;
+        .subsection-title {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.625rem;
+          align-self: stretch;
+          flex: 1 0 0;
+          color: $clr-complimentary-black-45;
+          font-family: Roboto;
+          font-size: 1rem;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 125%;
+        }
+        .subsection-content {
+          display: flex;
+          align-items: flex-start;
+          gap: $buttons-spacing-h;
+          align-self: stretch;
+          label {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-start;
+            gap: 0.25rem;
+            color: $clr-primary-3;
+            font-family: Roboto;
+            font-size: 0.875rem;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 125%;
+            input {
+              width: 1.125rem;
+              height: 1.125rem;
+              border-radius: 0.25rem;
+              border: 1px solid $clr-complimentary-black-50;
+              background: $clr-complimentary-black-05;
+              display: flex;
+              padding: 0.625rem 0.5rem;
+              align-items: center;
+              gap: 0.625rem;
+              align-self: stretch;
+            }
+          }
+        }
+      }
+    }
+  }
+  .buttonContainerForm {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    display: flex;
+    width: 24.5625rem;
+    padding: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $buttons-spacing-h;
+    border-top: 1px solid $clr-complimentary-black-20;
+    button {
+      display: flex;
+      padding: 0.75rem 1rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+      align-self: stretch;
+      border-radius: 0.5rem;
+      background: $clr-primary-1;
+      &.disabledClass{
+        background: $clr-complimentary-blue-1;
+      }
+    }
+  }
+}

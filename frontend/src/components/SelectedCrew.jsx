@@ -1,6 +1,17 @@
 import PropTypes from 'prop-types';
 
-export default function SelectedCrew({ capt, cop }) {
+export default function SelectedCrew({ capt, cop, cabinCrew }) {
+  const cabinCrewCount = numberOfCabinCrew();
+  function numberOfCabinCrew() {
+    let count = 0;
+    for (let i = 0; i < cabinCrew.length; i++) {
+      if (cabinCrew[i]!== '') {
+        count++;
+      }
+    }
+    return count;
+  }
+
   return (
     <div className="firstCardContainer">
       <h3>Crew selected</h3>
@@ -14,8 +25,8 @@ export default function SelectedCrew({ capt, cop }) {
           <p className={cop !== '' ? "ready" : ""}>Co-Pilots</p>
         </div>
         <div className='infoCrew'>
-          <div className={cop !== '' || capt !== '' ? "ready" : ""}>6/6</div>
-          <p className={cop !== '' || capt !== '' ? "ready" : ""}>Cabin Crew</p>
+          <div className={cabinCrewCount === 6 ? "ready" : ""}>{cabinCrewCount}/6</div>
+          <p className={cabinCrewCount === 6 ? "ready" : ""}>Cabin Crew</p>
         </div>
       </div>
     </div>
@@ -25,4 +36,5 @@ export default function SelectedCrew({ capt, cop }) {
 SelectedCrew.propTypes = {
   capt: PropTypes.string,
   cop: PropTypes.string,
+  cabinCrew: PropTypes.object,
 };

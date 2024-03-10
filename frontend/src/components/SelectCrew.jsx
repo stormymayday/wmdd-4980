@@ -13,8 +13,10 @@ export default function SelectCrew({ flightComing }) {
   const [newFlight, setNewFlight] = useState(checkIfFlight());
   const [capt, setCapt] = useState(newFlight.crewMembers.member1);
   const [cop, setCop] = useState(newFlight.crewMembers.member2);
+  const [cabinCrew, setcabinCrew] = useState(newFlight.crewMembers.cabinCrew);
   // const [ so, setSo ] = useState(newFlight.crewMembers.member3);
   const [availableCrew, setAvailableCrew] = useState([]);
+  const [crew, setCrew] = useState({});
 
   function checkIfFlight() {
     if (flightComing) {
@@ -66,6 +68,24 @@ export default function SelectCrew({ flightComing }) {
           member2: crew.name,
         },
       }));
+    } else if (crew.role === 'flight_attendant') {
+      const firstAvailable = cabinCrew.findIndex((member) => member === '');
+      if (firstAvailable === -1) {
+        setcabinCrew([...cabinCrew, crew.name]);
+      } else {
+        setcabinCrew([
+       ...cabinCrew.slice(0, firstAvailable),
+          crew.name,
+       ...cabinCrew.slice(firstAvailable + 1),
+        ]);
+      }
+      setNewFlight((prevFlight) => ({
+      ...prevFlight,
+        crewMembers: {
+        ...prevFlight.crewMembers,
+           cabinCrew: cabinCrew,
+        },
+      }));
     }
   }
 
@@ -83,6 +103,35 @@ export default function SelectCrew({ flightComing }) {
         console.log(error);
       });
 
+      axios({
+        method: 'get',
+        url: '/api/v1/crew',
+      })
+      .then((response) => {
+        response.data.data.CrewMembers.filter((crewCapt) => {
+          if (crewCapt.name === capt) {
+            console.log(crewCapt.name);
+            console.log(crewCapt);
+            setCrew(crewCapt);
+            
+          }
+        })
+      })
+      .catch((error) => console.log(error));
+
+      const updateCrew = {
+        ...crew,
+        "FlightNumber": "LA-21AA",
+        "email": "repiklleonid@gmail.com",
+        
+      }
+
+       axios({
+        method: 'patch',
+        url: `/api/v1/crew/65e0156e9c627c445c12a792`,
+        data: updateCrew,
+      })
+
     // Add the summary page to navigate to >>>>>>>
     navigateTo('/dashboard');
   }
@@ -92,7 +141,7 @@ export default function SelectCrew({ flightComing }) {
       <ReturnHeader destinationPage="/new-flight">Select Crew</ReturnHeader>
       <div className="addCrewContainer">
         {console.log(newFlight)}
-        <SelectedCrew capt={capt} cop={cop} />
+        <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew}/>
         <h2>Select Crew</h2>
         {availableCrew.length > 0 ? (
           availableCrew.map((crew, index) => {

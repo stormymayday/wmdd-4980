@@ -1,6 +1,8 @@
 @import '../abstracts/variables';
 
 .returnHeader {
+  position: sticky;
+  top: 0;
   display: flex;
   width: 24.5625rem;
   padding: 4.25rem 1.25rem 1.25rem 1.25rem;

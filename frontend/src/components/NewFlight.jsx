@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ReturnHeader from './ReturnHeader';
 import { Input } from './index';
 import { useNavigate } from 'react-router-dom';
 
@@ -28,6 +29,14 @@ export default function NewFlight() {
       member1: '',
       member2: '',
       member3: '',
+      cabinCrew: {
+        cabin1: '',
+        cabin2: '',
+        cabin3: '',
+        cabin4: '',
+        cabin5: '',
+        cabin6: '',
+      }
     },
   });
 
@@ -142,162 +151,202 @@ export default function NewFlight() {
 
   return (
     <>
+      <ReturnHeader destinationPage="/dashboard/create-flight">
+        Create Flight
+      </ReturnHeader>
       <form onSubmit={handleSubmit} className="form__element">
-        <div className="select__input">
-          <p>Select Route:</p>
-          <div>
-            <label>
-              From
-              <select
-                name="from"
-                value={flightInfo.from}
-                onChange={handleInput}
-                required
-              >
-                <option value="" disabled aria-placeholder="Select Origin">
-                  Select Origin
-                </option>
-                <option value="location1">Location 1</option>
-                <option value="location2">Location 2</option>
-              </select>
-            </label>
-          </div>
-          <div>
-            <label>
-              To
-              <select
-                name="to"
-                value={flightInfo.to}
-                onChange={handleInput}
-                required
-              >
-                <option value="" disabled aria-placeholder="Select Destination">
-                  Select Destination
-                </option>
-                <option value="location1">Location 1</option>
-                <option value="location2">Location 2</option>
-              </select>
-            </label>
-          </div>
-        </div>
-        <div className="input__section">
-          <label> Departure information </label>
-          <div className="input__group">
-            <div className="input__field">
-              <label htmlFor="dateOut"> Date </label>
-              <Input
-                placeholder="Select Date"
-                type={inputTypes}
-                name="dateOut"
-                onFocus={() => handleFocus(true)}
-                onBlur={handleBlur}
-                value={flightTimes.dateOut}
-                onChange={handleHoursInput}
-                id="dateOut"
-                required
-              ></Input>
-            </div>
-            <div className="input__field">
-              <label htmlFor="hourOut">Time</label>
-              <Input
-                placeholder="Select Time"
-                type={hourTypes}
-                name="hourOut"
-                onFocus={() => handleFocus(false)}
-                onBlur={handleBlur}
-                value={flightTimes.hourOut}
-                onChange={handleHoursInput}
-                id="hourOut"
-                required
-              ></Input>
-            </div>
-          </div>
-        </div>
-        <div className="input__section">
-          <label> Arrival information </label>
-          <div className="input__group">
-            <div className="input__field">
-              <label htmlFor="dateIn">Date</label>
-              <Input
-                type="date"
-                name="dateIn"
-                value={flightTimes.dateIn}
-                onChange={handleHoursInput}
-                id="dateIn"
-                disabled
-              />
-            </div>
-            <div className="input__field">
-              <label htmlFor="hourIn">Time</label>
-              <Input
-                type="time"
-                name="hourIn"
-                value={flightTimes.hourIn}
-                onChange={handleHoursInput}
-                id="hourIn"
-                disabled
-              />
-            </div>
-          </div>
-        </div>
-        <div className="section">
-          <label className="section-title">General Information</label>
-          <div className="section-content">
-            <Input
-              type="text"
-              name="flightNumber"
-              value={flightInfo.flightNumber}
-              onChange={handleInput}
-              required
-              placeholder="LA-2368"
-              className="input__section_flight"
-            >
-              Flight Number:
-            </Input>
-            <label>
-              Aircraft Type
-              <div>
-                <select
-                  className="aircraft-type"
-                  name="aircraftType"
-                  value={flightInfo.aircraftType}
-                  onChange={handleInput}
-                  required
-                >
-                  <option value="" disabled aria-placeholder="true">
-                    Select Aircraft Type
-                  </option>
-                  <option value="aircraft1">Aircraft 1</option>
-                  <option value="aircraft2">Aircraft 2</option>
-                </select>
+        <div className="form_container">
+          <div className="select__input">
+            <p>Select Route:</p>
+            <div className="route_selection">
+              <div className="label_container">
+                <label>
+                  <p>From</p>
+                  <select
+                    name="from"
+                    value={flightInfo.from}
+                    onChange={handleInput}
+                    required
+                  >
+                    <option value="" disabled aria-placeholder="Select Origin">
+                      Select Origin
+                    </option>
+                    <option value="location1">Location 1</option>
+                    <option value="location2">Location 2</option>
+                  </select>
+                </label>
               </div>
-            </label>
-            <div className="section-subsection">
-              <div>
-                <label className="subsection-title">Flight Restriction</label>
-                <div className="subsection-content">
-                  <Input
-                    type="checkbox"
-                    name="lvp"
-                    className="restriction-checkbox"
-                    onChange={handleCheckboxInput}
+              <div className="label_container">
+                <label>
+                  <p>To</p>
+                  <select
+                    name="to"
+                    value={flightInfo.to}
+                    onChange={handleInput}
+                    required
                   >
-                    LVP
-                  </Input>
+                    <option
+                      value=""
+                      disabled
+                      aria-placeholder="Select Destination"
+                    >
+                      Select Destination
+                    </option>
+                    <option value="location1">Location 1</option>
+                    <option value="location2">Location 2</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="departure_info">
+            <div className="input__section">
+              <label> Departure information </label>
+              <div className="input__group">
+                <div className="input__field">
+                  <label htmlFor="dateOut">
+                    {' '}
+                    <p>Date</p>{' '}
+                  </label>
                   <Input
-                    type="checkbox"
-                    name="pbn"
-                    className="restriction-checkbox"
-                    onChange={handleCheckboxInput}
+                    placeholder="Select Date"
+                    type={inputTypes}
+                    name="dateOut"
+                    onFocus={() => handleFocus(true)}
+                    onBlur={handleBlur}
+                    value={flightTimes.dateOut}
+                    onChange={handleHoursInput}
+                    id="dateOut"
+                    required
+                  ></Input>
+                </div>
+                <div className="input__field">
+                  <label htmlFor="hourOut">
+                    <p>Time</p>
+                  </label>
+                  <Input
+                    placeholder="Select Time"
+                    type={hourTypes}
+                    name="hourOut"
+                    onFocus={() => handleFocus(false)}
+                    onBlur={handleBlur}
+                    value={flightTimes.hourOut}
+                    onChange={handleHoursInput}
+                    id="hourOut"
+                    required
+                  ></Input>
+                </div>
+              </div>
+            </div>
+            <div className="input__section">
+              <label> Arrival information </label>
+              <div className="input__group">
+                <div className="input__field">
+                  <label htmlFor="dateIn">Date</label>
+                  <Input
+                    type="date"
+                    name="dateIn"
+                    value={flightTimes.dateIn}
+                    onChange={handleHoursInput}
+                    id="dateIn"
+                    disabled
+                  />
+                </div>
+                <div className="input__field">
+                  <label htmlFor="hourIn">Time</label>
+                  <Input
+                    type="time"
+                    name="hourIn"
+                    value={flightTimes.hourIn}
+                    onChange={handleHoursInput}
+                    id="hourIn"
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="section">
+            <label className="section-title">General Information</label>
+            <div className="section-content">
+              <Input
+                type="text"
+                name="flightNumber"
+                value={flightInfo.flightNumber}
+                onChange={handleInput}
+                required
+                placeholder="LA-2368"
+                className="input__section_flight"
+              >
+                Flight Number:
+              </Input>
+              <label>
+                Aircraft Type
+                <div className="aircraft__select">
+                  <select
+                    className="aircraft-type"
+                    name="aircraftType"
+                    value={flightInfo.aircraftType}
+                    onChange={handleInput}
+                    required
                   >
-                    PBN
-                  </Input>
+                    <option value="" disabled aria-placeholder="true">
+                      Select Aircraft Type
+                    </option>
+                    <option value="aircraft1">Aircraft 1</option>
+                    <option value="aircraft2">Aircraft 2</option>
+                  </select>
+                </div>
+              </label>
+              <div className="section-subsection">
+                <div>
+                  <label className="subsection-title">Flight Restriction</label>
+                  <div className="subsection-content">
+                    <Input
+                      type="checkbox"
+                      name="lvp"
+                      className="restriction-checkbox"
+                      onChange={handleCheckboxInput}
+                    >
+                      LVP
+                    </Input>
+                    <Input
+                      type="checkbox"
+                      name="pbn"
+                      className="restriction-checkbox"
+                      onChange={handleCheckboxInput}
+                    >
+                      PBN
+                    </Input>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button type="submit">Continue to Crew</button>
+        <div className="buttonContainerForm">
+          <button
+            type="submit"
+            disabled={
+              (flightInfo.from === '' ||
+              flightInfo.to === '' ||
+              flightInfo.aircraftType === '' ||
+              flightInfo.flightNumber === '' ||
+              flightInfo.weather === '' ||
+              flightInfo.departure === '' ||
+              flightInfo.arriving === '') && true
+            }
+            className={(flightInfo.from === '' ||
+            flightInfo.to === '' ||
+            flightInfo.aircraftType === '' ||
+            flightInfo.flightNumber === '' ||
+            flightInfo.weather === '' ||
+            flightInfo.departure === '' ||
+            flightInfo.arriving === '') && 'disabledClass'}
+          >
+            Continue to Crew
+          </button>
+        </div>
       </form>
     </>
   );
