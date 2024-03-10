@@ -1,10 +1,13 @@
 import { useParams } from 'react-router-dom';
+import CrewMemberInfo from '../components/CrewMemberInfo/CrewMemberInfo'
+import CrewMemberLatestFlight from '../components/CrewMemberInfo/CrewMemberLatestFlight'
 const CrewPage = () => {
   const { id } = useParams();
   return (
     <>
-      <h1>Crew Page</h1>
-      <p>Crew ID: {id}</p>
+    <CrewMemberInfo crewId={id}/>
+    <CrewMemberLatestFlight expand={false}/>
+      
     </>
   );
 };
