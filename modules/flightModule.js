@@ -60,6 +60,32 @@ const flightSchema = new mongoose.Schema({
         type: String,
         default: '',
       },
+      cabinCrew: {
+        cabin1: {
+          type: String,
+          default: '',
+        },
+        cabin2: {
+          type: String,
+          default: '',
+        },
+        cabin3: {
+          type: String,
+          default: '',
+        },
+        cabin4: {
+          type: String,
+          default: '',
+        },
+        cabin5: {
+          type: String,
+          default: '',
+        },
+        cabin6: {
+          type: String,
+          default: '',
+        },
+      },
     },
   ],
   dateCreated: {
