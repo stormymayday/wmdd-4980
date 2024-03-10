@@ -119,18 +119,39 @@ export default function SelectCrew({ flightComing }) {
       })
       .catch((error) => console.log(error));
 
-      const updateCrew = {
-        ...crew,
-        "FlightNumber": "LA-21AA",
-        "email": "repiklleonid@gmail.com",
-        
-      }
-
        axios({
         method: 'patch',
         url: `/api/v1/crew/65e0156e9c627c445c12a792`,
-        data: updateCrew,
+        data: {
+          "status": "success",
+          "data": {
+            "CrewMember": {
+              "flightHours": {
+                "total": 1200,
+                "thisMonth": 80,
+                "available": "available"
+              },
+              "name": "John Doe",
+              "FlightNumber": "LA-211",
+              "email": "repiklleonid@gmail.com",
+              "likesEmails": true,
+              "certifications": [
+                "Private Pilot License",
+                "Commercial Pilot License"
+              ],
+              "_id": "65e0156e9c627c445c12a792",
+              "role": "pilot",
+              "__v": 0
+            }
+          }
+        },
       })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
     // Add the summary page to navigate to >>>>>>>
     navigateTo('/dashboard');
