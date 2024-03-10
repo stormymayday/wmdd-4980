@@ -33,7 +33,7 @@ function CrewMemberLatestFlight({ expand }) {
   //     console.log(flights);
   //   }, [flights]);
 
-  let flightlist = expand ? flights : flights.slice(0, 2);
+  let flightlist = expand ? flights : flights.slice(0, 5);
 
   return (
     <div className="flightTableForCrew">
