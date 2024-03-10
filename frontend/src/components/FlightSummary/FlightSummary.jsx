@@ -1,129 +1,43 @@
 const FlightSummary = () => {
   return (
-    <div className="flights-summary_box">
-      <div className="flights-summary_box_header">
-        <div className="flights-summary_box_header_title">
-          Flight Summary Details
+    <div class="v1_534">
+      <div class="v1_535">
+        <div class="v1_536">
+          <div class="v1_537"></div>
+          <div class="v1_538"></div>
+          <div class="v1_539">Your Text Here</div>
+          <div class="v1_540"></div>
+          <div class="v1_541"></div>
+          <div class="name">Your Name</div>
+          <div class="name">Your Name</div>
+          <div class="name">Your Name</div>
+          <div class="v1_545"></div>
+          <div class="name">Your Name</div>
+          <div class="name">Your Name</div>
+          <div class="name">Your Name</div>
+          <div class="name">Your Name</div>
+          <div class="name">Your Name</div>
         </div>
       </div>
-      <div className="flights-summary_box_pilots-box">
-        <div className="flights-summary_box_pilots-box-inner">
-          {/* Pilots */}
-          <div className="flights-summary_box_pilots-box-inner-mainPilot">
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-name">
-              Pilots
-            </div>
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-box">
-              <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner">
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box-svg"></div>
-                </div>
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-big">
-                    Harry Potter
-                  </div>
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-small">
-                    Pilot
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Co-Pilots */}
-          <div className="flights-summary_box_pilots-box-inner-mainPilot">
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-name">
-              Co-Pilots
-            </div>
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-box">
-              <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner">
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box-svg"></div>
-                </div>
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-big">
-                    Ron Whisley
-                  </div>
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-small">
-                    Co-Pilot
-                  </div>
-                </div>
-              </div>
-              <div className="flights-summary_box_pilots-box-inner-mainPilot-box">
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box">
-                    <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box-svg"></div>
-                  </div>
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text">
-                    <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-big">
-                      Serverus Snape
-                    </div>
-                    <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-small">
-                      Co-Pilot
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Additional Co-Pilot */}
-          </div>
-
-          {/* Cabin Crew */}
-          <div className="flights-summary_box_pilots-box-inner-mainPilot">
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-name">
-              Cabin Crew
-            </div>
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-box">
-              <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner">
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box-svg"></div>
-                </div>
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-big">
-                    Albus Dumbledore
-                  </div>
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-small">
-                    Cabin Crew
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Additional Cabin Crews */}
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-box">
-              <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner">
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box-svg"></div>
-                </div>
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-big">
-                    Albus Dumbledore
-                  </div>
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-small">
-                    Cabin Crew
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Another Cabin Crew */}
-            <div className="flights-summary_box_pilots-box-inner-mainPilot-box">
-              <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner">
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-svg-box-svg"></div>
-                </div>
-                <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text">
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-big">
-                    Albus Dumbledore
-                  </div>
-                  <div className="flights-summary_box_pilots-box-inner-mainPilot-box-inner-text-small">
-                    Cabin Crew
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="v1_550">
+        <div class="v1_551"></div>
+        <div class="v1_552"></div>
+        <div class="v1_553">Your Text Here</div>
+        <div class="v1_554"></div>
+        <div class="v1_555"></div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="v1_558"></div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="v1_562"></div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
+        <div class="name">Your Name</div>
       </div>
     </div>
   );
