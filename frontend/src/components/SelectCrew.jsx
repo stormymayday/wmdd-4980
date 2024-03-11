@@ -11,12 +11,12 @@ export default function SelectCrew({ flightComing }) {
 
   const localStorageFlight = JSON.parse(localStorage.newFlight);
   const [newFlight, setNewFlight] = useState(checkIfFlight());
-  const [capt, setCapt] = useState(newFlight.crewMembers.member1);
-  const [cop, setCop] = useState(newFlight.crewMembers.member2);
-  const [cabinCrew, setcabinCrew] = useState(newFlight.crewMembers.cabinCrew);
+  const [capt, setCapt] = useState(newFlight.crewMembers[0].member1);
+  const [cop, setCop] = useState(newFlight.crewMembers[0].member2);
+  const [cabinCrew, setcabinCrew] = useState(newFlight.crewMembers[0].cabinCrew);
   // const [ so, setSo ] = useState(newFlight.crewMembers.member3);
   const [availableCrew, setAvailableCrew] = useState([]);
-  const [crew, setCrew] = useState({});
+  // const [crew, setCrew] = useState({});
 
   function checkIfFlight() {
     if (flightComing) {
@@ -112,7 +112,7 @@ export default function SelectCrew({ flightComing }) {
           if (crewCapt.name === capt) {
             console.log(crewCapt.name);
             console.log(crewCapt);
-            setCrew(crewCapt);
+            // setCrew(crewCapt);
             
           }
         })
