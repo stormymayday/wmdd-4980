@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import ReturnHeader from './ReturnHeader';
 import { Input } from './index';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-
-export default function NewFlight() {
+export default function NewFlight({ onClickClose, isModal }) {
   const navigateTo = useNavigate();
   /*************************************************/
   // Data of flight time that will be on the data base.
@@ -26,22 +26,22 @@ export default function NewFlight() {
       lvp: false,
       pbn: false,
     },
-    crewMembers: [{
-      member1: '',
-      member2: '',
-      member3: '',
-      cabinCrew: {
-        cabin1: '',
-        cabin2: '',
-        cabin3: '',
-        cabin4: '',
-        cabin5: '',
-        cabin6: '',
-      }
-  },],
+    crewMembers: [
+      {
+        member1: '',
+        member2: '',
+        member3: '',
+        cabinCrew: {
+          cabin1: '',
+          cabin2: '',
+          cabin3: '',
+          cabin4: '',
+          cabin5: '',
+          cabin6: '',
+        },
+      },
+    ],
   });
-
-  
 
   const [flightTimes, setflightTimes] = useState({
     dateOut: '',
@@ -99,7 +99,7 @@ export default function NewFlight() {
         hourIn: arrivingTime,
       }));
     }
-    console.log(flightInfo)
+    console.log(flightInfo);
   }, [
     flightInfo.from,
     flightInfo.to,
@@ -145,36 +145,41 @@ export default function NewFlight() {
     return newDateString;
   }
 
-  function handleSubmit (event) {
+  function handleSubmit(event) {
     event.preventDefault();
 
     fetch('/api/v1/flights', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(flightInfo)
+      body: JSON.stringify(flightInfo),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // console.log(data.data.user._id);
-        localStorage.setItem('newFlight', JSON.stringify({...flightInfo,
-        _id: data.data.user._id}));
+        localStorage.setItem(
+          'newFlight',
+          JSON.stringify({ ...flightInfo, _id: data.data.user._id })
+        );
       })
-      .catch(error => console.error('Error occurred:', error));
-  
+      .catch((error) => console.error('Error occurred:', error));
 
-
-  // localStorage.setItem('newFlight', JSON.stringify(flightInfo));
-  // console.log(localStorage.getItem('newFlight'));
-  navigateTo('/add-crew');
-
-}
-
+    // localStorage.setItem('newFlight', JSON.stringify(flightInfo));
+    // console.log(localStorage.getItem('newFlight'));
+    if (isModal) {
+      onClickClose(false, true, true);
+    } else {
+      navigateTo('/add-crew');
+    }
+  }
 
   return (
     <>
-      <ReturnHeader destinationPage="/dashboard/create-flight">
+      <ReturnHeader
+        destinationPage="/dashboard/create-flight"
+        onClick={onClickClose}
+      >
         Create Flight
       </ReturnHeader>
       <form onSubmit={handleSubmit} className="form__element">
@@ -347,25 +352,33 @@ export default function NewFlight() {
             </div>
           </div>
         </div>
-        <div className="buttonContainerForm">
+        <div
+          className={
+            isModal ? 'buttonContainerForm is-modal' : 'buttonContainerForm'
+          }
+        >
           <button
             type="submit"
             disabled={
               (flightInfo.from === '' ||
-              flightInfo.to === '' ||
-              flightInfo.aircraftType === '' ||
-              flightInfo.flightNumber === '' ||
-              flightInfo.weather === '' ||
-              flightInfo.departure === '' ||
-              flightInfo.arriving === '') && ''
+                flightInfo.to === '' ||
+                flightInfo.aircraftType === '' ||
+                flightInfo.flightNumber === '' ||
+                flightInfo.weather === '' ||
+                flightInfo.departure === '' ||
+                flightInfo.arriving === '') &&
+              ''
             }
-            className={(flightInfo.from === '' ||
-            flightInfo.to === '' ||
-            flightInfo.aircraftType === '' ||
-            flightInfo.flightNumber === '' ||
-            flightInfo.weather === '' ||
-            flightInfo.departure === '' ||
-            flightInfo.arriving === '') && 'disabledClass'}
+            className={
+              (flightInfo.from === '' ||
+                flightInfo.to === '' ||
+                flightInfo.aircraftType === '' ||
+                flightInfo.flightNumber === '' ||
+                flightInfo.weather === '' ||
+                flightInfo.departure === '' ||
+                flightInfo.arriving === '') &&
+              'disabledClass'
+            }
           >
             Continue to Crew
           </button>
@@ -374,3 +387,8 @@ export default function NewFlight() {
     </>
   );
 }
+
+NewFlight.propTypes = {
+  onClickClose: PropTypes.func,
+  isModal: PropTypes.bool,
+};

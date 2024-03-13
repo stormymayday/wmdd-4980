@@ -4,7 +4,7 @@
   position: sticky;
   top: 0;
   display: flex;
-  width: 24.5625rem;
+  width: 393px;
   padding: 4.25rem 1.25rem 1.25rem 1.25rem;
   flex-direction: column;
   justify-content: flex-end;
@@ -35,5 +35,10 @@
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
+  }
+
+  &.mobileView{
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

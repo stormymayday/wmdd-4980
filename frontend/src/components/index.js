@@ -15,3 +15,6 @@ export { default as ListOfCrew } from './ListOfCrew';
 export { default as ReturnHeader } from './ReturnHeader';
 
 export { default as CrewAvailabilityTable } from './CrewAvailabilityTable/CrewAvailabilityTable';
+export { default as ModalNewFlight } from './ModalNewFlight';
+export { default as ModalSelectCrew } from './ModalSelectCrew';
+export { default as ModalCrewInfo } from './ModalCrewInfo';

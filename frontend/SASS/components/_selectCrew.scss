@@ -3,13 +3,11 @@
 .addCrewContainer {
   display: flex;
   width: 24.5625rem;
-  height: 37rem;
   padding: 1.25rem;
   flex-direction: column;
   align-items: center;
   gap: $buttons-spacing-h;
   flex-shrink: 0;
-  overflow-y: scroll;
 
   h2 {
     display: flex;
@@ -22,10 +20,14 @@
     font-weight: 600;
     line-height: 150%;
   }
+  .listOfCrew {
+    width: 100%;
+    padding-bottom: 130px;
+  }
 
   .crewCard {
     display: flex;
-    padding: var(--buttons-spacing-h, 0.75rem) 0rem;
+    padding: $buttons-spacing-h 0rem;
     align-items: center;
     gap: 2.5rem;
     align-self: stretch;
@@ -98,15 +100,24 @@
   }
 
   .crewAddButtonsSubmitCancel {
+    position: fixed;
+    bottom: 0;
+    background-color: white;
     display: flex;
     width: 24.5625rem;
     padding: 1.25rem;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--buttons-spacing-h, 0.75rem);
-    border-top: 1px solid var(--Blacks-Black-20, #d1d1d1);
+    border-top: 1px solid $clr-complimentary-black-20;
 
     button {
+      color: $clr-primary-4;
+      font-family: Roboto;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 125%;
       display: flex;
       padding: 0.75rem 1rem;
       justify-content: center;
@@ -116,19 +127,24 @@
 
       &.cancelButton {
         border-radius: 0.5rem;
-        border: 1px solid var(--Blacks-Black-60, #5d5d5d);
+        border: 1px solid $clr-complimentary-black-60;
       }
 
       &.continue {
         border-radius: 0.5rem;
-        background: var(--Primary-Palette-Primary, #336999);
+        background: $clr-primary-1;
 
         &.disabledButton {
           border-radius: 0.5rem;
-          background: var(--Complimentary-Blue-1, #679ec9);
-          
+          background: $clr-complimentary-blue-1;
         }
       }
+    }
+
+    &.is-modal {
+      flex-direction: row;
+      justify-content: flex-end;
+      align-self: stretch;
     }
   }
 }

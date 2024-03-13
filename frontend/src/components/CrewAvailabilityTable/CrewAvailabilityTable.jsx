@@ -1,11 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { TbEyeFilled } from 'react-icons/tb';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { BsFilterSquare } from 'react-icons/bs';
+import ModalCrewInfo from '../ModalCrewInfo';
 
 const CrewAvailabilityTable = () => {
+  // Modal code functionality
+  let id = "";
+  const [showModalCrewInfo, setShowModalCrewInfo] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 393);
+
+  const toggleModalCrew = () => {
+    setShowModalCrewInfo((prevShowModalCrewInfo) => !prevShowModalCrewInfo);
+  };
+
+  const handleResize = () => {
+    setIsMobileView(window.innerWidth <= 393);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  // End of modal functionality
+
   const [crew, setCrew] = useState([]);
   const [filteredCrew, setFilteredCrew] = useState([]);
   const [selectedTab, setSelectedTab] = useState('all_crew');
@@ -181,6 +205,7 @@ const CrewAvailabilityTable = () => {
         </thead>
         <tbody>
           {filteredCrew.map((member) => (
+            id = member._id,
             <tr key={member._id}>
               <td>
                 <p style={{ fontWeight: 'bold' }}>{member.name}</p>
@@ -198,14 +223,31 @@ const CrewAvailabilityTable = () => {
                 <span className="gray-text">/90hrs</span>
               </td>
               <td>
-                <NavLink className="crew-link" to={`/crew/${member._id}`}>
-                  <TbEyeFilled className="view-crew-icon" />
-                </NavLink>
+                {isMobileView ? (
+                  <NavLink className="crew-link" to={`/crew/${member._id}`}>
+                    <TbEyeFilled className="view-crew-icon" />
+                  </NavLink>
+                ) : (
+                  <button className="crew-link" onClick={() => toggleModalCrew()}>
+                    <TbEyeFilled className="view-crew-icon" />
+                  </button>
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {showModalCrewInfo && (
+        <div
+          className={
+            showModalCrewInfo ? 'sliding-modal modal-animation' : 'sliding-modal'
+          }
+        >
+          <div className="modal-content">
+            <ModalCrewInfo onClickClose={toggleModalCrew} id={id} />
+          </div>
+        </div>
+      )}
     </>
   );
 };

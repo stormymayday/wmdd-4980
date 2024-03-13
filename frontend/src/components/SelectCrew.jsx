@@ -6,14 +6,16 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-export default function SelectCrew({ flightComing }) {
+export default function SelectCrew({ flightComing, isModal, onClickClose }) {
   const navigateTo = useNavigate();
 
   const localStorageFlight = JSON.parse(localStorage.newFlight);
   const [newFlight, setNewFlight] = useState(checkIfFlight());
   const [capt, setCapt] = useState(newFlight.crewMembers[0].member1);
   const [cop, setCop] = useState(newFlight.crewMembers[0].member2);
-  const [cabinCrew, setcabinCrew] = useState(newFlight.crewMembers[0].cabinCrew);
+  const [cabinCrew, setcabinCrew] = useState(
+    newFlight.crewMembers[0].cabinCrew
+  );
   // const [ so, setSo ] = useState(newFlight.crewMembers.member3);
   const [availableCrew, setAvailableCrew] = useState([]);
   // const [crew, setCrew] = useState({});
@@ -74,16 +76,16 @@ export default function SelectCrew({ flightComing }) {
         setcabinCrew([...cabinCrew, crew.name]);
       } else {
         setcabinCrew([
-       ...cabinCrew.slice(0, firstAvailable),
+          ...cabinCrew.slice(0, firstAvailable),
           crew.name,
-       ...cabinCrew.slice(firstAvailable + 1),
+          ...cabinCrew.slice(firstAvailable + 1),
         ]);
       }
       setNewFlight((prevFlight) => ({
-      ...prevFlight,
+        ...prevFlight,
         crewMembers: {
-        ...prevFlight.crewMembers,
-           cabinCrew: cabinCrew,
+          ...prevFlight.crewMembers,
+          cabinCrew: cabinCrew,
         },
       }));
     }
@@ -103,78 +105,95 @@ export default function SelectCrew({ flightComing }) {
         console.log(error);
       });
 
-      axios({
-        method: 'get',
-        url: '/api/v1/crew',
-      })
+    axios({
+      method: 'get',
+      url: '/api/v1/crew',
+    })
       .then((response) => {
         response.data.data.CrewMembers.filter((crewCapt) => {
           if (crewCapt.name === capt) {
             console.log(crewCapt.name);
             console.log(crewCapt);
             // setCrew(crewCapt);
-            
           }
-        })
+        });
       })
       .catch((error) => console.log(error));
 
-       axios({
-        method: 'patch',
-        url: `/api/v1/crew/65e0156e9c627c445c12a792`,
+    axios({
+      method: 'patch',
+      url: `/api/v1/crew/65e0156e9c627c445c12a792`,
+      data: {
+        status: 'success',
         data: {
-          "status": "success",
-          "data": {
-            "CrewMember": {
-              "flightHours": {
-                "total": 1200,
-                "thisMonth": 80,
-                "available": "available"
-              },
-              "name": "John Doe",
-              "FlightNumber": "LA-211",
-              "email": "repiklleonid@gmail.com",
-              "likesEmails": true,
-              "certifications": [
-                "Private Pilot License",
-                "Commercial Pilot License"
-              ],
-              "_id": "65e0156e9c627c445c12a792",
-              "role": "pilot",
-              "__v": 0
-            }
-          }
+          CrewMember: {
+            flightHours: {
+              total: 1200,
+              thisMonth: 80,
+              available: 'available',
+            },
+            name: 'John Doe',
+            FlightNumber: 'LA-211',
+            email: 'repiklleonid@gmail.com',
+            likesEmails: true,
+            certifications: [
+              'Private Pilot License',
+              'Commercial Pilot License',
+            ],
+            _id: '65e0156e9c627c445c12a792',
+            role: 'pilot',
+            __v: 0,
+          },
         },
-      })
-      .then(response => {
+      },
+    })
+      .then((response) => {
         console.log(response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
 
     // Add the summary page to navigate to >>>>>>>
-    navigateTo('/dashboard');
+    if (isModal) {
+      onClickClose(false, false, false);
+    } else {
+      navigateTo('/dashboard');
+    }
   }
 
   return (
     <>
-      <ReturnHeader destinationPage="/new-flight">Select Crew</ReturnHeader>
+      <ReturnHeader destinationPage="/new-flight" onClick={onClickClose}>
+        Select Crew
+      </ReturnHeader>
       <div className="addCrewContainer">
-        {console.log(newFlight)}
-        <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew}/>
+        <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew} />
+
         <h2>Select Crew</h2>
-        {availableCrew.length > 0 ? (
-          availableCrew.map((crew, index) => {
-            return (
-              <ListOfCrew crew={crew} key={index} handleAdding={handleAdding} />
-            );
-          })
-        ) : (
-          <p>No available Crew.</p>
-        )}
-        <div className="crewAddButtonsSubmitCancel">
-          <button className="cancelButton">Cancel</button>
+        <div className="listOfCrew">
+          {availableCrew.length > 0 ? (
+            availableCrew.map((crew, index) => {
+              return (
+                <ListOfCrew
+                  crew={crew}
+                  key={index}
+                  handleAdding={handleAdding}
+                />
+              );
+            })
+          ) : (
+            <p>No available Crew.</p>
+          )}
+        </div>
+        <div
+          className={
+            !isModal
+              ? 'crewAddButtonsSubmitCancel'
+              : 'crewAddButtonsSubmitCancel is-modal'
+          }
+        >
+          {!isModal && <button className="cancelButton">Cancel</button>}
           <button
             onClick={handleSubmit}
             className={
@@ -192,4 +211,6 @@ export default function SelectCrew({ flightComing }) {
 
 SelectCrew.propTypes = {
   flightComing: PropTypes.object,
+  isModal: PropTypes.bool,
+  onClickClose: PropTypes.func,
 };
