@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../modules/userModule');
+const User = require('../models/userModule');
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find(req.query);

@@ -148,19 +148,31 @@ export default function NewFlight({ onClickClose, isModal }) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const dateString = `${flightTimes.dateIn} ${flightTimes.hourIn}`;
+
+    // Convert the original string to a Date object
+    var originalDate = new Date(dateString.replace(/-/g, '/'));
+
+    // Format the date in the desired format
+    var convertedDateString = originalDate.toISOString().replace('Z', '+00:00');
+
     fetch('/api/v1/flights', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(flightInfo),
+      body: JSON.stringify({ ...flightInfo, expireAt: convertedDateString }),
     })
       .then((response) => response.json())
       .then((data) => {
         // console.log(data.data.user._id);
         localStorage.setItem(
           'newFlight',
-          JSON.stringify({ ...flightInfo, _id: data.data.user._id })
+          JSON.stringify({
+            ...flightInfo,
+            _id: data.data.user._id,
+            expireAt: convertedDateString,
+          })
         );
       })
       .catch((error) => console.error('Error occurred:', error));

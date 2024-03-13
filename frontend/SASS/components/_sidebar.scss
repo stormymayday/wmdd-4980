@@ -22,7 +22,7 @@
     gap: 1rem;
     color: $clr-primary-3;
     padding: 1rem 0;
-    padding-left: 2rem;
+    padding-left: 1.5rem;
     text-transform: capitalize;
   }
 
@@ -37,6 +37,7 @@
 
   .nav-link p {
     margin-bottom: 0.8rem;
+    font-size: 1rem;
   }
 
   .active {

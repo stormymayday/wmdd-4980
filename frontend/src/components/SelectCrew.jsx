@@ -89,70 +89,19 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
         },
       }));
     }
+    console.log(newFlight);
+
+    axios
+      .patch(`/api/v1/crew/${crew._id}`, {
+        $push: { flightRecord: newFlight },
+        FlightNumber: newFlight._id,
+      })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   }
 
   function handleSubmit() {
     localStorage.setItem('newFlight', JSON.stringify(newFlight));
-    axios({
-      method: 'post',
-      url: '/api/v1/flights',
-      data: newFlight,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axios({
-      method: 'get',
-      url: '/api/v1/crew',
-    })
-      .then((response) => {
-        response.data.data.CrewMembers.filter((crewCapt) => {
-          if (crewCapt.name === capt) {
-            console.log(crewCapt.name);
-            console.log(crewCapt);
-            // setCrew(crewCapt);
-          }
-        });
-      })
-      .catch((error) => console.log(error));
-
-    axios({
-      method: 'patch',
-      url: `/api/v1/crew/65e0156e9c627c445c12a792`,
-      data: {
-        status: 'success',
-        data: {
-          CrewMember: {
-            flightHours: {
-              total: 1200,
-              thisMonth: 80,
-              available: 'available',
-            },
-            name: 'John Doe',
-            FlightNumber: 'LA-211',
-            email: 'repiklleonid@gmail.com',
-            likesEmails: true,
-            certifications: [
-              'Private Pilot License',
-              'Commercial Pilot License',
-            ],
-            _id: '65e0156e9c627c445c12a792',
-            role: 'pilot',
-            __v: 0,
-          },
-        },
-      },
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
     // Add the summary page to navigate to >>>>>>>
     if (isModal) {
@@ -168,8 +117,8 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
         Select Crew
       </ReturnHeader>
       <div className="addCrewContainer">
+        {console.log(newFlight)}
         <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew} />
-
         <h2>Select Crew</h2>
         <div className="listOfCrew">
           {availableCrew.length > 0 ? (

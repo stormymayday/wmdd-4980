@@ -18,3 +18,5 @@ export { default as CrewAvailabilityTable } from './CrewAvailabilityTable/CrewAv
 export { default as ModalNewFlight } from './ModalNewFlight';
 export { default as ModalSelectCrew } from './ModalSelectCrew';
 export { default as ModalCrewInfo } from './ModalCrewInfo';
+
+export { default as FormRowInput } from './FormRowInput';

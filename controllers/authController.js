@@ -1,4 +1,4 @@
-const User = require('../modules/userModule');
+const User = require('../models/userModule');
 const jwt = require('jsonwebtoken');
 
 exports.singUp = async (req, res, next) => {
