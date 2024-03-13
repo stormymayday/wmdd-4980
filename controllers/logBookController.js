@@ -1,4 +1,4 @@
-const Logbook = require('../modules/logBookModule');
+const Logbook = require('../models/logBookModule');
 const express = require('express');
 
 exports.getAllLogbooks = async (req, res) => {

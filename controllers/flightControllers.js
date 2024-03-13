@@ -1,5 +1,5 @@
 const express = require('express');
-const Flight = require('../modules/flightModule');
+const Flight = require('../models/flightModule');
 
 exports.createFLight = async (req, res) => {
   try {
