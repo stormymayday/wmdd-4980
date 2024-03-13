@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import { registerAction } from './pages/Register';
+
 import {
   HomeLayout,
   Landing,
@@ -8,7 +10,6 @@ import {
   Error,
   DashboardLayout,
   DashboardPage,
-  SelectCrew,
   AvailabilityPage,
   CreateFlight,
   AssignCrew,
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <Register />,
+        action: registerAction,
       },
       {
         path: 'login',

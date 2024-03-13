@@ -118,8 +118,9 @@
 
 .modal-container {
   background-color: white;
-  width: 30vw;
+  width: 100vw;
   height: 40vh;
+  margin: 0 auto;
   padding: 1rem 2rem;
   border-top-left-radius: 0.7rem;
   border-top-right-radius: 0.7rem;
@@ -161,3 +162,9 @@
   border-radius: 0.5rem;
 }
 // Modal - end
+
+@media (min-width: 990px) {
+  .modal-container {
+    width: 30vw;
+  }
+}
