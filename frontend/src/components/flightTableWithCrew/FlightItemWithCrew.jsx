@@ -1,6 +1,7 @@
 import ButtonAddCrew from '../flightTable/ButtonAddCrew';
-function FlightItemWithCrew({ flight }) {
+function FlightItemWithCrew({ flight, flightId }) {
   const { flightNumber, from, to, status } = flight;
+  // console.log(flightId);
   return (
     <li className="flightTable__item">
       <div className="flightTable__flightAndAbbrev">
@@ -16,7 +17,7 @@ function FlightItemWithCrew({ flight }) {
       </div>
 
       <div className="flightTable__btn-container">
-        <ButtonAddCrew />
+        <ButtonAddCrew flightId={flightId} />
       </div>
     </li>
   );

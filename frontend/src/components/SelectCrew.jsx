@@ -13,7 +13,9 @@ export default function SelectCrew({ flightComing }) {
   const [newFlight, setNewFlight] = useState(checkIfFlight());
   const [capt, setCapt] = useState(newFlight.crewMembers[0].member1);
   const [cop, setCop] = useState(newFlight.crewMembers[0].member2);
-  const [cabinCrew, setcabinCrew] = useState(newFlight.crewMembers[0].cabinCrew);
+  const [cabinCrew, setcabinCrew] = useState(
+    newFlight.crewMembers[0].cabinCrew
+  );
   // const [ so, setSo ] = useState(newFlight.crewMembers.member3);
   const [availableCrew, setAvailableCrew] = useState([]);
   // const [crew, setCrew] = useState({});
@@ -74,84 +76,32 @@ export default function SelectCrew({ flightComing }) {
         setcabinCrew([...cabinCrew, crew.name]);
       } else {
         setcabinCrew([
-       ...cabinCrew.slice(0, firstAvailable),
+          ...cabinCrew.slice(0, firstAvailable),
           crew.name,
-       ...cabinCrew.slice(firstAvailable + 1),
+          ...cabinCrew.slice(firstAvailable + 1),
         ]);
       }
       setNewFlight((prevFlight) => ({
-      ...prevFlight,
+        ...prevFlight,
         crewMembers: {
-        ...prevFlight.crewMembers,
-           cabinCrew: cabinCrew,
+          ...prevFlight.crewMembers,
+          cabinCrew: cabinCrew,
         },
       }));
     }
+    console.log(newFlight);
+
+    axios
+      .patch(`/api/v1/crew/${crew._id}`, {
+        $push: { flightRecord: newFlight },
+        FlightNumber: newFlight._id,
+      })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   }
 
   function handleSubmit() {
     localStorage.setItem('newFlight', JSON.stringify(newFlight));
-    axios({
-      method: 'post',
-      url: '/api/v1/flights',
-      data: newFlight,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-      axios({
-        method: 'get',
-        url: '/api/v1/crew',
-      })
-      .then((response) => {
-        response.data.data.CrewMembers.filter((crewCapt) => {
-          if (crewCapt.name === capt) {
-            console.log(crewCapt.name);
-            console.log(crewCapt);
-            // setCrew(crewCapt);
-            
-          }
-        })
-      })
-      .catch((error) => console.log(error));
-
-       axios({
-        method: 'patch',
-        url: `/api/v1/crew/65e0156e9c627c445c12a792`,
-        data: {
-          "status": "success",
-          "data": {
-            "CrewMember": {
-              "flightHours": {
-                "total": 1200,
-                "thisMonth": 80,
-                "available": "available"
-              },
-              "name": "John Doe",
-              "FlightNumber": "LA-211",
-              "email": "repiklleonid@gmail.com",
-              "likesEmails": true,
-              "certifications": [
-                "Private Pilot License",
-                "Commercial Pilot License"
-              ],
-              "_id": "65e0156e9c627c445c12a792",
-              "role": "pilot",
-              "__v": 0
-            }
-          }
-        },
-      })
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
 
     // Add the summary page to navigate to >>>>>>>
     navigateTo('/dashboard');
@@ -162,7 +112,7 @@ export default function SelectCrew({ flightComing }) {
       <ReturnHeader destinationPage="/new-flight">Select Crew</ReturnHeader>
       <div className="addCrewContainer">
         {console.log(newFlight)}
-        <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew}/>
+        <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew} />
         <h2>Select Crew</h2>
         {availableCrew.length > 0 ? (
           availableCrew.map((crew, index) => {

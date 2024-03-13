@@ -3,7 +3,6 @@ import ReturnHeader from './ReturnHeader';
 import { Input } from './index';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function NewFlight() {
   const navigateTo = useNavigate();
   /*************************************************/
@@ -26,22 +25,22 @@ export default function NewFlight() {
       lvp: false,
       pbn: false,
     },
-    crewMembers: [{
-      member1: '',
-      member2: '',
-      member3: '',
-      cabinCrew: {
-        cabin1: '',
-        cabin2: '',
-        cabin3: '',
-        cabin4: '',
-        cabin5: '',
-        cabin6: '',
-      }
-  },],
+    crewMembers: [
+      {
+        member1: '',
+        member2: '',
+        member3: '',
+        cabinCrew: {
+          cabin1: '',
+          cabin2: '',
+          cabin3: '',
+          cabin4: '',
+          cabin5: '',
+          cabin6: '',
+        },
+      },
+    ],
   });
-
-  
 
   const [flightTimes, setflightTimes] = useState({
     dateOut: '',
@@ -99,7 +98,7 @@ export default function NewFlight() {
         hourIn: arrivingTime,
       }));
     }
-    console.log(flightInfo)
+    console.log(flightInfo);
   }, [
     flightInfo.from,
     flightInfo.to,
@@ -145,32 +144,42 @@ export default function NewFlight() {
     return newDateString;
   }
 
-  function handleSubmit (event) {
+  function handleSubmit(event) {
     event.preventDefault();
+
+    const dateString = `${flightTimes.dateIn} ${flightTimes.hourIn}`;
+
+    // Convert the original string to a Date object
+    var originalDate = new Date(dateString.replace(/-/g, '/'));
+
+    // Format the date in the desired format
+    var convertedDateString = originalDate.toISOString().replace('Z', '+00:00');
 
     fetch('/api/v1/flights', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(flightInfo)
+      body: JSON.stringify({ ...flightInfo, expireAt: convertedDateString }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         // console.log(data.data.user._id);
-        localStorage.setItem('newFlight', JSON.stringify({...flightInfo,
-        _id: data.data.user._id}));
+        localStorage.setItem(
+          'newFlight',
+          JSON.stringify({
+            ...flightInfo,
+            _id: data.data.user._id,
+            expireAt: convertedDateString,
+          })
+        );
       })
-      .catch(error => console.error('Error occurred:', error));
-  
+      .catch((error) => console.error('Error occurred:', error));
 
-
-  // localStorage.setItem('newFlight', JSON.stringify(flightInfo));
-  // console.log(localStorage.getItem('newFlight'));
-  navigateTo('/add-crew');
-
-}
-
+    // localStorage.setItem('newFlight', JSON.stringify(flightInfo));
+    // console.log(localStorage.getItem('newFlight'));
+    navigateTo('/add-crew');
+  }
 
   return (
     <>
@@ -352,20 +361,24 @@ export default function NewFlight() {
             type="submit"
             disabled={
               (flightInfo.from === '' ||
-              flightInfo.to === '' ||
-              flightInfo.aircraftType === '' ||
-              flightInfo.flightNumber === '' ||
-              flightInfo.weather === '' ||
-              flightInfo.departure === '' ||
-              flightInfo.arriving === '') && ''
+                flightInfo.to === '' ||
+                flightInfo.aircraftType === '' ||
+                flightInfo.flightNumber === '' ||
+                flightInfo.weather === '' ||
+                flightInfo.departure === '' ||
+                flightInfo.arriving === '') &&
+              ''
             }
-            className={(flightInfo.from === '' ||
-            flightInfo.to === '' ||
-            flightInfo.aircraftType === '' ||
-            flightInfo.flightNumber === '' ||
-            flightInfo.weather === '' ||
-            flightInfo.departure === '' ||
-            flightInfo.arriving === '') && 'disabledClass'}
+            className={
+              (flightInfo.from === '' ||
+                flightInfo.to === '' ||
+                flightInfo.aircraftType === '' ||
+                flightInfo.flightNumber === '' ||
+                flightInfo.weather === '' ||
+                flightInfo.departure === '' ||
+                flightInfo.arriving === '') &&
+              'disabledClass'
+            }
           >
             Continue to Crew
           </button>

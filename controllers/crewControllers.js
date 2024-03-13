@@ -1,7 +1,7 @@
 const express = require('express');
-const Crew = require('../modules/crewModule');
+const Crew = require('../models/crewModule');
 const nodemailer = require('nodemailer');
-const Flight = require('../modules/flightModule');
+const Flight = require('../models/flightModule');
 const fs = require('node:fs');
 
 exports.createCrewMember = async (req, res) => {
@@ -65,14 +65,26 @@ exports.getOneCrewMember = async (req, res) => {
   }
 };
 
+// This is ❌TEST❌ emails !!!!!!!!!!!! :📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩
+
 const transporter = nodemailer.createTransport({
-  host: 'bulk.smtp.mailtrap.io',
+  host: 'sandbox.smtp.mailtrap.io',
   port: 587,
   auth: {
-    user: 'api',
-    pass: 'c6e380638c460fbf7e1e83ae03aeaa25',
+    user: '27e19af92b11da',
+    pass: '149453e69671f4',
   },
 });
+
+// This is real emails !!!!!!!!!!!! :📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩📩
+// const transporter = nodemailer.createTransport({
+//   host: 'live.smtp.mailtrap.io',
+//   port: 587,
+//   auth: {
+//     user: 'api',
+//     pass: 'f7f6e30e16cfa325589b224c1f10e959',
+//   },
+// });
 
 // async..await is not allowed in global scope, must use a wrapper
 async function main(
@@ -128,7 +140,8 @@ async function main(
   });
   // send mail with defined transport object
   const info = await transporter.sendMail({
-    from: '"Maddison Foo Koch 👻" <maddison53@ethereal.email>', // sender address
+    from: '"Maddison Foo Koch 👻" <mailtrap@demomailtrap.com>', // sender address
+    // from: '"Maddison Foo Koch 👻" <info@cabincrew.ca>', // REAL EMAIL ADRESS
     to: email, // list of receivers
     subject: 'Hello ✔', // Subject line
     text: 'Hello world?', // plain text body
