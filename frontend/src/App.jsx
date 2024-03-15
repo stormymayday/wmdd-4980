@@ -10,6 +10,7 @@ import {
   Error,
   DashboardLayout,
   DashboardPage,
+  SelectCrew,
   AvailabilityPage,
   CreateFlight,
   AssignCrew,

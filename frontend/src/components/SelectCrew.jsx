@@ -6,7 +6,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-export default function SelectCrew({ flightComing }) {
+export default function SelectCrew({ flightComing, isModal, onClickClose }) {
   const navigateTo = useNavigate();
 
   const localStorageFlight = JSON.parse(localStorage.newFlight);
@@ -104,27 +104,45 @@ export default function SelectCrew({ flightComing }) {
     localStorage.setItem('newFlight', JSON.stringify(newFlight));
 
     // Add the summary page to navigate to >>>>>>>
-    navigateTo('/dashboard');
+    if (isModal) {
+      onClickClose(false, false, false);
+    } else {
+      navigateTo('/dashboard');
+    }
   }
 
   return (
     <>
-      <ReturnHeader destinationPage="/new-flight">Select Crew</ReturnHeader>
+      <ReturnHeader destinationPage="/new-flight" onClick={onClickClose}>
+        Select Crew
+      </ReturnHeader>
       <div className="addCrewContainer">
         {console.log(newFlight)}
         <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew} />
         <h2>Select Crew</h2>
-        {availableCrew.length > 0 ? (
-          availableCrew.map((crew, index) => {
-            return (
-              <ListOfCrew crew={crew} key={index} handleAdding={handleAdding} />
-            );
-          })
-        ) : (
-          <p>No available Crew.</p>
-        )}
-        <div className="crewAddButtonsSubmitCancel">
-          <button className="cancelButton">Cancel</button>
+        <div className="listOfCrew">
+          {availableCrew.length > 0 ? (
+            availableCrew.map((crew, index) => {
+              return (
+                <ListOfCrew
+                  crew={crew}
+                  key={index}
+                  handleAdding={handleAdding}
+                />
+              );
+            })
+          ) : (
+            <p>No available Crew.</p>
+          )}
+        </div>
+        <div
+          className={
+            !isModal
+              ? 'crewAddButtonsSubmitCancel'
+              : 'crewAddButtonsSubmitCancel is-modal'
+          }
+        >
+          {!isModal && <button className="cancelButton">Cancel</button>}
           <button
             onClick={handleSubmit}
             className={
@@ -142,4 +160,6 @@ export default function SelectCrew({ flightComing }) {
 
 SelectCrew.propTypes = {
   flightComing: PropTypes.object,
+  isModal: PropTypes.bool,
+  onClickClose: PropTypes.func,
 };

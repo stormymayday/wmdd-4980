@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import ReturnHeader from './ReturnHeader';
 import { Input } from './index';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function NewFlight() {
+export default function NewFlight({ onClickClose, isModal }) {
   const navigateTo = useNavigate();
   /*************************************************/
   // Data of flight time that will be on the data base.
@@ -178,12 +179,19 @@ export default function NewFlight() {
 
     // localStorage.setItem('newFlight', JSON.stringify(flightInfo));
     // console.log(localStorage.getItem('newFlight'));
-    navigateTo('/add-crew');
+    if (isModal) {
+      onClickClose(false, true, true);
+    } else {
+      navigateTo('/add-crew');
+    }
   }
 
   return (
     <>
-      <ReturnHeader destinationPage="/dashboard/create-flight">
+      <ReturnHeader
+        destinationPage="/dashboard/create-flight"
+        onClick={onClickClose}
+      >
         Create Flight
       </ReturnHeader>
       <form onSubmit={handleSubmit} className="form__element">
@@ -356,7 +364,11 @@ export default function NewFlight() {
             </div>
           </div>
         </div>
-        <div className="buttonContainerForm">
+        <div
+          className={
+            isModal ? 'buttonContainerForm is-modal' : 'buttonContainerForm'
+          }
+        >
           <button
             type="submit"
             disabled={
@@ -387,3 +399,8 @@ export default function NewFlight() {
     </>
   );
 }
+
+NewFlight.propTypes = {
+  onClickClose: PropTypes.func,
+  isModal: PropTypes.bool,
+};
