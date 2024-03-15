@@ -53,11 +53,7 @@ const Register = () => {
           defaultValue="password123"
         />
 
-        <button
-          type="submit"
-          className="btn btn-primary btn-block"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="btn btn-primary btn-block">
           register
         </button>
 
