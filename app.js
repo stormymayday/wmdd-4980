@@ -28,4 +28,13 @@ app.use('/api/v1/flights', createFlight);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/crew', crewRouter);
 
+// Aidar's code for deploymeny - START
+let path = require('path');
+app.use(express.static(path.resolve(__dirname, './frontend/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './frontend/dist', 'index.html'));
+});
+// Aidar's code for deploymeny - END
+
 module.exports = app;
