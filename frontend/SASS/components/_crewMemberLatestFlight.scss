@@ -1,55 +1,57 @@
 @import '../abstracts/_variables.scss';
 .flightTableForCrew {
+  margin: 1rem;
+  border-radius: 8px;
   display: flex;
-  padding: 3.94vw; // Approximate equivalent of 20px on a 508px wide screen
+  padding: 1.25rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
-  border-radius: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
+  gap: 0.75rem; // Approximate equivalent of 12px on a 1024px high screen
+  // border-radius: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
   background: var(--Background, #f4f4f4);
   align-self: stretch;
   &__container {
     display: flex;
-    padding: 3.94vw; // Approximate equivalent of 20px on a 508px wide screen
+    padding: 1.25rem;
     flex-direction: column;
     align-items: flex-start;
-    gap: 1.17vh; // Approximate equivalent of 12px on a 1024px high screen
+    gap: 0.75rem;
     align-self: stretch;
   }
   &__frame {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.78vh; // Approximate equivalent of 8px on a 1024px high screen
+    gap: 0.5rem;
     align-self: stretch;
     &__title {
       display: flex;
-      width: 69.49vw; // Approximate equivalent of 353px on a 508px wide screen
+      width: 22.0625rem;
       align-items: center;
-      gap: 0.39vh; // Approximate equivalent of 4px on a 1024px high screen
+      gap: 0.25rem;
     }
   }
   &__title {
     color: $clr-primary-3;
     font-family: 'Barlow Condensed';
-    font-size: 3.94vw; // Approximate equivalent of 20px on a 508px wide screen
+    font-size: 1.25rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 2.93vh; // Approximate equivalent of 30px on a 1024px high screen
+    line-height: 150%;
   }
   &__count {
     display: flex;
-    padding-top: 0.2vh; // Approximate equivalent of 2px on a 1024px high screen
+    padding-top: 0.125rem;
     align-items: center;
-    gap: 0.98vh; // Approximate equivalent of 10px on a 1024px high screen
+    gap: 0.625rem;
     align-self: stretch;
     color: $clr-complimentary-black-45;
 
     font-family: Roboto;
-    font-size: 2.36vw; // Approximate equivalent of 12px on a 508px wide screen
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.46vh; // Approximate equivalent of 15px on a 1024px high screen
+    line-height: 125%; /* 0.9375rem */
   }
   &__table {
     display: flex;
@@ -57,13 +59,17 @@
     align-items: flex-start;
     align-self: stretch;
   }
+  &__list {
+    width: 100%;
+  }
   &__item {
     display: flex;
-    padding: 1.17vh 0; // Approximate equivalent of 12px on a 1024px high screen
+    padding: 0.75rem 0rem;
     justify-content: space-between;
     align-items: flex-start;
     align-self: stretch;
-    width: 88vw;
+    width: 100%;
+    height: 3.5rem;
     border-bottom: 1px solid $clr-complimentary-black-50;
     &_column1 {
       display: flex;
@@ -72,15 +78,15 @@
 
       color: $clr-primary-3;
       font-family: Roboto;
-      font-size: 2.36vw; // Approximate equivalent of 12px on a 508px wide screen
+      font-size: 0.75rem;
       font-style: normal;
       font-weight: 500;
-      line-height: 1.46vh;
+      line-height: 1.25rem;
       &_from {
-        font-size: 1.97vw; // Approximate equivalent of 10px on a 508px wide screen
+        font-size: 0.625rem;
         font-style: normal;
         font-weight: 400;
-        line-height: 1.22vh;
+        line-height: 125%;
         color: $clr-complimentary-black-50;
       }
       button {

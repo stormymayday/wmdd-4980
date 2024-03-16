@@ -8,9 +8,10 @@ import ModalCrewInfo from '../ModalCrewInfo';
 
 const CrewAvailabilityTable = () => {
   // Modal code functionality
-  let id = "";
+  let id = '';
   const [showModalCrewInfo, setShowModalCrewInfo] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 393);
+  const [selectedCrewId, setSelectedCrewId] = useState(null);
 
   const toggleModalCrew = () => {
     setShowModalCrewInfo((prevShowModalCrewInfo) => !prevShowModalCrewInfo);
@@ -204,47 +205,60 @@ const CrewAvailabilityTable = () => {
           </tr> */}
         </thead>
         <tbody>
-          {filteredCrew.map((member) => (
-            id = member._id,
-            <tr key={member._id}>
-              <td>
-                <p style={{ fontWeight: 'bold' }}>{member.name}</p>
-                <p className="gray-text">{member.role}</p>
-              </td>
-              <td>
-                <span
-                  className={`status-cell ${member.flightHours.available.toLowerCase()}`}
-                >
-                  {member.flightHours.available.toLowerCase()}
-                </span>
-              </td>
-              <td>
-                {member.flightHours.thisMonth}
-                <span className="gray-text">/90hrs</span>
-              </td>
-              <td>
-                {isMobileView ? (
-                  <NavLink className="crew-link" to={`/crew/${member._id}`}>
-                    <TbEyeFilled className="view-crew-icon" />
-                  </NavLink>
-                ) : (
-                  <button className="crew-link" onClick={() => toggleModalCrew()}>
-                    <TbEyeFilled className="view-crew-icon" />
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
+          {filteredCrew.map(
+            (member) => (
+              (id = member._id),
+              (
+                <tr key={member._id}>
+                  <td>
+                    <p style={{ fontWeight: 'bold' }}>{member.name}</p>
+                    <p className="gray-text">{member.role}</p>
+                  </td>
+                  <td>
+                    <span
+                      className={`status-cell ${member.flightHours.available.toLowerCase()}`}
+                    >
+                      {member.flightHours.available.toLowerCase()}
+                    </span>
+                  </td>
+                  <td>
+                    {member.flightHours.thisMonth}
+                    <span className="gray-text">/90hrs</span>
+                  </td>
+                  <td>
+                    {isMobileView ? (
+                      <NavLink className="crew-link" to={`/crew/${member._id}`}>
+                        <TbEyeFilled className="view-crew-icon" />
+                      </NavLink>
+                    ) : (
+                      <button
+                        className="crew-link"
+                        onClick={() => {
+                          setSelectedCrewId(member._id);
+                          toggleModalCrew();
+                        }}
+                        // onClick={() => toggleModalCrew()}
+                      >
+                        <TbEyeFilled className="view-crew-icon" />
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              )
+            )
+          )}
         </tbody>
       </table>
       {showModalCrewInfo && (
         <div
           className={
-            showModalCrewInfo ? 'sliding-modal modal-animation' : 'sliding-modal'
+            showModalCrewInfo
+              ? 'sliding-modal modal-animation'
+              : 'sliding-modal'
           }
         >
           <div className="modal-content">
-            <ModalCrewInfo onClickClose={toggleModalCrew} id={id} />
+            <ModalCrewInfo onClickClose={toggleModalCrew} id={selectedCrewId} />
           </div>
         </div>
       )}

@@ -7,9 +7,29 @@ import { useEffect, useState } from 'react';
 import FlightItemWithCrew from './FlightItemWithCrew';
 
 function FlightTableWithCrew({ expand }) {
+  let id = '';
+  const [showModalAssignMember, setShowModalAssignMember] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 393);
   const [flights, setFlights] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
+
+  const toggleModalCrew = () => {
+    setShowModalCrewInfo((prevShowModalCrewInfo) => !prevShowModalCrewInfo);
+  };
+
+  const handleResize = () => {
+    setIsMobileView(window.innerWidth <= 393);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(
     function () {
@@ -19,227 +39,32 @@ function FlightTableWithCrew({ expand }) {
           const res = await fetch('/api/v1/flights');
           let data = await res.json();
           console.log(data);
-          //fake data for testing current data from database has no crew for
-          // data = {
-          //   status: 'success',
-          //   data: {
-          //     flights: [
-          //       {
-          //         _id: '1',
-          //         flightNumber: 'BA123',
-          //         aircraftType: 'Boeing 747',
-          //         from: 'LHR',
-          //         to: 'JFK',
-          //         weather: 'Clear',
-          //         dateCreated: '2024-02-29T21:33:21.518Z',
-          //         departure: '2024-02-29T22:33:21.518Z',
-          //         arriving: '2024-03-01T04:33:21.518Z',
-          //         actuallArrive: '2024-03-01T04:33:21.518Z',
-          //         crewMembers: [
-          //           {
-          //             copilot: 'Jane Johnson',
-          //           },
-          //           {
-          //             flightAttendant: 'Robert Brown',
-          //           },
-          //         ],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '1',
-          //           },
-          //         ],
-          //       },
-          //       {
-          //         _id: '2',
-          //         flightNumber: 'DL456',
-          //         aircraftType: 'Airbus A380',
-          //         from: 'LAX',
-          //         to: 'NRT',
-          //         weather: 'Rainy',
-          //         dateCreated: '2024-03-01T12:15:30.123Z',
-          //         departure: '2024-03-01T13:15:30.123Z',
-          //         arriving: '2024-03-02T01:15:30.123Z',
-          //         actuallArrive: '2024-03-02T03:15:30.123Z',
-          //         crewMembers: [
-          //           {
-          //             captain: 'Emily Miller',
-          //           },
-
-          //           {
-          //             flightAttendant: 'Grace Anderson',
-          //           },
-          //         ],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '2',
-          //           },
-          //         ],
-          //       },
-          //       {
-          //         _id: '3',
-          //         flightNumber: 'AF789',
-          //         aircraftType: 'Boeing 777',
-          //         from: 'CDG',
-          //         to: 'SFO',
-          //         weather: 'Sunny',
-          //         dateCreated: '2024-03-02T08:45:00.000Z',
-          //         departure: '2024-03-02T09:45:00.000Z',
-          //         arriving: '2024-03-02T21:45:00.000Z',
-          //         crewMembers: [],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '3',
-          //           },
-          //         ],
-          //       },
-          //       {
-          //         _id: '4',
-          //         flightNumber: 'LH012',
-          //         aircraftType: 'Airbus A350',
-          //         from: 'FRA',
-          //         to: 'PEK',
-          //         weather: 'Cloudy',
-          //         dateCreated: '2024-03-03T18:30:45.678Z',
-          //         departure: '2024-03-03T19:30:45.678Z',
-          //         arriving: '2024-03-04T07:30:45.678Z',
-          //         actuallArrive: '2024-03-04T07:30:45.678Z',
-          //         crewMembers: [
-          //           {
-          //             captain: 'Henry Martinez',
-          //           },
-          //           {
-          //             copilot: 'Ivy Taylor',
-          //           },
-          //         ],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '4',
-          //           },
-          //         ],
-          //       },
-          //       {
-          //         _id: '5',
-          //         flightNumber: 'EK345',
-          //         aircraftType: 'Boeing 787',
-          //         from: 'DXB',
-          //         to: 'SYD',
-          //         weather: 'Windy',
-          //         dateCreated: '2024-03-04T22:00:00.000Z',
-          //         departure: '2024-03-04T23:00:00.000Z',
-          //         arriving: '2024-03-05T11:00:00.000Z',
-          //         crewMembers: [
-          //           {
-          //             captain: 'Alice Anderson',
-          //           },
-          //           {
-          //             copilot: 'Bob Brown',
-          //           },
-          //           {
-          //             flightAttendant: 'Charlie Clark',
-          //           },
-          //         ],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '5',
-          //           },
-          //         ],
-          //       },
-          //       {
-          //         _id: '6',
-          //         flightNumber: 'SQ678',
-          //         aircraftType: 'Airbus A380',
-          //         from: 'SIN',
-          //         to: 'LHR',
-          //         weather: 'Rainy',
-          //         dateCreated: '2024-03-05T12:00:00.000Z',
-          //         departure: '2024-03-05T14:00:00.000Z',
-          //         arriving: '2024-03-06T02:00:00.000Z',
-          //         actuallArrive: '2024-03-06T04:00:00.000Z',
-          //         crewMembers: [
-          //           {
-          //             captain: 'David Edwards',
-          //           },
-          //           {
-          //             copilot: 'Eva Fisher',
-          //           },
-          //           {
-          //             flightAttendant: 'Frank Green',
-          //           },
-          //         ],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '6',
-          //           },
-          //         ],
-          //       },
-          //       {
-          //         _id: '7',
-          //         flightNumber: 'QF123',
-          //         aircraftType: 'Boeing 787',
-          //         from: 'SYD',
-          //         to: 'LAX',
-          //         weather: 'Sunny',
-          //         dateCreated: '2024-03-06T08:00:00.000Z',
-          //         departure: '2024-03-06T10:00:00.000Z',
-          //         arriving: '2024-03-06T18:00:00.000Z',
-          //         crewMembers: [
-          //           {
-          //             captain: 'Grace Harris',
-          //           },
-          //           {
-          //             copilot: 'Ivy Johnson',
-          //           },
-          //           {
-          //             flightAttendant: 'Jack King',
-          //           },
-          //         ],
-          //         specialRequirements: [
-          //           {
-          //             LVP: false,
-          //             PBN: true,
-          //             _id: '7',
-          //           },
-          //         ],
-          //       },
-          //     ],
-          //   },
-          // };
 
           let refinedData = data.data.flights.map((flight) => {
             let status = '';
+            id = flight._id;
 
-            let checkCaptain = flight.crewMembers.some(
-              (role) => 'captain' in role
+            let checkCaptain =
+              flight.crewMembers[0].member1 !== null &&
+              flight.crewMembers[0].member1 !== 'null' &&
+              flight.crewMembers[0].member1 !== '';
+            let checkCoPilot =
+              flight.crewMembers[0].member2 !== null &&
+              flight.crewMembers[0].member2 !== 'null' &&
+              flight.crewMembers[0].member2 !== '' &&
+              flight.crewMembers[0].member3 !== null &&
+              flight.crewMembers[0].member3 !== 'null' &&
+              flight.crewMembers[0].member3 !== '';
+            let checkFlightAttendant = Object.values(
+              flight.crewMembers[0].cabinCrew
+            ).some(
+              (member) => member !== null && member !== 'null' && member !== ''
             );
-            let checkCoPilot = flight.crewMembers.some(
-              (role) => 'copilot' in role
-            );
-            let checkFlightAttendant = flight.crewMembers.some(
-              (role) => 'flightAttendant' in role
-            );
-            let checkCrew =
-              checkCaptain && checkCoPilot && checkFlightAttendant;
 
-            if (checkCaptain && checkCoPilot && checkFlightAttendant) {
-              status = 'crew complete';
-            } else if (
-              !checkCaptain &&
-              !checkCoPilot &&
-              !checkFlightAttendant
-            ) {
+            if (!checkCaptain && !checkCoPilot && !checkFlightAttendant) {
               status = 'no crew';
+            } else if (checkCaptain && checkCoPilot && checkFlightAttendant) {
+              status = 'crew complete';
             } else if (!checkCaptain) {
               status = 'no captain';
             } else if (!checkCoPilot) {
@@ -254,18 +79,11 @@ function FlightTableWithCrew({ expand }) {
             };
           });
           console.log(refinedData);
-
+          // old code
           if (activeTab === 'all') {
-          }
-          {
             setFlights(refinedData);
           }
-          if (activeTab === 'no crew') {
-            const filteredData = refinedData.filter(
-              (flight) => flight.status === activeTab
-            );
-            setFlights(filteredData);
-          }
+
           if (activeTab === 'crew not complete') {
             const filteredData = refinedData.filter(
               (flight) =>
@@ -273,7 +91,18 @@ function FlightTableWithCrew({ expand }) {
                 flight.status === 'no co-pilot' ||
                 flight.status === 'no cabin crew'
             );
+
             setFlights(filteredData);
+          }
+
+          if (activeTab === 'no crew') {
+            const filteredData = refinedData.filter(
+              (flight) => flight.status === 'no crew'
+            );
+
+            setFlights(filteredData);
+            console.log(filteredData);
+            console.log(activeTab);
           }
         } catch (err) {
           console.log(err.message);
@@ -283,11 +112,12 @@ function FlightTableWithCrew({ expand }) {
       }
 
       fetchFlightsWithCrew();
+      // setFlights(expand ? flights : flights.slice(0, 2));
     },
-    [activeTab]
+    [activeTab, expand]
   );
+  // let flightlist = expand ? flights : flights.slice(0, 2);
 
-  let flightlist = expand ? flights : flights.slice(0, 2);
   return (
     <div className="flightTable">
       <div className="flightTable__container">
@@ -320,11 +150,14 @@ function FlightTableWithCrew({ expand }) {
           </div>
           <ul className="flightTable__list">
             {/* map method return an array of FlightItem */}
-            {flightlist.map((flight) => (
+            {flights.map((flight) => (
               <FlightItemWithCrew
                 flight={flight}
-                key={flight.flightNumber}
+                key={flight._id}
                 flightId={flight._id}
+                isMobileView={isMobileView}
+                toggleModalCrew={toggleModalCrew}
+                showModalAssignMember={showModalAssignMember}
               />
             ))}
           </ul>
@@ -333,8 +166,5 @@ function FlightTableWithCrew({ expand }) {
     </div>
   );
 }
-//2tabs to toggle flights with or without crew
-
-//3
 
 export default FlightTableWithCrew;

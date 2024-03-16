@@ -7,7 +7,7 @@ import CrewMemberAssignBtn from './CrewMemberAssignBtn';
 import avatarPlaceHolders from '../../assets/images/avatarPlaceHolder.jpg';
 import '../../../SASS/components/_crewMemberInfo.scss';
 
-function CrewMemberInfo({crewId}) {
+function CrewMemberInfo({ crewId }) {
   const [profile, setProfile] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(crewId);
@@ -41,7 +41,6 @@ function CrewMemberInfo({crewId}) {
 
   //joinDate is missing in datasets
   let joinDate = 'March 2023';
-
 
   return (
     <div className="crewInfo">
@@ -104,7 +103,9 @@ function CrewMemberInfo({crewId}) {
             </div>
             <div className="crewInfo__infolow__right">
               <CrewMemberAssignBtn />
-              <p className="crewInfo__infolow__title">Assign to Flight</p>
+              <p className="crewInfo__infolow__title">
+                <span>Assign</span>
+              </p>
             </div>
           </div>
         </div>

@@ -86,8 +86,8 @@ const Header = () => {
     onSuccess: (data) => setCrew(data.data.data.CrewMembers),
   });
 
-  console.log(crew);
-  console.log(flights);
+  // console.log(crew);
+  // console.log(flights);
 
   return (
     <header className="header">
