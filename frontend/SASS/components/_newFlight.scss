@@ -1,6 +1,8 @@
 @import '../abstracts/variables';
 
 .form__element {
+  background: $clr-primary-4;
+
   .form_container {
     display: inline-flex;
     height: 38.5625rem;
@@ -9,7 +11,7 @@
     gap: 1.5rem;
     flex-shrink: 0;
     margin: 1.25rem;
-    margin-bottom: 150px;
+    margin-bottom: 190px;
 
     .select__input {
       display: flex;
@@ -51,21 +53,20 @@
               line-height: 125%;
             }
             select {
+              background: $clr-primary-4;
               display: flex;
               padding: 0.625rem 0.5rem;
               align-items: center;
               gap: 0.625rem;
               align-self: stretch;
               border-bottom: 2px solid $clr-complimentary-black-45;
-              option {
-                flex: 1 0 0;
-                color: $clr-primary-3;
-                font-family: Roboto;
-                font-size: 1rem;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 125%;
-              }
+              flex: 1 0 0;
+              color: $clr-complimentary-black-50;
+              font-family: Roboto;
+              font-size: 1rem;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 125%;
             }
           }
         }
@@ -73,6 +74,9 @@
     }
 
     .departure_info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
       .input__section {
         display: flex;
         width: 22.0625rem;
@@ -127,6 +131,10 @@
                 align-items: center;
                 gap: 0.625rem;
                 align-self: stretch;
+                background: $clr-primary-4;
+                &::placeholder {
+                  color: $clr-complimentary-black-50;
+                }
               }
             }
           }
@@ -179,6 +187,10 @@
             align-items: center;
             gap: 0.625rem;
             align-self: stretch;
+            background: $clr-primary-4;
+            &::placeholder {
+              color: $clr-complimentary-black-50;
+            }
           }
           .aircraft__select {
             width: 100%;
@@ -197,6 +209,7 @@
             align-self: stretch;
             border-bottom: 2px solid $clr-complimentary-black-50;
             width: 100%;
+            background: $clr-primary-4;
           }
         }
       }
@@ -218,6 +231,7 @@
           font-style: normal;
           font-weight: 500;
           line-height: 125%;
+          padding: 1.25rem 0;
         }
         .subsection-content {
           display: flex;
@@ -240,12 +254,12 @@
               height: 1.125rem;
               border-radius: 0.25rem;
               border: 1px solid $clr-complimentary-black-50;
-              background: $clr-complimentary-black-05;
               display: flex;
               padding: 0.625rem 0.5rem;
               align-items: center;
               gap: 0.625rem;
               align-self: stretch;
+              background: $clr-complimentary-black-05;
             }
           }
         }
@@ -255,7 +269,7 @@
   .buttonContainerForm {
     position: sticky;
     bottom: 0;
-    background-color: #fff;
+    background-color: $clr-primary-4;
     display: flex;
     width: 24.5625rem;
     padding: 1.25rem;
@@ -264,12 +278,12 @@
     gap: $buttons-spacing-h;
     border-top: 1px solid $clr-complimentary-black-20;
     button {
-      color: var(--Primary-Palette-White, var(--Background, #f4f4f4));
+      color: $clr-primary-4;
       font-family: Roboto;
       font-size: 1rem;
       font-style: normal;
       font-weight: 400;
-      line-height: 125%; 
+      line-height: 125%;
       display: flex;
       padding: 0.75rem 1rem;
       justify-content: center;
