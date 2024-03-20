@@ -9,24 +9,27 @@ function FlightItemWithCrew({
   toggleModalCrew,
   showModalAssignMember,
 }) {
-  const { flightNumber, from, to, status } = flight;
+  const { flightNumber, from, to, status, aircraftType } = flight;
   // console.log(flightId);
   return (
     <>
-      <li className="flightTable__item">
-        <div className="flightTable__flightAndAbbrev">
+      <li className="flightTable1__item">
+        <div className="flightTable1__flightAndAbbrev">
           {flightNumber}{' '}
-          <div className="flightTable__fromTo">
+          <div className="flightTable1__fromTo">
             {from} - {to}
           </div>
         </div>
-        <div className="flightTable__containerForStatus">
-          <div className="flightTable__status">
+        <div className="flightTable1__containerForStatus">
+          <div className="flightTable1__status">
             <p id="statusM">{status}</p>
+          </div>
+          <div className="flightTable1__aircraft">
+            <p>{aircraftType}</p>
           </div>
         </div>
 
-        <div className="flightTable__btn-container">
+        <div className="flightTable1__btn-container">
           {isMobileView ? (
             <NavLink className="crew-link" to={`/crew/${flightId}`}>
               <ButtonAddCrew />
