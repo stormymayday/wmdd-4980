@@ -10,14 +10,14 @@ const CreateFlight = () => {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 393);
 
   const toggleModal = (flight, crew, next) => {
-    if (crew && next){
-      setShowModal(prevShowModal => !prevShowModal);
-      setShowCrewModal(prevShowCrewModal =>!prevShowCrewModal);
+    if (crew && next) {
+      setShowModal((prevShowModal) => !prevShowModal);
+      setShowCrewModal((prevShowCrewModal) => !prevShowCrewModal);
     } else if (flight) {
-      setShowModal(prevShowModal => !prevShowModal);
+      setShowModal((prevShowModal) => !prevShowModal);
     } else if (crew) {
-      setShowCrewModal(prevShowCrewModal =>!prevShowCrewModal);
-    } else{
+      setShowCrewModal((prevShowCrewModal) => !prevShowCrewModal);
+    } else {
       setShowModal(false);
       setShowCrewModal(false);
     }
@@ -33,31 +33,44 @@ const CreateFlight = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []); 
+  }, []);
 
   return (
     <div className="dashboard-page">
       {isMobileView ? (
-        <NavLink className="nav-link" to="/new-flight">
+        <NavLink className="nav-link create_flight_button" to="/new-flight">
           <p>New Flight</p>
         </NavLink>
       ) : (
-        <button className="nav-link" onClick={() => toggleModal(true, false, false)}>
-          <p>New Flight</p>
-        </button>
+        <div className='create_flight_button_info'>
+          <h2>Create</h2>
+          <button
+            className="create_flight_button"
+            onClick={() => toggleModal(true, false, false)}
+          >
+            <p>New Flight</p>
+          </button>
+        </div>
       )}
 
       {showModal ? (
-        <div className={showModal ? "sliding-modal modal-animation" : "sliding-modal"}>
+        <div
+          className={
+            showModal ? 'sliding-modal modal-animation' : 'sliding-modal'
+          }
+        >
           <div className="modal-content">
-            <ModalNewFlight onClickClose={toggleModal}/>
+            <ModalNewFlight onClickClose={toggleModal} />
           </div>
         </div>
-      ) :
-      showCrewModal ? (
-        <div className={showModal ? "sliding-modal modal-animation" : "sliding-modal"}>
+      ) : showCrewModal ? (
+        <div
+          className={
+            showModal ? 'sliding-modal modal-animation' : 'sliding-modal'
+          }
+        >
           <div className="modal-content">
-            <ModalSelectCrew onClickClose={toggleModal}/>
+            <ModalSelectCrew onClickClose={toggleModal} />
           </div>
         </div>
       ) : null}
