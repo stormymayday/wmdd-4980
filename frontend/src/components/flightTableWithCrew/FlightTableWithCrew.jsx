@@ -112,7 +112,7 @@ function FlightTableWithCrew({ expand }) {
       }
 
       fetchFlightsWithCrew();
-      // setFlights(expand ? flights : flights.slice(0, 2));
+      // setFlights(expand ? flights.slice(0, 15) : flights.slice(0, 2));
     },
     [activeTab, expand]
   );
@@ -150,7 +150,7 @@ function FlightTableWithCrew({ expand }) {
           </div>
           <ul className="flightTable__list">
             {/* map method return an array of FlightItem */}
-            {flights.map((flight) => (
+            {flights.slice(0, 15).map((flight) => (
               <FlightItemWithCrew
                 flight={flight}
                 key={flight._id}

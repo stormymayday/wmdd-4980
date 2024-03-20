@@ -39,9 +39,9 @@ function CrewAssignList({ handleClick }) {
             );
             setCrews(filteredData);
           }
-          if (activeTab === 'copilot') {
+          if (activeTab === 'second_pilot') {
             const filteredData = refinedData.filter(
-              (crew) => crew.role === 'second_pilot'
+              (crew) => crew.role === 'Co-Pilot'
             );
             setCrews(filteredData);
           }
@@ -66,21 +66,23 @@ function CrewAssignList({ handleClick }) {
   let crewList = crews;
   return (
     <>
-      <h3>Select Crew</h3>{' '}
+      <h3 className="addCrew__header">Select Crew</h3>{' '}
       <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <ul className="flightTable__list">
-        {/* map method return an array of FlightItem */}
-        {crewList.map((crew) => (
-          <CrewAssignItem
-            name={crew.name}
-            role={crew.role}
-            hours={crew.flightHours.total}
-            key={crew._id}
-            crewId={crew._id}
-            handleClick={handleClick}
-          />
-        ))}
-      </ul>
+      <div className="addCrew__tableFrame">
+        <ul className="addCrew__table">
+          {/* map method return an array of FlightItem */}
+          {crewList.map((crew) => (
+            <CrewAssignItem
+              name={crew.name}
+              role={crew.role}
+              hours={crew.flightHours.total}
+              key={crew._id}
+              crewId={crew._id}
+              handleClick={handleClick}
+            />
+          ))}
+        </ul>
+      </div>
     </>
   );
 }

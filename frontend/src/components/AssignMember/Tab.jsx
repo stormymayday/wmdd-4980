@@ -3,8 +3,8 @@ import '../../../SASS/components/_flightTableWithCrew.scss';
 function Tab({ value, children, activeTab, onClick }) {
   return (
     <button
-      className={`flightTable__tab ${
-        activeTab === value ? 'flightTable__tab--active' : ''
+      className={`addCrew__tab ${
+        activeTab === value ? 'addCrew__tab--active' : ''
       }`}
       // onClick(value) === setActiveTab(value)
       onClick={() => onClick(value)}

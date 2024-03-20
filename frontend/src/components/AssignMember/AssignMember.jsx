@@ -1,13 +1,17 @@
 import PropTypes from 'prop-types';
 import TabsForFlightTableWithCrew from '../flightTableWithCrew/TabsForFlightTableWithCrew';
+
 import '../../../SASS/components/_flightTableWithCrew.scss';
 import CrewAssignList from './CrewAssignList';
 //1fake data structure
 import { useEffect, useState } from 'react';
 import FlightItemWithCrew from '../flightTableWithCrew/FlightItemWithCrew';
 import ConfirmPage from './ConfirmPage';
+import { useParams } from 'react-router-dom';
 
 function AssignMember() {
+  const [showConfirmPage, setShowConfirmPage] = useState(false);
+  const { flightId } = useParams();
   const [flights, setFlights] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
@@ -32,12 +36,20 @@ function AssignMember() {
       },
     ],
   });
-  let id = '65e2cf76b21bd035fac6ed05';
+  // let id = '65e2cf76b21bd035fac6ed05';
+  const handleConfirmClick = () => {
+    setShowConfirmPage(true);
+  };
+  const handleCancelClick = () => {
+    setShowConfirmPage(false);
+  };
 
   const handleClick = async (id) => {
     // ... fetch crew member ...
+    console.log('click');
     const res = await fetch(`/api/v1/crew/${id}`);
     let data = await res.json();
+    console.log(data);
     const selectedCrew = data.data.CrewMember;
 
     let updatedFlightData = { ...flightDataForPatch };
@@ -79,7 +91,7 @@ function AssignMember() {
     async function fetchFlightInfoForAssign() {
       try {
         setIsLoading(true);
-        const res = await fetch(`/api/v1/flights/${id}`);
+        const res = await fetch(`/api/v1/flights/${flightId}`);
         // 65e2cf76b21bd035fac6ed05
         // /api/v1/flights/65e1519735fcf23c9fd95c2c
         let data = await res.json();
@@ -123,34 +135,65 @@ function AssignMember() {
   }, []);
 
   return (
-    <>
-      <h1>
-        {'Flight'} {flights.flightNumber}
-      </h1>
-      <div className="flightDetail">
-        {/* missing roles for crew in flighs list */}
-        <p>
-          {pilots.length}/1
-          <span> Pilots</span>
-        </p>
-        <p>
-          {copilots.length}/2
-          <span> Co-Pilots</span>
-        </p>
-        <p>
-          {cabinCrew.length}/6
-          <span> Cabin Crew</span>
-        </p>
-        <CrewAssignList handleClick={handleClick} />
-      </div>
-      <button>Go to ConfirmPage</button>
-      <ConfirmPage
-        id={id}
-        crewIdForUpdate={crewIdForUpdate}
-        flightDataForPatch={flightDataForPatch}
-        flights={flights}
-      />
-    </>
+    <div className="assginMember__body">
+      {showConfirmPage ? (
+        <ConfirmPage
+          id={flightId}
+          crewIdForUpdate={crewIdForUpdate}
+          flightDataForPatch={flightDataForPatch}
+          flights={flights}
+          handleCancelClick={handleCancelClick}
+        />
+      ) : (
+        <div className="frame219">
+          <div className="addCrew">
+            <div className="addCrew__firstCard">
+              <div className="addCrew__firstCard__title">
+                <h1>
+                  {'Flight'} {flights.flightNumber}
+                </h1>
+              </div>
+              <div className="addCrew__firstCard__info">
+                <p className="addCrew__firstCard__info__info1">
+                  <span className="addCrew__firstCard__info__info1__left">
+                    {pilots.length}/1
+                  </span>
+
+                  <span className="addCrew__firstCard__info__info1__right">
+                    {' '}
+                    Pilots
+                  </span>
+                </p>
+                <p className="addCrew__firstCard__info__info2">
+                  <span className="addCrew__firstCard__info__info2__left">
+                    {copilots.length}/2
+                  </span>
+
+                  <span className="addCrew__firstCard__info__info2__right">
+                    {' '}
+                    Co-Pilots
+                  </span>
+                </p>
+                <p className="addCrew__firstCard__info__info3">
+                  <span className="addCrew__firstCard__info__info3__left">
+                    {cabinCrew.length}/6
+                  </span>
+
+                  <span className="addCrew__firstCard__info__info3__right">
+                    {' '}
+                    Cabin Crew
+                  </span>
+                </p>
+              </div>
+            </div>
+            <CrewAssignList handleClick={handleClick} />
+          </div>
+          <div className="frame72">
+            <button onClick={handleConfirmClick}>Contunue to Summary</button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

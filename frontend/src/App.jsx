@@ -18,6 +18,7 @@ import {
   NewFlightPage,
   AddCrewPage,
   CrewPage,
+  EditCrewForFlight,
 } from './pages';
 
 import '../SASS/main.scss';
@@ -78,7 +79,15 @@ const router = createBrowserRouter([
             path: 'profile',
             element: <Profile />,
           },
+          // {
+          //   path: 'edit-crew-forFlight/:flightId',
+          //   element: <EditCrewForFlight />,
+          // },
         ],
+      },
+      {
+        path: 'edit-crew-forFlight/:flightId',
+        element: <EditCrewForFlight />,
       },
     ],
   },

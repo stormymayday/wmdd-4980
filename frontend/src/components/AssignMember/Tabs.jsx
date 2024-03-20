@@ -4,14 +4,19 @@ import '../../../SASS/components/_flightTableWithCrew.scss';
 function TabsForFlightTableWithCrew({ activeTab, setActiveTab }) {
   console.log(activeTab);
   return (
-    <div className="flightTable__tabs">
+    <div className="addCrew__tabs">
       <Tab value="all" num={0} activeTab={activeTab} onClick={setActiveTab}>
         All Crew
       </Tab>
       <Tab value="pilot" num={1} activeTab={activeTab} onClick={setActiveTab}>
         Pilots
       </Tab>
-      <Tab value="copilot" num={2} activeTab={activeTab} onClick={setActiveTab}>
+      <Tab
+        value="second_pilot"
+        num={2}
+        activeTab={activeTab}
+        onClick={setActiveTab}
+      >
         Co-Pilots
       </Tab>
       <Tab value="cabin" num={3} activeTab={activeTab} onClick={setActiveTab}>
