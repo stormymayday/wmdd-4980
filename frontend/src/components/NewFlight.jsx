@@ -282,7 +282,8 @@ export default function NewFlight({ onClickClose, isModal }) {
               <label> Arrival information </label>
               <div className="input__group">
                 <div className="input__field">
-                  <label htmlFor="dateIn">Date</label>
+                  <label htmlFor="dateIn">{' '}
+                    <p>Date</p>{' '}</label>
                   <Input
                     type="date"
                     name="dateIn"
@@ -293,7 +294,7 @@ export default function NewFlight({ onClickClose, isModal }) {
                   />
                 </div>
                 <div className="input__field">
-                  <label htmlFor="hourIn">Time</label>
+                  <label htmlFor="hourIn"><p>Time</p></label>
                   <Input
                     type="time"
                     name="hourIn"
