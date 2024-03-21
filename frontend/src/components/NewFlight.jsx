@@ -6,13 +6,29 @@ import PropTypes from 'prop-types';
 
 export default function NewFlight({ onClickClose, isModal }) {
   const navigateTo = useNavigate();
-  /*************************************************/
-  // Data of flight time that will be on the data base.
+  
   const flightDuration = {
-    location1Tolocation2: 1.6,
-    location2Tolocation1: 2,
+    BOGToCLO: 0.6,
+    BOGToMDE: 0.6,
+    BOGToLET: 1.8,
+    BOGToBGA: 0.8,
+    BOGToCUC: 1.1,
+    BOGToVUP: 1.2,
+    BOGToCTG: 1,
+    BOGToBAQ: 1.1,
+    BOGToMTR: 0.8,
+    BOGToADZ: 2,
+    CLOToBOG: 0.5,
+    MDEToBOG: 0.5,
+    LETToBOG: 1.7,
+    BGAToBOG: 0.8,
+    CUCToBOG: 1,
+    VUPToBOG: 1.1,
+    CTGToBOG: 1,
+    BAQToBOG: 1,
+    MTRToBOG: 1,
+    ADZToBOG: 2.3,
   };
-  /*************************************************/
 
   const [flightInfo, setflightInfo] = useState({
     from: '',
@@ -56,6 +72,32 @@ export default function NewFlight({ onClickClose, isModal }) {
     setInputTypes(isDate ? 'date' : 'text');
     setHourTypes(isDate ? 'text' : 'time');
   }
+
+  const aircraftRegistrations = [
+    { registration: 'CC-BLJ', type: 'Airbus A319' },
+    { registration: 'CC-BLK', type: 'Airbus A319' },
+    { registration: 'CC-BAG', type: 'Boeing 787-9 Dreamliner' },
+    { registration: 'CC-COP', type: 'Boeing 787-9 Dreamliner' },
+    { registration: 'CC-BFA', type: 'Boeing 787-9 Dreamliner' },
+    { registration: 'CC-CQN', type: 'Airbus A320' },
+    { registration: 'CC-BAS', type: 'Boeing 767-316(ER)' },
+    { registration: 'CC-BLI', type: 'Airbus A321' },
+    { registration: 'CC-BLH', type: 'Airbus A320' },
+    { registration: 'CC-BAI', type: 'Boeing 787-9 Dreamliner' },
+  ];
+  const AirportList = [
+    { iataCode: 'BOG', city: 'Bogota' },
+    { iataCode: 'CLO', city: 'Cali' },
+    { iataCode: 'MDE', city: 'Medellin' },
+    { iataCode: 'LET', city: 'Leticia' },
+    { iataCode: 'BGA', city: 'Bucaramanga' },
+    { iataCode: 'CUC', city: 'Cucuta' },
+    { iataCode: 'VUP', city: 'Valledupar' },
+    { iataCode: 'CTG', city: 'Cartagena' },
+    { iataCode: 'BAQ', city: 'Barranquilla' },
+    { iataCode: 'MTR', city: 'Monteria' },
+    { iataCode: 'ADZ', city: 'San Andres' },
+  ];
 
   function handleBlur() {
     setInputTypes('text');
@@ -139,8 +181,8 @@ export default function NewFlight({ onClickClose, isModal }) {
   }
   function addHoursToDateString(dateString, hoursToAdd) {
     var date = new Date(dateString);
-    var totalMillisecondsToAdd = hoursToAdd * 60 * 60 * 1000;
-    date.setTime(date.getTime() + totalMillisecondsToAdd);
+    var totalMillisecondsToAdd = (hoursToAdd - 7) * 60 * 60 * 1000;
+    date.setTime(date.getTime() + totalMillisecondsToAdd -12);
     var newDateString = date.toISOString().slice(0, 16);
     return newDateString;
   }
@@ -211,8 +253,11 @@ export default function NewFlight({ onClickClose, isModal }) {
                     <option value="" disabled aria-placeholder="Select Origin">
                       Select Origin
                     </option>
-                    <option value="location1">Location 1</option>
-                    <option value="location2">Location 2</option>
+                    {AirportList.map((airport, index) => (
+                      <option key={index} value={airport.iataCode}>
+                        {airport.iataCode} - {airport.city}
+                      </option>
+                    ))}
                   </select>
                 </label>
               </div>
@@ -232,8 +277,11 @@ export default function NewFlight({ onClickClose, isModal }) {
                     >
                       Select Destination
                     </option>
-                    <option value="location1">Location 1</option>
-                    <option value="location2">Location 2</option>
+                    {AirportList.map((airport, index) => (
+                      <option key={index} value={airport.iataCode}>
+                        {airport.iataCode} - {airport.city}
+                      </option>
+                    ))}
                   </select>
                 </label>
               </div>
@@ -282,8 +330,10 @@ export default function NewFlight({ onClickClose, isModal }) {
               <label> Arrival information </label>
               <div className="input__group">
                 <div className="input__field">
-                  <label htmlFor="dateIn">{' '}
-                    <p>Date</p>{' '}</label>
+                  <label htmlFor="dateIn">
+                    {' '}
+                    <p>Date</p>{' '}
+                  </label>
                   <Input
                     type="date"
                     name="dateIn"
@@ -294,7 +344,9 @@ export default function NewFlight({ onClickClose, isModal }) {
                   />
                 </div>
                 <div className="input__field">
-                  <label htmlFor="hourIn"><p>Time</p></label>
+                  <label htmlFor="hourIn">
+                    <p>Time</p>
+                  </label>
                   <Input
                     type="time"
                     name="hourIn"
@@ -334,8 +386,11 @@ export default function NewFlight({ onClickClose, isModal }) {
                     <option value="" disabled aria-placeholder="true">
                       Select Aircraft Type
                     </option>
-                    <option value="aircraft1">Aircraft 1</option>
-                    <option value="aircraft2">Aircraft 2</option>
+                    {aircraftRegistrations.map((aircraft, index) => (
+                      <option key={index} value={aircraft.registration}>
+                        {aircraft.type} - {aircraft.registration}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </label>
