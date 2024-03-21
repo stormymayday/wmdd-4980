@@ -75,52 +75,58 @@ export const CrewAvailability = () => {
 
   return (
     <div className="origin-box">
-      <div className="pie-chart__box">
-        <Doughnut
-          data={pieChartData}
-          options={{
-            plugins: {
-              legend: {
-                display: false,
-              },
-              tooltip: {
-                enabled: false,
-              },
-            },
-            rotation: -90,
-            circumference: 180,
-            cutout: '85%',
-            maintainAspectRatio: true,
-            responsive: true,
-          }}
-        />
+      <h3 className="bold-text-pie-chart">Crew Availability</h3>
+      <div className="wrapper-flex">
+        <div className="pie-chart__box">
+          <div className="canvas-pie-chart">
+            <Doughnut
+              className="canvas-chart"
+              data={pieChartData}
+              options={{
+                plugins: {
+                  legend: {
+                    display: false,
+                  },
+                  tooltip: {
+                    enabled: false,
+                  },
+                },
+                rotation: -90,
+                circumference: 180,
+                cutout: '85%',
+                maintainAspectRatio: true,
+                responsive: true,
+              }}
+            />
+          </div>
 
-        <div
-          style={{
-            position: 'absolute',
-            top: '60%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            textAlign: 'center',
-          }}
-        >
-          <div className="pie-chart__box-total">
-            Total Crew{' '}
-            <p className="pie-chart__box-total-number">{crew.length}</p>
+          <div
+            style={{
+              position: 'absolute',
+              top: '70%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              textAlign: 'center',
+            }}
+          >
+            <div className="pie-chart__box-total">
+              Total Crew{' '}
+              <p className="pie-chart__box-total-number">{crew.length}</p>
+            </div>
           </div>
-        </div>
-        <div className="pie-chart__box__colors">
-          <div className="pie-chart__box__colors-box">
-            <div className="pie-chart__box__colors-green"></div>
-            <p>Available</p>
-          </div>
-          <div className="pie-chart__box__colors-box">
-            <div className="pie-chart__box__colors-orange"></div>
-            <p>Unavailable</p>
-          </div>
-          <div className="pie-chart__box__colors-box">
-            <div className="pie-chart__box__colors-red"></div>
-            <p>PTO</p>
+          <div className="pie-chart__box__colors">
+            <div className="pie-chart__box__colors-box">
+              <div className="pie-chart__box__colors-green"></div>
+              <p>Available</p>
+            </div>
+            <div className="pie-chart__box__colors-box">
+              <div className="pie-chart__box__colors-orange"></div>
+              <p>Unavailable</p>
+            </div>
+            <div className="pie-chart__box__colors-box">
+              <div className="pie-chart__box__colors-red"></div>
+              <p>PTO</p>
+            </div>
           </div>
         </div>
       </div>

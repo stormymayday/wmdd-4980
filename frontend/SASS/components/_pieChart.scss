@@ -1,34 +1,67 @@
 @import url('../abstracts/_variables.scss');
 
-.origin-box {
-  position: relative;
-  height: 18rem;
-  width: 20rem;
-  margin: 0 auto;
-  margin-top: 1rem;
+.dashboard-charts {
+  display: flex;
+  flex-wrap: wrap;
+  height: 19.781rem;
+  width: 100%;
+}
+.wrapper-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-pie-chart {
   margin-bottom: 1rem;
+  margin-top: -2rem;
+}
+
+.origin-box {
+  display: inline-block;
+  height: 100%;
+  width: 20.75rem;
+  margin-left: 1rem;
+  background-color: #f6f6f6;
+  border-radius: 0.75rem;
+  max-width: 19.781rem;
+  max-height: 15rem;
+  position: relative;
 }
 .pie-chart {
+  max-width: 19.781rem;
+  max-height: 20.75rem;
+  margin: 0;
+  padding: 0;
+
   &__box {
-    padding: 1rem;
-    padding-left: 2rem;
-    width: 80vw;
-    width: 100%;
-    max-width: 20rem;
-    height: 50vh;
-    max-height: 18rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f4f4f4;
-    border-radius: 1rem;
+    max-width: 14.875rem;
+    max-height: 9.438rem;
+    width: 14.875rem;
+    height: 9.438rem;
+    position: relative;
+    &canvas {
+      width: 80% !important;
+      height: 80% !important;
+    }
     &-total {
       text-align: center;
-      color: grey;
+      //styleName: Desktop/Paragraph/Reg-14;
+      font-family: Roboto;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 17.5px;
+      color: #5d5d5d;
+
       &-number {
         font-weight: bold;
         color: black;
+        //styleName: Desktop/Subtitle/S3-24;
+        font-family: Barlow Condensed;
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 36px;
+        // text-align: right;
       }
     }
     &__colors {
