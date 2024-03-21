@@ -112,19 +112,19 @@ function FlightTableWithCrew({ expand }) {
       }
 
       fetchFlightsWithCrew();
-      // setFlights(expand ? flights : flights.slice(0, 2));
+      // setFlights(expand ? flights.slice(0, 15) : flights.slice(0, 2));
     },
     [activeTab, expand]
   );
   // let flightlist = expand ? flights : flights.slice(0, 2);
 
   return (
-    <div className="flightTable">
-      <div className="flightTable__container">
-        <div className="flightTable__frame">
-          <div className="flightTable__frame__title">
-            <h3 className="flightTable__title">Flight tables</h3>{' '}
-            <span className="flightTable__count">
+    <div className="flightTable1">
+      <div className="flightTable1__container">
+        <div className="flightTable1__frame">
+          <div className="flightTable1__frame__title">
+            <h3 className="flightTable1__title">Flight tables</h3>{' '}
+            <span className="flightTable1__count">
               {'('}
               {flights.length}
               {')'}
@@ -136,21 +136,21 @@ function FlightTableWithCrew({ expand }) {
             setActiveTab={setActiveTab}
           />
         </div>
-        <div className="flightTable__table">
-          <div className="flightTable__labels">
-            <div className="flightTable__label1">
+        <div className="flightTable1__table">
+          <div className="flightTable1__labels">
+            <div className="flightTable1__label1">
               <p>Flight</p>
             </div>
-            <div className="flightTable__label2">
+            <div className="flightTable1__label2">
               <p>Status</p>
             </div>
-            <div className="flightTable__label3">
+            <div className="flightTable1__label3">
               <p>Actions</p>
             </div>
           </div>
-          <ul className="flightTable__list">
+          <ul className="flightTable1__list">
             {/* map method return an array of FlightItem */}
-            {flights.map((flight) => (
+            {flights.slice(0, 15).map((flight) => (
               <FlightItemWithCrew
                 flight={flight}
                 key={flight._id}

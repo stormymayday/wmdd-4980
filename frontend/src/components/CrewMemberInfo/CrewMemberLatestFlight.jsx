@@ -53,10 +53,7 @@ function CrewMemberLatestFlight({ expand }) {
           <ul className="flightTableForCrew__list">
             {/* map method return an array of FlightItem */}
             {flightlist.map((flight) => (
-              <CrewMemberLatestFlightItem
-                flight={flight}
-                key={flight.flightNumber}
-              />
+              <CrewMemberLatestFlightItem flight={flight} key={flight._id} />
             ))}
           </ul>
         </div>

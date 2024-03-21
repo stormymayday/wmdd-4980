@@ -1,6 +1,9 @@
 function BtnAssignMember({ onClick, crewId }) {
   return (
-    <button onClick={() => onClick(crewId)}>
+    <button
+      className="addCrew__item__midCol__btn"
+      onClick={() => onClick(crewId)}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
