@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
-import TabsForFlightTableWithCrew from '../flightTableWithCrew/TabsForFlightTableWithCrew';
 
 import '../../../SASS/components/_flightTableWithCrew.scss';
 import CrewAssignList from './CrewAssignList';
 //1fake data structure
 import { useEffect, useState } from 'react';
-import FlightItemWithCrew from '../flightTableWithCrew/FlightItemWithCrew';
+import ReturnHeader from '../ReturnHeader';
 import ConfirmPage from './ConfirmPage';
 import { useParams } from 'react-router-dom';
 

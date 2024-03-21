@@ -38,6 +38,7 @@ function FlightItemWithCrew({
             <ButtonAddCrew
               flightId={flightId}
               toggleModalCrew={toggleModalCrew}
+              isMobileView={isMobileView}
             />
           )}
           {/* <NavLink>
@@ -49,8 +50,8 @@ function FlightItemWithCrew({
         <div
           className={
             showModalAssignMember
-              ? 'sliding-modal modal-animation'
-              : 'sliding-modal'
+              ? 'sliding-modal2 modal-animation'
+              : 'sliding-modal2'
           }
         >
           <div className="modal-content">
