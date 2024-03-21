@@ -56,41 +56,47 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
       setCapt(crew.name);
       setNewFlight((prevFlight) => ({
         ...prevFlight,
-        crewMembers: {
-          ...prevFlight.crewMembers,
-          member1: crew.name,
-        },
+        crewMembers: [
+          {
+            ...prevFlight.crewMembers[0],
+            member1: crew.name,
+          },
+          ...prevFlight.crewMembers.slice(1),
+        ],
       }));
     } else if (crew.role === 'second_pilot') {
       setCop(crew.name);
       setNewFlight((prevFlight) => ({
         ...prevFlight,
-        crewMembers: {
-          ...prevFlight.crewMembers,
-          member2: crew.name,
-        },
+        crewMembers: [
+          {
+            ...prevFlight.crewMembers[0],
+            member2: crew.name,
+          },
+          ...prevFlight.crewMembers.slice(1),
+        ],
       }));
     } else if (crew.role === 'flight_attendant') {
-      const firstAvailable = cabinCrew.findIndex((member) => member === '');
-      if (firstAvailable === -1) {
-        setcabinCrew([...cabinCrew, crew.name]);
-      } else {
-        setcabinCrew([
-          ...cabinCrew.slice(0, firstAvailable),
-          crew.name,
-          ...cabinCrew.slice(firstAvailable + 1),
-        ]);
-      }
-      setNewFlight((prevFlight) => ({
-        ...prevFlight,
-        crewMembers: {
-          ...prevFlight.crewMembers,
-          cabinCrew: cabinCrew,
-        },
-      }));
+      setNewFlight((prevFlight) => {
+        const cabinCrew = [...prevFlight.crewMembers[0].cabinCrew];
+        const firstAvailable = cabinCrew.findIndex((member) => member === '');
+        if (firstAvailable === -1) {
+          cabinCrew.push(crew.name);
+        } else {
+          cabinCrew[firstAvailable] = crew.name;
+        }
+        return {
+          ...prevFlight,
+          crewMembers: [
+            {
+              ...prevFlight.crewMembers[0],
+              cabinCrew: cabinCrew,
+            },
+            ...prevFlight.crewMembers.slice(1),
+          ],
+        };
+      });
     }
-    console.log(newFlight);
-
     axios
       .patch(`/api/v1/crew/${crew._id}`, {
         $push: { flightRecord: newFlight },
@@ -101,14 +107,25 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
   }
 
   function handleSubmit() {
+    console.log(newFlight)
     localStorage.setItem('newFlight', JSON.stringify(newFlight));
 
-    // Add the summary page to navigate to >>>>>>>
-    if (isModal) {
-      onClickClose(false, false, false);
-    } else {
-      navigateTo('/dashboard');
-    }
+    axios
+      .patch(`/api/v1/flights/${newFlight._id}`, newFlight)
+      .then((response) => {
+        console.log('Flight information patched successfully:', response);
+        if (isModal) {
+          onClickClose(false, false, false);
+        } else {
+          navigateTo('/dashboard');
+        }
+      })
+      .catch((error) => {
+        console.error(
+          'Error occurred while patching flight information:',
+          error
+        );
+      });
   }
 
   return (
