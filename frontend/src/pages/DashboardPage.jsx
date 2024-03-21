@@ -6,8 +6,10 @@ import FlightTableWithCrew from '../components/flightTableWithCrew/FlightTableWi
 const DashboardPage = () => {
   return (
     <main className="dashboard-page">
-      <BarChart />
-      <CrewAvailability />
+      <div className="dashboard-charts">
+        <BarChart />
+        <CrewAvailability />
+      </div>
       <UpcomingFlights crew={true} />
       <FlightTableWithCrew expand={true} />
     </main>
