@@ -5,11 +5,13 @@ import ListOfCrew from './ListOfCrew';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import Tabs from './AssignMember/Tabs';
 
 export default function SelectCrew({ flightComing, isModal, onClickClose }) {
   const navigateTo = useNavigate();
 
   const localStorageFlight = JSON.parse(localStorage.newFlight);
+  const [activeTab, setActiveTab] = useState('all');
   const [newFlight, setNewFlight] = useState(checkIfFlight());
   const [capt, setCapt] = useState(newFlight.crewMembers[0].member1);
   const [cop, setCop] = useState(newFlight.crewMembers[0].member2);
@@ -120,17 +122,20 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
         {console.log(newFlight)}
         <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew} />
         <h2>Select Crew</h2>
+        <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
         <div className="listOfCrew">
           {availableCrew.length > 0 ? (
-            availableCrew.map((crew, index) => {
-              return (
-                <ListOfCrew
-                  crew={crew}
-                  key={index}
-                  handleAdding={handleAdding}
-                />
-              );
-            })
+            availableCrew
+              .filter((crew) => activeTab === 'all' || crew.role === activeTab)
+              .map((crew, index) => {
+                return (
+                  <ListOfCrew
+                    crew={crew}
+                    key={index}
+                    handleAdding={handleAdding}
+                  />
+                );
+              })
           ) : (
             <p>No available Crew.</p>
           )}

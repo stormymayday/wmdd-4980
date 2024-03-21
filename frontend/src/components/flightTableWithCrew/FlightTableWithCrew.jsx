@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import TabsForFlightTableWithCrew from './TabsForFlightTableWithCrew';
 import '../../../SASS/components/_flightTableWithCrew.scss';
 
-//1fake data structure
+import ModalAssignMember from '../AssignMember/ModalAssignMember';
 import { useEffect, useState } from 'react';
 import FlightItemWithCrew from './FlightItemWithCrew';
 
@@ -15,7 +15,7 @@ function FlightTableWithCrew({ expand }) {
   const [activeTab, setActiveTab] = useState('all');
 
   const toggleModalCrew = () => {
-    setShowModalCrewInfo((prevShowModalCrewInfo) => !prevShowModalCrewInfo);
+    setShowModalAssignMember((prevShowModalCrewInfo) => !prevShowModalCrewInfo);
   };
 
   const handleResize = () => {
@@ -119,51 +119,66 @@ function FlightTableWithCrew({ expand }) {
   // let flightlist = expand ? flights : flights.slice(0, 2);
 
   return (
-    <div className="flightTable1">
-      <div className="flightTable1__container">
-        <div className="flightTable1__frame">
-          <div className="flightTable1__frame__title">
-            <h3 className="flightTable1__title">Flight tables</h3>{' '}
-            <span className="flightTable1__count">
-              {'('}
-              {flights.length}
-              {')'}
-            </span>
-          </div>
+    <>
+      <div className="flightTable1">
+        <div className="flightTable1__container">
+          <div className="flightTable1__frame">
+            <div className="flightTable1__frame__title">
+              <h3 className="flightTable1__title">Flight tables</h3>{' '}
+              <span className="flightTable1__count">
+                {'('}
+                {flights.length}
+                {')'}
+              </span>
+            </div>
 
-          <TabsForFlightTableWithCrew
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-          />
-        </div>
-        <div className="flightTable1__table">
-          <div className="flightTable1__labels">
-            <div className="flightTable1__label1">
-              <p>Flight</p>
-            </div>
-            <div className="flightTable1__label2">
-              <p>Status</p>
-            </div>
-            <div className="flightTable1__label3">
-              <p>Actions</p>
-            </div>
+            <TabsForFlightTableWithCrew
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
           </div>
-          <ul className="flightTable1__list">
-            {/* map method return an array of FlightItem */}
-            {flights.slice(0, 15).map((flight) => (
-              <FlightItemWithCrew
-                flight={flight}
-                key={flight._id}
-                flightId={flight._id}
-                isMobileView={isMobileView}
-                toggleModalCrew={toggleModalCrew}
-                showModalAssignMember={showModalAssignMember}
-              />
-            ))}
-          </ul>
+          <div className="flightTable1__table">
+            <div className="flightTable1__labels">
+              <div className="flightTable1__label1">
+                <p>Flight</p>
+              </div>
+              <div className="flightTable1__label2">
+                <p>Status</p>
+              </div>
+              <div className="flightTable1__label3">
+                <p>Actions</p>
+              </div>
+            </div>
+            <ul className="flightTable1__list">
+              {/* map method return an array of FlightItem */}
+              {flights.slice(0, 15).map((flight) => (
+                <FlightItemWithCrew
+                  flight={flight}
+                  key={flight._id}
+                  flightId={flight._id}
+                  isMobileView={isMobileView}
+                  toggleModalCrew={toggleModalCrew}
+                  showModalAssignMember={showModalAssignMember}
+                />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
+      {showModalAssignMember && (
+        <div
+          className={
+            showModalAssignMember
+              ? 'sliding-modal modal-animation'
+              : 'sliding-modal'
+          }
+        >
+          <div className="modal-content">
+            <ModalAssignMember onClickClose={toggleModalCrew} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
