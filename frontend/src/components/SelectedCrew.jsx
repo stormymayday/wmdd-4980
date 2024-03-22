@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export default function SelectedCrew({ capt, cop, cabinCrew }) {
-  console.log("Selected crew")
   const cabinCrewCount = numberOfCabinCrew();
   function numberOfCabinCrew() {
     let count = 0;
