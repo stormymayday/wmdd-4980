@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserIcon from '../../assets/userIcon';
+import Notification from './Notification';
 function ConfirmPage({
   crewIdForUpdate,
   flightDataForPatch,
@@ -8,12 +9,17 @@ function ConfirmPage({
   flights,
   handleCancelClick,
 }) {
-  console.log(crewIdForUpdate, flightDataForPatch);
+  const [showNotification, setShowNotification] = useState(false);
+  // console.log(crewIdForUpdate, flightDataForPatch);
   function handleConfirm() {
     const flightId = id;
     const newCrewMembers = flightDataForPatch.crewMembers[0];
     updateCrewMembers(flightId, newCrewMembers);
     updateCrewFlightRecords(crewIdForUpdate, flights);
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 800);
   }
   const updateCrewFlightRecords = async (id, flights) => {
     try {
@@ -47,6 +53,7 @@ function ConfirmPage({
   };
   return (
     <>
+      {showNotification && <Notification />}
       <div className="confirm__up">
         <h3 className="confirm__up__header">Flight Summary Details</h3>
         <div className="confirm__up__list">
