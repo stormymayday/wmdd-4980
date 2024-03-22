@@ -4,7 +4,8 @@
   position: sticky;
   top: 0;
   display: flex;
-  width: 393px;
+  // width: 393px;
+  width: 26.8125rem;
   padding: 4.25rem 1.25rem 1.25rem 1.25rem;
   flex-direction: column;
   justify-content: flex-end;
@@ -37,7 +38,7 @@
     line-height: 150%;
   }
 
-  &.mobileView{
+  &.mobileView {
     flex-direction: row;
     justify-content: space-between;
   }

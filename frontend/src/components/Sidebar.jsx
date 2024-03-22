@@ -28,6 +28,15 @@ const Sidebar = () => {
   function handleProfileClick() {
     console.log('clicked!!!!');
   }
+  // <NavLink
+  //               className="nav-link"
+  //               to={path}
+  //               key={text}
+  //               onClick={toggleModalCrew}
+  //             >
+  //               <span className="icon">{icon}</span>
+  //               <p>{text}</p>
+  //             </NavLink>
   // End of modal functionality
   return (
     // <div className="sidebar-container">
@@ -43,7 +52,19 @@ const Sidebar = () => {
 
           if (index === 4) {
             // Render a button with an onClick handler
-            return (
+            return isMobileView ? (
+              <NavLink
+                className="nav-link"
+                to={`/crew/${selectedCrewId}}`}
+                key={text}
+                onClick={() => {
+                  toggleModalCrew();
+                }}
+              >
+                <span className="icon">{icon}</span>
+                <p>{text}</p>
+              </NavLink>
+            ) : (
               <NavLink
                 className="nav-link"
                 to={path}
