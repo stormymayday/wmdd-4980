@@ -50,7 +50,7 @@ function FlightItemWithCrew({
         <div
           className={
             showModalAssignMember
-              ? 'sliding-modal2 modal-animation'
+              ? 'sliding-modal2 modal-animation2'
               : 'sliding-modal2'
           }
         >

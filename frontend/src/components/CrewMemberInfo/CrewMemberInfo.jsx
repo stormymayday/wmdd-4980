@@ -7,7 +7,7 @@ import CrewMemberAssignBtn from './CrewMemberAssignBtn';
 import avatarPlaceHolders from '../../assets/images/avatarPlaceHolder.jpg';
 import '../../../SASS/components/_crewMemberInfo.scss';
 
-function CrewMemberInfo({ crewId }) {
+function CrewMemberInfo({ crewId, onAssignClick }) {
   const [profile, setProfile] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(crewId);
@@ -101,12 +101,15 @@ function CrewMemberInfo({ crewId }) {
               <CrewMemberMessageBtn />
               <p className="crewInfo__infolow__title">Message</p>
             </div>
-            <div className="crewInfo__infolow__right">
+            <button
+              className="crewInfo__infolow__right"
+              onClick={onAssignClick}
+            >
               <CrewMemberAssignBtn />
               <p className="crewInfo__infolow__title">
                 <span>Assign</span>
               </p>
-            </div>
+            </button>
           </div>
         </div>
       ) : (

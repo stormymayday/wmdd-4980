@@ -169,8 +169,8 @@ function FlightTableWithCrew({ expand }) {
         <div
           className={
             showModalAssignMember
-              ? 'sliding-modal modal-animation'
-              : 'sliding-modal'
+              ? 'sliding-modal2 modal-animation2'
+              : 'sliding-modal2'
           }
         >
           <div className="modal-content">

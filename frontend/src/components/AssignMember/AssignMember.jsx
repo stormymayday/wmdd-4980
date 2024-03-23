@@ -8,7 +8,7 @@ import ReturnHeader from '../ReturnHeader';
 import ConfirmPage from './ConfirmPage';
 import { useParams } from 'react-router-dom';
 
-function AssignMember() {
+function AssignMember({ assignMemberRef }) {
   const [showConfirmPage, setShowConfirmPage] = useState(false);
   const { flightId } = useParams();
   const [flights, setFlights] = useState({});
@@ -35,9 +35,12 @@ function AssignMember() {
       },
     ],
   });
+
   // let id = '65e2cf76b21bd035fac6ed05';
   const handleConfirmClick = () => {
     setShowConfirmPage(true);
+    assignMemberRef.current.scrollTop = 0;
+    window.scrollTo(0, 0);
   };
   const handleCancelClick = () => {
     setShowConfirmPage(false);
@@ -188,7 +191,7 @@ function AssignMember() {
             <CrewAssignList handleClick={handleClick} />
           </div>
           <div className="frame72">
-            <button onClick={handleConfirmClick}>Contunue to Summary</button>
+            <button onClick={handleConfirmClick}>Continue to Summary</button>
           </div>
         </div>
       )}
