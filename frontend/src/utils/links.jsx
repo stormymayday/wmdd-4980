@@ -29,7 +29,7 @@ const links = [
   },
   {
     text: 'profile',
-    path: 'profile',
+    path: 'main',
     icon: <FaCircleUser />,
   },
 ];

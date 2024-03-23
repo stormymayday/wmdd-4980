@@ -79,10 +79,6 @@ const router = createBrowserRouter([
             path: 'profile',
             element: <Profile />,
           },
-          // {
-          //   path: 'edit-crew-forFlight/:flightId',
-          //   element: <EditCrewForFlight />,
-          // },
         ],
       },
       {

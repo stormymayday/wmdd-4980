@@ -33,12 +33,20 @@
   }
 }
 
+// .modal-content {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 393px;
+//   max-width: 90%;
+//   background-color: #e7e7e7;
+// }
 .modal-content {
   position: absolute;
   top: 0;
   right: 0;
-  width: 393px;
-  max-width: 90%;
+  width: 26.8125rem;
+  max-width: 100%;
   background-color: #e7e7e7;
 }
 
