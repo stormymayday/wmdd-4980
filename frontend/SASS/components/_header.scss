@@ -62,13 +62,14 @@
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .search-icon {
   color: $clr-complimentary-black-50;
   font-size: 2rem;
   position: absolute;
-  left: 2rem;
+  left: 0.6rem;
 }
 
 .header-search input {
@@ -150,10 +151,6 @@
   .header-search {
     width: 35%;
     margin: 0;
-  }
-
-  .search-icon {
-    left: 60.8%;
   }
 
   .header-info {
