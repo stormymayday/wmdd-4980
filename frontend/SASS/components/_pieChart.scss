@@ -3,8 +3,11 @@
 .dashboard-charts {
   display: flex;
   flex-wrap: wrap;
-  height: 19.781rem;
+  // height: 19.781rem;
+  gap: 1rem;
   width: 100%;
+
+  margin-bottom: 1.5rem;
 }
 .wrapper-flex {
   display: flex;
@@ -19,15 +22,38 @@
 
 .origin-box {
   display: inline-block;
-  height: 100%;
-  width: 20.75rem;
-  margin-left: 1rem;
+  // height: 100%;
+  // width: 20.75rem;
+  // margin-left: 1rem;
   background-color: #f6f6f6;
   border-radius: 0.75rem;
-  max-width: 19.781rem;
-  max-height: 15rem;
+  // max-width: 19.781rem;
+  // max-height: 15rem;
   position: relative;
+
+  z-index: -1;
+  // margin-bottom: 2rem;
+  // width: 100%;
+  min-height: 15rem;
+
+  flex: 1;
+  padding-top: 1.5rem;
+  padding-bottom: 5rem;
+  padding-left: 1.5rem;
 }
+
+@media (min-width: 990px) {
+  .dashboard-charts {
+    // background-color: #e7a238;
+  }
+  .origin-box {
+    // background-color: red;
+
+    // min-height: 130%;
+    height: 20rem;
+  }
+}
+
 .pie-chart {
   max-width: 19.781rem;
   max-height: 20.75rem;
