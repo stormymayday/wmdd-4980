@@ -48,6 +48,10 @@
   border-bottom: 1px solid black;
 }
 
+.crew-availability-table td:last-child {
+  text-align: right;
+}
+
 .status-cell {
   padding: 4px 8px;
   border-radius: 8px;
@@ -75,7 +79,7 @@
 }
 
 .crew-link {
-  width: 20rem;
+  // width: 20rem;
 }
 
 .view-crew-icon {
