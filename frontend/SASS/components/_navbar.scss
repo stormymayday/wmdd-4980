@@ -18,6 +18,10 @@
 .nav-link {
   text-transform: capitalize;
   color: $clr-primary-3;
+
+  &:hover {
+    background-color: $clr-complimentary-black-10;
+  }
 }
 
 .nav-link p {
