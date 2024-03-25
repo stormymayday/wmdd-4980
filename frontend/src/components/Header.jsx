@@ -1,5 +1,5 @@
 import { Logo } from '../components';
-import { FaBell } from 'react-icons/fa';
+import NotificationBellIcon from '../assets/icons/Notification.svg';
 import { BiSolidSearch } from 'react-icons/bi';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -97,7 +97,13 @@ const Header = () => {
           <p>Good morning John</p>
           <h3>Ready to create a flight?</h3>
         </div>
-        <FaBell className="info-bell" />
+
+        {/* <FaBell className="info-bell" /> */}
+        <img
+          src={NotificationBellIcon}
+          className="info-bell"
+          alt="notification bell icon"
+        />
       </div>
       <div className="search-text">Search</div>
       <div className="header-search">
@@ -109,7 +115,13 @@ const Header = () => {
           placeholder="Look for crew member, flight status or information"
         />
       </div>
-      <FaBell className="header-bell" />
+
+      <img
+        src={NotificationBellIcon}
+        className="header-bell"
+        alt="notification bell icon"
+      />
+
       <SearchResult
         isLoading={flightsLoading || crewLoading}
         flights={flights}
