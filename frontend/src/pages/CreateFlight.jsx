@@ -39,7 +39,7 @@ const CreateFlight = () => {
     <div className="dashboard-page">
       {isMobileView ? (
         <NavLink className="nav-link create_flight_button" to="/new-flight">
-          <p>New Flight</p>
+          <p>Create Flight</p>
         </NavLink>
       ) : (
         <div className='create_flight_button_info'>
@@ -48,7 +48,7 @@ const CreateFlight = () => {
             className="create_flight_button"
             onClick={() => toggleModal(true, false, false)}
           >
-            <p>New Flight</p>
+            <p>Create Flight</p>
           </button>
         </div>
       )}
