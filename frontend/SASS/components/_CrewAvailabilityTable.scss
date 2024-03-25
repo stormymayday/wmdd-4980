@@ -28,8 +28,10 @@
 
 .tab-btn {
   flex: 1;
-  padding: 1rem;
-  border-radius: 0.8rem;
+  // padding: 1rem;
+  padding-top: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
   color: $clr-complimentary-black-45;
 }
 
