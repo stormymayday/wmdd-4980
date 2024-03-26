@@ -5,7 +5,43 @@ import '../../../SASS/components/_flightTableWithCrew.scss';
 import ModalAssignMember from '../AssignMember/ModalAssignMember';
 import { useEffect, useState } from 'react';
 import FlightItemWithCrew from './FlightItemWithCrew';
+{
+  /* <div className="flightTable1__table">
+<div className="flightTable1__labels">
+  <div className="flightTable1__label1">
+    <p>Flight</p>
+  </div>
+  <div className="flightTable1__wrapperSA"></div>
+  <div className="flightTable1__label2">
+    <p>Status</p>
+  </div>
+  <div className="flightTable1__label3">
+    <p>Aircraft Type</p>
+  </div>
+  <div className="flightTable1__label4">
+    <p>Actions</p>
+  </div>
+</div> */
+}
+{
+  /* <div className="flightTable1__labels">
+              <div className="flightTable1__label1">
+                <p>Flight</p>
+              </div>
+              <div className="flightTable1__wrapperSA">
+                <div className="flightTable1__label2">
+                  <p>Status</p>
+                </div>
+                <div className="flightTable1__label3">
+                  <p>Aircraft Type</p>
+                </div>
+              </div>
 
+              <div className="flightTable1__label4">
+                <p>Actions</p>
+              </div>
+            </div> */
+}
 function FlightTableWithCrew({ expand }) {
   let id = '';
   const [showModalAssignMember, setShowModalAssignMember] = useState(false);
@@ -142,10 +178,16 @@ function FlightTableWithCrew({ expand }) {
               <div className="flightTable1__label1">
                 <p>Flight</p>
               </div>
-              <div className="flightTable1__label2">
-                <p>Status</p>
+              <div className="flightTable1__wrapperSA">
+                <div className="flightTable1__label2">
+                  <p>Crew detail</p>
+                </div>
+                <div className="flightTable1__label3">
+                  <p>Aircraft Type</p>
+                </div>
               </div>
-              <div className="flightTable1__label3">
+
+              <div className="flightTable1__label4">
                 <p>Actions</p>
               </div>
             </div>
