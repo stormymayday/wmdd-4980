@@ -1,12 +1,11 @@
 @import '../abstracts/_variables.scss';
 .flightTable1 {
-  font-family: 'Roboto', 'Arial';
-  display: flex;
-  width: 26rem;
-  padding: 1rem;
-  align-items: flex-start;
-  gap: 2rem;
-  // background-color: black;
+  color: $clr-complimentary-black-45;
+  font-family: Roboto;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125%;
   &__container {
     display: flex;
     flex-direction: column;
