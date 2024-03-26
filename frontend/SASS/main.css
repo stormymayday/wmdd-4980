@@ -25,4 +25,5 @@
 @import url(./components/_selectCrew.scss);
 @import url(./components/_returnHeader.scss);
 @import url("./pages/_FlightSummaryPage.scss");
-@import url("./components/_slidingModal.scss");/*# sourceMappingURL=main.css.map */
+@import url("./components/_slidingModal.scss");
+@import url("./components/_flightInfoButton.scss");/*# sourceMappingURL=main.css.map */
