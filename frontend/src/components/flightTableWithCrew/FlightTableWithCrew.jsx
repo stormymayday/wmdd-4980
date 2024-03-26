@@ -78,7 +78,7 @@ function FlightTableWithCrew({ expand }) {
               status,
             };
           });
-          console.log(refinedData);
+          // console.log(refinedData);
           // old code
           if (activeTab === 'all') {
             setFlights(refinedData);
@@ -101,8 +101,8 @@ function FlightTableWithCrew({ expand }) {
             );
 
             setFlights(filteredData);
-            console.log(filteredData);
-            console.log(activeTab);
+            // console.log(filteredData);
+            // console.log(activeTab);
           }
         } catch (err) {
           console.log(err.message);
