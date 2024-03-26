@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { NavLink } from 'react-router-dom';
 import CrewMemberLatestFlight from '../components/CrewMemberInfo/CrewMemberLatestFlight';
 import { ModalNewFlight } from '../components';
@@ -27,13 +27,7 @@ const CreateFlight = () => {
     setIsMobileView(window.innerWidth <= 393);
   };
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  window.addEventListener('resize', handleResize);
 
   return (
     <div className="dashboard-page">
