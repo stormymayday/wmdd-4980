@@ -201,6 +201,11 @@
     border-radius: 8px;
     width: 2rem;
     height: 2rem;
+    a {
+      button {
+        padding: 0.25rem;
+      }
+    }
   }
 
   &__addBtnBlue {
@@ -364,12 +369,26 @@
     //   background-color: white;
     // }
     &__btn-container {
-      display: flex;
-      justify-content: space-around;
-      background: $clr-complimentary-black-45;
-      border-radius: 8px;
-      width: 2rem;
-      height: 2rem;
+      padding: 0.25rem 0.5rem;
+      align-items: center;
+      border-radius: 0.8rem;
+      border: 1px solid $clr-complimentary-black-60;
+      background: none;
+      width: max-content;
+      button {
+        a {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.25rem;
+          color: $clr-complimentary-black-90;
+          font-family: Roboto;
+          font-size: $buttons-spacing-v;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 125%;
+        }
+      }
     }
     // &__addBtnBlue {
     //   svg {

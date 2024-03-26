@@ -32,7 +32,7 @@ function FlightItemWithCrew({
         <div className="flightTable1__btn-container">
           {isMobileView ? (
             <NavLink className="crew-link" to={`/crew/${flightId}`}>
-              <ButtonAddCrew />
+              <ButtonAddCrew isMobileView={isMobileView}/>
             </NavLink>
           ) : (
             <ButtonAddCrew
