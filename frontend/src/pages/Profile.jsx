@@ -8,7 +8,7 @@ const Profile = () => {
 
   let { userId } = useParams();
 
-  console.log(userId);
+  // console.log(userId);
 
   useEffect(() => {
     const fetchData = async () => {

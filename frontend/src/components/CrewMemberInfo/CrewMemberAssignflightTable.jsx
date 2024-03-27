@@ -11,7 +11,7 @@ function CrewMemberAssignflightTable({ expand, crewId }) {
   const [showDoubleCheck, setShowDoubleCheck] = useState(false);
   useEffect(
     function () {
-      console.log(updateInfo);
+      // console.log(updateInfo);
     },
     [updateInfo]
   );
@@ -24,7 +24,7 @@ function CrewMemberAssignflightTable({ expand, crewId }) {
         let data = await res.json();
 
         setFlights(data.data.flights);
-        console.log(flights);
+        // console.log(flights);
       } catch (err) {
         console.log(err.message);
       } finally {

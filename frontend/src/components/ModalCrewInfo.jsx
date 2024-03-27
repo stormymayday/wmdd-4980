@@ -28,7 +28,7 @@ export default function ModalCrewInfo({ id, onClickClose }) {
           onAssignClick={() => setShowAssignTable(true)}
         />
       )}
-      {!showAssignTable && <CrewMemberLatestFlight expand={false} />}
+      {!showAssignTable && <CrewMemberLatestFlight expand={false} ticket={true} />}
       {showAssignTable && (
         <CrewMemberAssignflightTable expand={true} crewId={id} />
       )}

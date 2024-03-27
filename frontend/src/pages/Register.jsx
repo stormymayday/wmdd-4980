@@ -22,7 +22,7 @@ export const registerAction = async ({ request }) => {
 const Register = () => {
   // Navigation State
   const navigation = useNavigation();
-  console.log(navigation);
+  // console.log(navigation);
   const isSubmitting = navigation.state === 'submitting';
 
   return (

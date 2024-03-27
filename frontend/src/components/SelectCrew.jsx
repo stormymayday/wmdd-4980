@@ -47,7 +47,7 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
       url: '/api/v1/crew',
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setAvailableCrew(response.data.data.CrewMembers);
       })
       .catch((error) => console.log(error));
@@ -109,7 +109,7 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
   }
 
   function handleSubmit() {
-    console.log(newFlight)
+    // console.log(newFlight)
     localStorage.setItem('newFlight', JSON.stringify(newFlight));
 
     axios
@@ -136,7 +136,7 @@ export default function SelectCrew({ flightComing, isModal, onClickClose }) {
         Select Crew
       </ReturnHeader>
       <div className="addCrewContainer">
-        {console.log(newFlight)}
+        {/* {console.log(newFlight)} */}
         <SelectedCrew capt={capt} cop={cop} cabinCrew={cabinCrew} />
         <h2>Select Crew</h2>
         <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />

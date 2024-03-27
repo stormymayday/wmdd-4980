@@ -11,24 +11,17 @@ function CrewMemberInfo({ crewId, onAssignClick }) {
   const [profile, setProfile] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(crewId);
-  /////////////////////////////////////////////////////
-  //extract id from url
-  // const { id } = useParams();
-  ///////////////////////////////////////////////
-  //   let profile;
+
   useEffect(function () {
     async function fetchCrew() {
       try {
         setIsLoading(true);
-        //use `/api/v1/crew/${id}` route when placing the component on page
         const res = await fetch(`/api/v1/crew/${id}`);
         let data = await res.json();
         const profile = await data.data.CrewMember;
         profile.flightHours.available =
           profile.flightHours.available === 'available' ? 'active' : 'inactive';
         setProfile(profile);
-
-        //for pilot info we're still missing photo
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -39,7 +32,6 @@ function CrewMemberInfo({ crewId, onAssignClick }) {
     fetchCrew();
   }, []);
 
-  //joinDate is missing in datasets
   let joinDate = 'March 2023';
 
   return (
@@ -57,7 +49,6 @@ function CrewMemberInfo({ crewId, onAssignClick }) {
             <div className="crewInfo__nameStatus">
               <div className="crewInfo__nameStatus__container">
                 <p>{profile.name}</p>
-
                 <div className="crewInfo__status">
                   <p>{profile.flightHours.available}</p>
                 </div>
@@ -83,7 +74,6 @@ function CrewMemberInfo({ crewId, onAssignClick }) {
               <p className="crewInfo__infoMid__left__title">Flight Time</p>
             </div>
             <div className="crewInfo__infoMid__mid">
-              {/* missing data : "flights per week" */}
               <p className="crewInfo__infoMid__mid__flights">{'3 flights'}</p>
               <p className="crewInfo__infoMid__left__title">Per Week</p>
             </div>
@@ -101,15 +91,14 @@ function CrewMemberInfo({ crewId, onAssignClick }) {
               <CrewMemberMessageBtn />
               <p className="crewInfo__infolow__title">Message</p>
             </div>
-            <button
-              className="crewInfo__infolow__right"
-              onClick={onAssignClick}
-            >
+            <div className="crewInfo__infolow__right">
               <CrewMemberAssignBtn />
-              <p className="crewInfo__infolow__title">
-                <span>Assign</span>
-              </p>
-            </button>
+              <button onClick={onAssignClick} className="crewInfo__infolow__btn">
+                <span className="crewInfo__infolow__title">
+                  Assign
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       ) : (

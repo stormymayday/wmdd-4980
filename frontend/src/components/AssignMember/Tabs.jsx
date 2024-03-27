@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Tab from './Tab';
 import '../../../SASS/components/_flightTableWithCrew.scss';
 function TabsForFlightTableWithCrew({ activeTab, setActiveTab }) {
-  console.log(activeTab);
+  // console.log(activeTab);
   return (
     <div className="addCrew__tabs">
       <Tab value="all" num={0} activeTab={activeTab} onClick={setActiveTab}>

@@ -67,7 +67,7 @@ export const CrewAvailability = () => {
     onSuccess: (data) => setCrew(data.data.data.CrewMembers),
   });
 
-  console.log(`Pie Chart ${crew}`);
+  // console.log(`Pie Chart ${crew}`);
 
   useEffect(() => {
     splitCrew(crew);

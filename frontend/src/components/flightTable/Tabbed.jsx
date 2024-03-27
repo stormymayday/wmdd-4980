@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Tab from './Tab';
 
 function Tabbed({ activeTab, setActiveTab }) {
-  console.log(activeTab);
+  // console.log(activeTab);
 
   return (
     <div className="flightTable__tabs">
