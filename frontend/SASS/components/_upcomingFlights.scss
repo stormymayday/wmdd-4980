@@ -51,7 +51,8 @@
   }
 
   &.no__crew{
-    height: auto;
+    height: revert;
+    min-height: revert;
     background: $clr-primary-3;
     color: $clr-primary-4;
   }

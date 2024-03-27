@@ -1,8 +1,14 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tab from './TabForFlightTableWithCrew';
 import '../../../SASS/components/_flightTableWithCrew.scss';
 function TabsForFlightTableWithCrew({ activeTab, setActiveTab }) {
-  console.log(activeTab);
+  // console.log(activeTab);
+
+  useEffect(() => {
+    setActiveTab("no crew");
+  }, [])
+
   return (
     <div className="flightTable1__tabs">
       <Tab value="no crew" num={0} activeTab={activeTab} onClick={setActiveTab}>

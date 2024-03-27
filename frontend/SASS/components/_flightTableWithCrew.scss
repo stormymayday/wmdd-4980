@@ -1,12 +1,11 @@
 @import '../abstracts/_variables.scss';
 .flightTable1 {
-  font-family: 'Roboto', 'Arial';
-  display: flex;
-  width: 26rem;
-  padding: 1rem;
-  align-items: flex-start;
-  gap: 2rem;
-  // background-color: black;
+  color: $clr-complimentary-black-45;
+  font-family: Roboto;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 125%;
   &__container {
     display: flex;
     flex-direction: column;
@@ -211,7 +210,7 @@
     border-radius: 8px;
     border: 1px solid $clr-complimentary-black-20;
     background: $clr-complimentary-black-05;
-    font-size: 0.625rem;
+    font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: 125%;
@@ -223,6 +222,7 @@
     border-radius: 8px;
     width: 2rem;
     height: 2rem;
+
     span {
       display: none;
     }
@@ -493,6 +493,7 @@
     //   background-color: white;
     // }
     &__btn-container {
+
       display: flex;
       justify-content: space-around;
       background: white;
@@ -515,7 +516,7 @@
       }
     }
   }
-  .flightTable__addBtnBlue {
+ .flightTable__addBtnBlue {
     svg {
       fill: $clr-complimentary-black-90;
     }

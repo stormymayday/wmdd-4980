@@ -11,6 +11,19 @@ function CrewMemberLatestFlight({ expand }) {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
 
+  const [isMobilePhone, setIsMobile] = useState('');
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 394);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   useEffect(function () {
     async function fetchFlights() {
       try {
@@ -40,20 +53,37 @@ function CrewMemberLatestFlight({ expand }) {
       <div className="flightTableForCrew__container">
         <div className="flightTableForCrew__frame">
           <div className="flightTableForCrew__frame__title">
-            <h3 className="flightTableForCrew__title">Latest Flights</h3>{' '}
-            <span className="flightTableForCrew__count">
+            {/* Here I need to add the header of the bug batch */}
+            {isMobilePhone && (
+              <h3 className="flightTableForCrew__title">
+                Recent Flights Schedule
+              </h3>
+            )}
+            {/* <span className="flightTableForCrew__count">
               {'('}
               {flights.length}
               {')'}
-            </span>
+            </span> */}
           </div>
         </div>
 
         <div className="flightTableForCrew__table">
           <ul className="flightTableForCrew__list">
+            {!isMobilePhone && <li className='FlightTableHeader'>
+              <div className='first'>Flight</div>
+              <div>Date</div>
+              <div>Time</div>
+              <div>Aircraft Time</div>
+              <div>Restrictions</div>
+              <div>Actions</div>
+            </li>}
             {/* map method return an array of FlightItem */}
             {flightlist.map((flight) => (
-              <CrewMemberLatestFlightItem flight={flight} key={flight._id} />
+              <CrewMemberLatestFlightItem
+                flight={flight}
+                key={flight._id}
+                isMobilePhone={isMobilePhone}
+              />
             ))}
           </ul>
         </div>
