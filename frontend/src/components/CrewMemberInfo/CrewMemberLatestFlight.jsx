@@ -5,24 +5,20 @@ import CrewMemberLatestFlightItem from './CrewMemberLatestFlightItem';
 import { useEffect, useState } from 'react';
 import '../../../SASS/components/_crewMemberLatestFlight.scss';
 
-function CrewMemberLatestFlight({ expand }) {
+function CrewMemberLatestFlight({ expand, ticket }) {
   //////important the flight data that is passed into this component should came from crew member we're using flight list as placeholder now
   const [flights, setFlights] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
 
-  const [isMobilePhone, setIsMobile] = useState('');
+  const [isMobilePhone, setIsMobile] = useState(window.innerWidth);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 394);
+    setIsMobile(window.innerWidth <= 430);
   };
+  
 
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  window.addEventListener('resize', handleResize);
 
   useEffect(function () {
     async function fetchFlights() {
@@ -32,7 +28,7 @@ function CrewMemberLatestFlight({ expand }) {
         let data = await res.json();
 
         setFlights(data.data.flights);
-        console.log(flights);
+        // console.log(flights);
       } catch (err) {
         console.log(err.message);
       } finally {
@@ -66,7 +62,6 @@ function CrewMemberLatestFlight({ expand }) {
             </span> */}
           </div>
         </div>
-
         <div className="flightTableForCrew__table">
           <ul className="flightTableForCrew__list">
             {!isMobilePhone && <li className='FlightTableHeader'>
@@ -83,6 +78,7 @@ function CrewMemberLatestFlight({ expand }) {
                 flight={flight}
                 key={flight._id}
                 isMobilePhone={isMobilePhone}
+                ticket={ticket}
               />
             ))}
           </ul>

@@ -1,7 +1,7 @@
 // import ButtonAddCrew from '../flightTable/ButtonAddCrew';
 import ButtonCrewMemberInfo from '../../components/CrewMemberInfo/ButtonCrewMemberInfo';
 
-function CrewMemberLatestFlightItem({ flight, isMobilePhone }) {
+function CrewMemberLatestFlightItem({ flight, isMobilePhone, ticket}) {
   const {
     flightNumber,
     from,
@@ -51,7 +51,7 @@ function CrewMemberLatestFlightItem({ flight, isMobilePhone }) {
           </>
         )}
 
-        <ButtonCrewMemberInfo isMobilePhone={isMobilePhone} />
+        <ButtonCrewMemberInfo isMobilePhone={isMobilePhone} ticket={ticket} />
       </li>
     </>
   );

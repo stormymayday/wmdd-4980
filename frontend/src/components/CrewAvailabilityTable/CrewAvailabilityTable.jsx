@@ -37,11 +37,11 @@ const CrewAvailabilityTable = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
-    console.log(`Opening the Modal`);
+    // console.log(`Opening the Modal`);
     setIsModalOpen(true);
   };
   const closeModal = () => {
-    console.log(`Closing the Modal`);
+    // console.log(`Closing the Modal`);
     setIsModalOpen(false);
   };
 
@@ -162,37 +162,89 @@ const CrewAvailabilityTable = () => {
 
       <div className="table-header">
         <h2>Select Crew</h2>
-
-        <BsFilterSquare className="crew-filter-icon" onClick={openModal} />
+        {isMobileView && (
+          <button className="crew-filter-icon" onClick={openModal}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M2 8C2 7.44772 2.44772 7 3 7H21C21.5523 7 22 7.44772 22 8C22 8.55228 21.5523 9 21 9H3C2.44772 9 2 8.55228 2 8Z"
+                fill="#202020"
+              />
+              <path
+                d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z"
+                fill="#202020"
+              />
+              <path
+                d="M6 16C6 15.4477 6.44772 15 7 15H17C17.5523 15 18 15.4477 18 16C18 16.5523 17.5523 17 17 17H7C6.44772 17 6 16.5523 6 16Z"
+                fill="#202020"
+              />
+            </svg>
+          </button>
+        )}
+        {/* <BsFilterSquare className="crew-filter-icon" onClick={openModal} /> */}
       </div>
       {/* Table Head - End */}
-      <div className="tabs">
-        <button
-          className={`tab-btn ${selectedTab === 'all_crew' ? 'active' : ''}`}
-          onClick={() => handleTabChange('all_crew')}
-        >
-          All Crew
-        </button>
-        <button
-          className={`tab-btn ${selectedTab === 'pilot' ? 'active' : ''}`}
-          onClick={() => handleTabChange('pilot')}
-        >
-          Pilots
-        </button>
-        <button
-          className={`tab-btn ${
-            selectedTab === 'second_pilot' ? 'active' : ''
-          }`}
-          onClick={() => handleTabChange('second_pilot')}
-        >
-          Co-Pilots
-        </button>
-        <button
-          className={`tab-btn ${selectedTab === 'cabin_crew' ? 'active' : ''}`}
-          onClick={() => handleTabChange('cabin_crew')}
-        >
-          Cabin Crew
-        </button>
+      <div className='desktopViewTabs'>
+        <div className="tabs">
+          <button
+            className={`tab-btn ${selectedTab === 'all_crew' ? 'active' : ''}`}
+            onClick={() => handleTabChange('all_crew')}
+          >
+            All Crew
+          </button>
+          <button
+            className={`tab-btn ${selectedTab === 'pilot' ? 'active' : ''}`}
+            onClick={() => handleTabChange('pilot')}
+          >
+            Pilots
+          </button>
+          <button
+            className={`tab-btn ${
+              selectedTab === 'second_pilot' ? 'active' : ''
+            }`}
+            onClick={() => handleTabChange('second_pilot')}
+          >
+            Co-Pilots
+          </button>
+          <button
+            className={`tab-btn ${
+              selectedTab === 'cabin_crew' ? 'active' : ''
+            }`}
+            onClick={() => handleTabChange('cabin_crew')}
+          >
+            Cabin Crew
+          </button>
+        </div>
+        {!isMobileView && (
+          <button className="crew-filter-icon" onClick={openModal}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M2 8C2 7.44772 2.44772 7 3 7H21C21.5523 7 22 7.44772 22 8C22 8.55228 21.5523 9 21 9H3C2.44772 9 2 8.55228 2 8Z"
+                fill="#202020"
+              />
+              <path
+                d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z"
+                fill="#202020"
+              />
+              <path
+                d="M6 16C6 15.4477 6.44772 15 7 15H17C17.5523 15 18 15.4477 18 16C18 16.5523 17.5523 17 17 17H7C6.44772 17 6 16.5523 6 16Z"
+                fill="#202020"
+              />
+            </svg>
+            <p className='desktopViewTabs__filterTab'>Filter</p>
+          </button>
+        )}
       </div>
       {/* Tabs - End */}
       <table className="crew-availability-table">
@@ -218,7 +270,10 @@ const CrewAvailabilityTable = () => {
                     <span
                       className={`status-cell ${member.flightHours.available.toLowerCase()}`}
                     >
-                      {member.flightHours.available.toLowerCase()}
+                      {member.flightHours.available.toLowerCase() ===
+                      'unavailable'
+                        ? 'Crew Sick'
+                        : member.flightHours.available.toLowerCase()}
                     </span>
                   </td>
                   <td>
@@ -239,7 +294,7 @@ const CrewAvailabilityTable = () => {
                         }}
                         // onClick={() => toggleModalCrew()}
                       >
-                        <TbEyeFilled className="view-crew-icon" />
+                        <p className="view-crew-icon">View</p>
                       </button>
                     )}
                   </td>
@@ -258,7 +313,7 @@ const CrewAvailabilityTable = () => {
           }
         >
           <div className="modal-content">
-            <ModalCrewInfo onClickClose={toggleModalCrew} id={selectedCrewId} />
+            <ModalCrewInfo onClickClose={toggleModalCrew} id={selectedCrewId} ticket={true} />
           </div>
         </div>
       )}

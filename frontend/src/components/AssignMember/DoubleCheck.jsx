@@ -9,7 +9,7 @@ function DoubleCheck({ setShowDoubleCheck, updateInfo }) {
         const res = await fetch(`/api/v1/crew/${updateInfo.crewId}`);
         let data = await res.json();
         const profile = await data.data.CrewMember;
-        console.log(profile);
+        // console.log(profile);
         setSingleCrew(profile);
 
         //for pilot info we're still missing photo
@@ -32,7 +32,7 @@ function DoubleCheck({ setShowDoubleCheck, updateInfo }) {
         $push: { flightRecord: flightData },
       });
 
-      console.log('Flight records updated successfully');
+      // console.log('Flight records updated successfully');
     } catch (error) {
       console.error(error);
     }
@@ -58,7 +58,7 @@ function DoubleCheck({ setShowDoubleCheck, updateInfo }) {
         }
       );
 
-      console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +76,7 @@ function DoubleCheck({ setShowDoubleCheck, updateInfo }) {
             <button
               className="doubleCheck__btns__btn1"
               onClick={() => {
-                console.log(updateInfo);
+                // console.log(updateInfo);
                 updateMemberFlightRecords(updateInfo);
                 updateCrewMembersInFlight(updateInfo);
                 setShowDoubleCheck(false);
@@ -87,7 +87,7 @@ function DoubleCheck({ setShowDoubleCheck, updateInfo }) {
             <button
               className="doubleCheck__btns__btn2"
               onClick={() => {
-                console.log(updateInfo);
+                // console.log(updateInfo);
                 updateMemberFlightRecords(updateInfo);
                 updateCrewMembersInFlight(updateInfo);
                 setShowDoubleCheck(false);

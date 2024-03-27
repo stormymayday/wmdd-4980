@@ -141,7 +141,7 @@ export default function NewFlight({ onClickClose, isModal }) {
         hourIn: arrivingTime,
       }));
     }
-    console.log(flightInfo);
+    // console.log(flightInfo);
   }, [
     flightInfo.from,
     flightInfo.to,

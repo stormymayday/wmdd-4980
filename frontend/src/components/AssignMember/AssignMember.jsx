@@ -48,15 +48,15 @@ function AssignMember({ assignMemberRef }) {
 
   const handleClick = async (id) => {
     // ... fetch crew member ...
-    console.log('click');
+    // console.log('click');
     const res = await fetch(`/api/v1/crew/${id}`);
     let data = await res.json();
-    console.log(data);
+    // console.log(data);
     const selectedCrew = data.data.CrewMember;
 
     let updatedFlightData = { ...flightDataForPatch };
 
-    console.log(crewIdForUpdate);
+    // console.log(crewIdForUpdate);
 
     if (selectedCrew.role === 'pilot' && pilots.length < 1) {
       setPilots([...pilots, selectedCrew]);
@@ -83,11 +83,11 @@ function AssignMember({ assignMemberRef }) {
     }
 
     setFlightDataForPatch(updatedFlightData);
-    console.log(flightDataForPatch);
+    // console.log(flightDataForPatch);
   };
 
   useEffect(() => {
-    console.log(flights);
+    // console.log(flights);
   });
   useEffect(function () {
     async function fetchFlightInfoForAssign() {
@@ -102,7 +102,7 @@ function AssignMember({ assignMemberRef }) {
         const selectedflight = data.data.flight;
 
         setFlights(selectedflight);
-        console.log(flights);
+        // console.log(flights);
 
         selectedflight.crewMembers.forEach((crewMember) => {
           if (crewMember.member1) {
@@ -132,7 +132,7 @@ function AssignMember({ assignMemberRef }) {
         setIsLoading(false);
       }
     }
-    console.log(pilots + ' and ' + copilots + ' and ' + cabinCrew);
+    // console.log(pilots + ' and ' + copilots + ' and ' + cabinCrew);
     fetchFlightInfoForAssign();
   }, []);
 

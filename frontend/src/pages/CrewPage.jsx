@@ -10,7 +10,7 @@ const CrewPage = () => {
         Crew Member Information
       </ReturnHeader>
       <CrewMemberInfo crewId={id} />
-      <CrewMemberLatestFlight expand={false} />
+      <CrewMemberLatestFlight expand={false} ticket={true}/>
     </div>
   );
 };
