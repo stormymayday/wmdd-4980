@@ -106,10 +106,13 @@
     }
   }
   &__label2 {
+    // display: flex;
+    // align-items: center;
+    // gap: 0.5rem;
+    // flex: 1 0 0;
     display: flex;
+    width: 6rem;
     align-items: center;
-    gap: 0.5rem;
-    flex: 1 0 0;
   }
   &__label3 {
     display: none;
@@ -128,8 +131,12 @@
     }
   }
   &__label4 {
+    // justify-content: flex-end;
+    // align-items: center;
+    display: flex;
     justify-content: flex-end;
     align-items: center;
+    flex: 0 0 0;
 
     p {
       justify-content: flex-end;
