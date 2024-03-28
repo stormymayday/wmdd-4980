@@ -13,6 +13,10 @@ function CrewMemberLatestFlight({ expand, ticket }) {
 
   const [isMobilePhone, setIsMobile] = useState(window.innerWidth);
 
+  useEffect(function() {
+    setIsMobile(window.innerWidth <= 430);
+  }, [])
+
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 430);
   };
