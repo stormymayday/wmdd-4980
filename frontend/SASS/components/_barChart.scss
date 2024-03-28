@@ -182,7 +182,7 @@
   //   width: 230vw;
   // }
 }
-@media (min-width: 768px) {
+@media (min-width: 990px) {
   .bar-chart {
     &__boxContainer {
       height: 13.25rem;
@@ -192,23 +192,14 @@
     &__box {
       // background-color: green;
 
-      // display: flex;
-      // padding: 1.95vh;
-      // flex-direction: column;
-      // align-items: flex-start;
-      // gap: 0.83vw;
-      // flex: 1 0 0;
-      // border-radius: 12px;
-      // width: 60vw;
-      // height: 30.91vh;
       display: flex;
-      padding: 2.15rem; // 1.95vh
+      padding: 1.25rem;
       flex-direction: column;
       align-items: flex-start;
-      gap: 0.72rem; // 0.83vw
+      gap: 0.72rem;
       flex: 1 0 0;
-      border-radius: 0.75rem; // 12px
-      width: 54rem; // 60vw
+      border-radius: 0.75rem;
+      width: 54rem;
       height: 20.073rem; // 30.91vh
 
       // &__inner {

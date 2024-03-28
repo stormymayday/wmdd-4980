@@ -44,6 +44,8 @@ function FlightItemWithCrew({
           {/* <NavLink>
           <ButtonAddCrew flightId={flightId} />
         </NavLink> */}
+          {/* <span>add</span> */}
+          <span>Crew</span>
         </div>
       </li>
       {showModalAssignMember && (
