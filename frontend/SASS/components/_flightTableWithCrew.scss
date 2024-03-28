@@ -342,8 +342,13 @@
       align-self: stretch;
       width: 100%;
       align-items: center;
-      background-color: $clr-complimentary-black-10;
+      background-color: $clr-complimentary-black-95;
       height: 1rem;
+      div{
+        p{
+          color: $clr-primary-4;
+        }
+      }
     }
     &__wrapperSA {
       flex-wrap: wrap;
